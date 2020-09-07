@@ -1,0 +1,517 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<th:block layout:fragment='css'>
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet" href="/css/mypage/mypage.css">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128"><title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
+<style type="text/css"></style>
+
+<style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: justify;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+/* .myInq-list{
+padding-left: 30px;
+}
+ */
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+
+.qnaAns{
+color: #ff8000;
+font: bold;
+
+}
+
+.myQnACont{
+padding-top: 30px;
+padding-bottom: 30px;
+font-size: 20px;
+color: gray;
+}
+
+.showAns{
+padding-top: 30px;
+border-top: 1px solid #e6e7e8;
+font: 15px;
+
+
+}
+
+</style>
+
+</head>
+<div layout:fragment='content'>
+
+<div class="container sub_bg">
+    
+<div id="contents_area" class="col-xs-9">
+
+
+
+	<div class="my_tabs">
+<div class="chef_cont">
+	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
+	    
+	    
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class=""></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class=""></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class=""></span>활동</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class=""></span>문의사항</a></li>
+	        
+	    </ul>
+	</div>
+
+    
+
+
+      
+      <ul class="nav nav-tabs3" style="position:relative;">
+      
+      
+        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn">문의 하기</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myInquiryList" th:class="myInquiryList">나의 문의 사항</a></li>
+
+            </ul>
+            </div>
+      <div class="cont_list">
+      
+      
+      	<div th:id="myInquirySub">
+
+
+
+		<div th:id="myInquiryListMain">
+
+	
+	<div th:each="myInqList : ${myInqList}" class="myInq-list">
+	
+	
+	<button th:class="accordion">
+	
+	<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}+'&nbsp;|&nbsp;' style="text-align: left;"></td>
+	<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}"></a></td>
+	<h3><td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+	</h3><td>　　　　　　　　　　　　　　　　　</td>
+	</button>
+<div class="panel">
+  <p th:class="myQnACont"><td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
+  
+  </p>
+
+   <p th:class="showAns" style=""><td th:id="showAns" th:text="${myInqList.answer}" ></td>	</p>
+  
+</div>
+
+
+</div>
+
+	</div>
+</div>
+      </div>/cont_list
+   
+
+  </div>/contents_area
+
+
+  	<div id="right_area" class="col-xs-3">
+				<div class="myhome_main" style="margin-bottom: 20px;">
+					<div class="myhome_main_t"
+						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
+					<div class="myhome_main_info">
+						<div class="info_pic">
+							<a href="javascript:void(0);"
+								><img
+								th:src="'/img/'+${session['userPic']}"></a>
+						
+						</div>
+						<div class="w3-container" style="padding-top: 50px">
+							
+							<button 
+								onclick="document.getElementById('id01').style.display='block'"
+								class="modal-start-btn">정보 수정하기</button>
+
+							<div id="id01" class="w3-modal">
+								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+									style="max-width: 600px">
+
+									<div class="w3-center">
+										<br> <span
+											onclick="document.getElementById('id01').style.display='none'"
+											class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+											title="Close Modal">&times;</span> <img id="img"
+											style="width: 30%" />
+
+									</div>
+
+									<form class="w3-container" action="/mypage/modifyUserPic"
+										method="POST" enctype="multipart/form-data">
+										<div class="w3-section">
+											<label><b>사진 등록</b></label> <input id="input_img"
+												class="w3-input w3-border" type="file"
+												placeholder="사진을 등록하세요" name="file" accept="image/*">
+												<label value="변경할 비밀번호" style="text-align: center;"></label>
+											<input required="required" name="userPw" type="password"
+												placeholder="변경할 비밀번호"
+												style=" width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;"> 
+												<input
+												id="userNickName" type="text" placeholder="변경할 닉네임"
+												name="userNickName"
+												style="  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;">
+											<button
+												class="modal-submit-btn"
+												type="submit">변경하기</button>
+										</div>
+
+
+
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+						w3-container
+
+					</div>
+				</div>
+
+
+
+
+			</div>/right_area
+    <div class="col-xs-12 sub_bg_btm"></div>
+</div>
+
+
+<script>
+
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+	
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    console.log("acc");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+
+</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>	
+
+
+	
+</div>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<th:block layout:fragment='css'>
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet" href="/css/mypage/mypage.css">
+<!-- <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128"> -->
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
+<style type="text/css"></style>
+
+<style>
+.accordion1 {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: justify;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+/* .myInq-list{
+padding-left: 30px;
+}
+ */
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+
+.qnaAns{
+color: #ff8000;
+font: bold;
+
+}
+
+.myQnACont{
+padding-top: 30px;
+padding-bottom: 30px;
+font-size: 20px;
+color: gray;
+}
+
+.showAns{
+padding-top: 30px;
+border-top: 1px solid #e6e7e8;
+font: 15px;
+
+
+}
+
+</style>
+
+</head>
+<div layout:fragment='content'>
+
+<div class="container sub_bg">
+    
+<div id="contents_area" class="col-xs-9">
+
+
+
+	<div class="my_tabs">
+<div class="chef_cont">
+	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
+	    
+	    
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class=""></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class=""></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class=""></span>활동</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class=""></span>문의사항</a></li>
+	        
+	    </ul>
+	</div>
+
+    
+
+
+      
+      <ul class="nav nav-tabs3" style="position:relative;">
+      
+      
+        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn">문의 하기</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myInquiryList" th:class="myInquiryList">나의 문의 사항</a></li>
+
+            </ul>
+            </div>
+      <div th:class="cont_list">
+      
+      
+      	<div th:id="myInquirySub">
+
+
+
+		<div th:id="myInquiryListMain">
+
+	
+	<div th:each="myInqList : ${myInqList}" class="myInq-list">
+	<button th:class="accordion1">
+		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}+'&nbsp;|&nbsp;' style="text-align: left;"></td>
+		<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}"></a></td>
+		<h3><td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td></h3><td>　　　　　　　　　　　　　　　　　</td>
+	</button>
+		<div th:class="panel">
+  			<p th:class="myQnACont"><td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td></p>
+  			<p th:class="showAns" style=""><td th:id="showAns" th:text="${myInqList.answer}" ></td>	</p>
+  		</div>
+	</div>
+
+	</div>
+</div>
+      </div><!--/cont_list -->
+   
+
+  </div><!-- /contents_area -->
+
+
+  	<div id="right_area" class="col-xs-3">
+				<div class="myhome_main" style="margin-bottom: 20px;">
+					<div class="myhome_main_t"
+						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
+					<div class="myhome_main_info">
+						<div class="info_pic">
+							<a href="javascript:void(0);"
+								><img
+								th:src="'/img/'+${session['userPic']}"></a>
+						
+						</div>
+											<div>
+					<h4 th:class="myNickName"><span th:text="${session['nickName']}"></span>님! 반갑습니다☺</h4>
+					</div>
+						<div class="w3-container" style="padding-top: 10px">
+							
+							<button 
+								onclick="document.getElementById('id01').style.display='block'"
+								class="modal-start-btn">정보 수정하기</button>
+
+							<div id="id01" class="w3-modal">
+								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+									style="max-width: 600px">
+
+									<div class="w3-center">
+										<br> <span
+											onclick="document.getElementById('id01').style.display='none'"
+											class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+											title="Close Modal">&times;</span> <img id="img"
+											style="width: 30%" />
+
+									</div>
+
+
+								<form class="w3-container" action="/mypage/modifyUserPic"
+									method="POST" enctype="multipart/form-data">
+									<div class="w3-section">
+										<h3 style="color: #F4863F;">회원정보 수정하기</h3><br>
+										<input id="input_img" class="w3-input w3-border" type="file"
+											placeholder="사진을 등록하세요" name="file" accept="image/*">
+
+											<br>
+											<label value="변경할 비밀번호" style="text-align: center;"></label>
+									<input type="password" name="userPw3" id="userPw3"
+					class="" required placeholder="변경할 비밀번호 " maxlength="16" style="  width: 542px; display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+   padding: 12px 20px;"/>
+				<br>
+<br>
+			<input type="password" name="userPw4" id="userPw4" maxlength="12" style="  width: 542px; display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+   padding: 12px 20px;"
+					class="" placeholder="비밀번호 확인" required />
+	<br>	
+
+				<div class="text-danger1" id="alert-danger1">비밀번호가 일치하지 않습니다.</div>
+				<div class="text-danger1" id="alert-success1">비밀번호가 일치합니다.</div>
+		<br>									 
+
+																<div>
+						<label value="변경할 닉네임" style="text-align: center;"></label>
+						<input type="text" name="userNickName" placeholder="변경할 닉네임" id="userNickName"
+							class="" style="width: 462px; display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+   padding: 12px 20px;"> <span th:text="${valid_nickName}"></span>
+						<input type="button" id="my_nick_btn" value="중복확인" style="border-radius: 3px; padding: 12px" /></br>
+					</div>
+										<br><button class="modal-submit-btn" type="submit">변경하기</button>
+									</div>
+
+
+
+								</form>
+
+
+
+								</div>
+							</div>
+						</div>
+						<!-- w3-container -->
+
+					</div>
+				</div>
+
+
+
+
+			</div><!-- /right_area -->
+    <div class="col-xs-12 sub_bg_btm"></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>	
+
+
+	
+</div>
+</html>

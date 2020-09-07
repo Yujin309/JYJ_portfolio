@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
+
+<link rel="stylesheet" type="text/css"
+	href="/css/fragmentCss/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css"
+	href="/css/fragmentCss/ez_recipe_20200605.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<head>
+
+<meta charset="UTF-8">
+<th:block layout:fragment='CSS'></th:block>
+<header th:replace="~{fragments/header :: header}"></header>
+<div layout:fragment='content'></div>
+
+<link rel="stylesheet" href="/css/talk/write.css">
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
+
+<title>글 수정</title>
+
+
+<script type="text/javascript">
+	
+</script>
+
+</head>
+<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- <div th:insert="talk/header.html" id="header"></div> -->
+
+
+	<form class="form-horizontal" th:action="@{/talk/update}" method="post">
+	
+	
+		<div class="form-group">
+		
+			<div class="story_write_area">
+
+				<div class="story_write_pic">
+
+
+					<table>
+						<thead>
+							<tr>
+								<th>내용</th>
+								<th>아이디</th>
+								<th>시간</th>
+								<th>댓글</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr th:each="talk : ${talkupdate}">
+
+								<td><input name="talkCont" th:value="${talk.talkCont}"></td>
+
+								<td><input readonly="readonly" name="userId"
+									th:value="${talk.userId}"></td>
+									
+								<td><input readonly="readonly" name="talkDate"
+									th:value="${talk.talkDate}"></td>
+									
+									
+								<td><input readonly="readonly" name="talkCom"
+								
+									th:value="${talk.talkCom}"></td>
+								<td><input name="talkVideo" th:value="${talk.talkVideo}"></td>
+
+
+								<input type="hidden" th:value="${talk.talkCode}" name="talkCode">
+							</tr>
+						</tbody>
+
+					</table>
+
+					<button type="submit" id="saveBtn">등록</button>
+	
+	
+	</form>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

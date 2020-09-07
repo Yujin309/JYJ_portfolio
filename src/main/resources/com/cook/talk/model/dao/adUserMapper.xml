@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.AdUserDAO">
+	<select id="allSelectUserId" resultType="userVO">
+		select * from user 
+	</select>
+
+	<delete id="deleteUserID" parameterType="userVO">
+		delete from user
+		where
+		userId=#{userId}
+	</delete>
+
+	<update id="updateUserNickName" parameterType="userVO">
+		update user
+		set
+		nickName = #{nickName}
+		where userId=#{userId}
+	</update>
+	
+	<select id="countPaginationUser" resultType="int">
+		select count(*)
+		from user
+	</select>
+	
+	<select id="countPaginationUserLimit" resultType="userVO">
+		select userId, userPw, nickName, birth, gender, access, auth, userPic, rcpUploads, followers, signUpRouteCode
+		from user
+	</select>
+	
+	
+	<select id="searchUser" resultType="userVO">
+		select * from user
+		where
+	 	nickName
+		LIKE CONCAT('%',#{nickName},'%')
+	</select>
+
+
+
+</mapper>
+	

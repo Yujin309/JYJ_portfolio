@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.AdRecipeDAO">
+
+	<!-- <resultMap type="" id="rcpDTO"> <collection property="scrap"> </collection> 
+		<association property="user"> </association> </resultMap> -->
+	<select id="allSelectRecipe" resultType="recipeVO">
+		select * from rcp
+	</select>
+
+	<!-- adRecipe에서, 작성자 를 입력하였을때에, 등록한 레시피가 나오게끔 -->
+	<select id="searchRecipeByNickName" resultType="recipeVO">
+		select * from rcp
+		where userId like concat ('%',#{userId},'%')
+	</select>
+
+	<!-- 레시피 식별코드 서칭하는거 필요 -->
+	<select id="searchRcpByRcpCode">
+	select * from recipe.views
+	where rcpCode like (#{rcpCode})
+</select>
+	<select id="selectStaticMonths" resultType="Integer">
+		select count(*) from
+		views, user
+		where views.rcpCode = #{rcpCode} and
+		views.userId=user.userId
+		group by substring(viewDate,1,7)
+	</select>
+
+	<select id="selectStaticsGender" resultType="Integer">
+		select count(*) from
+		views, user
+		where views.rcpCode = #{rcpCode} and
+		views.userId=user.userId
+		group by user.gender
+	</select>
+
+	<select id="selectStaticsAge" resultType="Integer">
+		select count(*) from
+		views, user
+		where views.rcpCode = #{rcpCode}' and
+		views.userId=user.userId
+		group by (select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4)
+		between 10 and 19 ,
+		1, 0)) as age_10)
+		,(select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4) between 20 and 29
+		, 1, 0)) as age_20)
+		,(select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4) between 30 and 39
+		, 1, 0)) as age_30)
+		,(select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4) between 40 and 49
+		, 1, 0)) as age_40)
+		,(select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4) between 50 and 59
+		, 1, 0)) as age_50)
+		,(select
+		sum(if(date_format(now(),'%Y')-substring(BIRTH,1,4) between 60 and 69
+		, 1, 0)) as age_60)
+	</select>
+</mapper>
+	

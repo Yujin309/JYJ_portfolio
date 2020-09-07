@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.AdIngrDAO">
+
+	<select id="searchIngr" resultType="ingrVO">
+		select * from ingr
+		where ingrName 
+		like concat ('%',#{ingrName},'%')
+	</select>
+
+	<select id="allSelectIngr" resultType="ingrVO">
+		select * from ingr order
+		by rcpingrCode
+	</select>
+
+	<insert id="insertIngr">
+		insert into ingr(rcpingrCode, ingrPic, ingrName,
+		ingrSeason, ingrCalorie,
+		ingrTemper)
+		values
+		(#{rcpingrCode},#{ingrPic},#{ingrName},#{ingrSeason},#{ingrCalorie},#{ingrTemper})
+	</insert>
+
+	<delete id="deleteIngr" parameterType="ingrVO">
+		delete from ingr
+		where rcpingrCode = #{rcpingrCode}
+	</delete>
+
+</mapper>
+	

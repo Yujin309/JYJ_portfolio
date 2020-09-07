@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+	.w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+	background-color:#f8f9fa;
+	}
+	</style>
+</head>
+<body>
+	<div class="chef_list4_in" id="allIngrPage">
+		<form name="" method="POST">
+			<input type="text" id="searchUserList" name="searchUserList"
+				th:value="*{searchUserList}" placeholder="닉네임을 입력하시오">
+
+			<button class="btn btn-outline-warning" type="button"
+				id="btn_adUserSearch">검색하기</button>
+
+			<div th:id="ingr_Name_List">
+				<table class="table table-bordered" id="searchUser" border="1"
+					style="text-align: center;">
+					<thead>
+						<tr>
+							<th>유저 아이디</th>
+							<th>유저 닉네임</th>
+							<th>유저 성별</th>
+							<th>레시피 업로드 개수</th>
+							<th>유저 팔로워 수</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</form>
+
+	</div>
+	<h2>회원정보</h2>
+	<div id="basic">
+		<table class="table table-bordered" id="AduserId"
+			style="text-align: center;">
+
+			<thead>
+				<tr>
+					<th>유저 아이디</th>
+					<th>유저 닉네임</th>
+					<th>유저 생일</th>
+					<th>유저 성별</th>
+					<th>레시피 업로드 개수</th>
+					<th>유저 팔로워 수</th>
+					<th>회원 정보 삭제</th>
+
+				</tr>
+			</thead>
+			<tbody th:id="tbody">
+
+				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
+					<td><input
+						style="background-color: transparent; border: 0 solid black;width: 100%"
+						type="text" th:class="C_enter_update_Id"
+						th:id="|enter_update_ID${index.index}|" name="userId"
+						th:value="${user.userId}" readonly></td>
+					<td><input
+						style="background-color: transparent; border: 0 solid black; width: 70%"
+						type="text" th:id="|enter_update_nickName${index.index}|"
+						th:name="nickName" th:value="${user.nickName}">
+					<td th:text="${user.birth}">유저 생일</td>
+					<td th:switch="${user.gender}"><i th:case="true" class="">남자</i>
+						<i th:case="false" class="">여자</i></td>
+					<td th:text="${user.rcpUploads}">레시피 업로드 개수</td>
+					<td th:text="${user.followers}">유저 팔로워 수</td>
+					<td><button class="btn btn-danger" th:class="delete_btn"
+							th:value='${user.userId}'>회원 삭제</button></td>
+
+				</tr>
+			</tbody>
+		</table>
+		<ul>
+			<div th:class="Pagination_Li">
+				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
+				</div>
+			</div>
+		</ul>
+
+	</div>
+	<script>
+		$(document).ready(function() {
+
+			var cc = 700;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+	</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 20; i++) {
+				$('#' + (((parseInt(k) - 1) * 20 + i))).show();
+				console.log((parseInt(k) - 1) * 20 + i);
+			}
+		});
+	</script>
+	<script>
+		$('#btn_adUserSearch')
+				.on(
+						'click',
+						function() {
+							var searchINGR;
+							var input = document
+									.getElementById("searchUserList").value;
+
+							var searchUSER = document
+									.getElementById("searchUserList").value
+							$.ajax({
+								type : "POST",
+								url : "/admin/searchUser",
+								data : {
+									nickName : searchUSER
+
+								},
+								success : function(data) {
+									$(".table234").remove();
+									$.each(data, function(index, user) {
+										var str = '<tr class="table234"><td>'
+											+ user.userId + '</td><td>'
+											+ user.nickName + '</td><td th:switch='+ user.gender +'>'+
+											'<i th:case="true">'+"남자"+'</i>'+'</td>'
+											+ user.gender + '</td><td>'
+											+ user.rcpUploads + '</td><td>'
+											+ user.followers + '</td>';
+										$("#searchUser").append(str);
+
+									});
+
+								},
+								error : function(data) {
+									alert("Error!");
+								}
+
+							});
+						});
+	</script>
+
+
+
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					var ENTER_KEY = 13;
+					nickNames = document.getElementsByName('nickName');
+					nickNames.forEach(function(nickName, i) {
+
+						nickName.addEventListener('keyup',
+								function(event) {
+									console.log('enter_update_ID' + i);
+									var value = $(this).val();
+									var userId = document
+											.getElementById('enter_update_ID'
+													+ i).value;
+
+									console.log(value + ":" + userId);
+									if (event.keyCode === ENTER_KEY) {
+										event.preventDefault();
+										var nick = value;
+										var user_Id = userId;
+										event.preventDefault();
+										alert(nick + "로 변경되었습니다.");
+										console.log(user_Id + "유저 되나?");
+										console.log(nick + "닉네임 되나?");
+										//userID값도 넣어주어야 됩니다.
+										$.ajax({
+											url : './admin/updateUserNickName',
+											data : {
+												nickName : nick,
+												userId : user_Id
+											},
+											method : "POST",
+										}).done(function(response) {
+											$('#basic').load("admin/adUser");
+										});
+
+									} else {
+										return false;
+									}
+								});
+					});
+				});
+	</script>
+	<script th:inline="javascript">
+		$(".delete_btn").click(function() {
+			/*          alert($(this).attr('value')); */
+			var id = $(this).attr('value');
+
+			if (confirm($(this).attr('value') + "를 삭제 하시겠습니까?")) {
+				$.ajax({
+					url : './admin/deleteUserID',
+					data : {
+						userId : id
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+
+</body>
+</html>

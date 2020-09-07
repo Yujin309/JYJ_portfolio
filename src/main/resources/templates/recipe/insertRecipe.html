@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id='pageTitle'>레시피 등록</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/insertR.js" type="text/javascript"></script>
+<style>
+.img_wrap {
+	width: 300px;
+	margin-top: 50px;
+}
+.img_wrap img {
+	max-width : 100%;
+}
+
+input[type=button] {
+  background-color: #f89b00;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
+<div layout:fragment='content'>
+ <div class="container recipe_regi">  <!-- 레시피 div -->
+    <form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
+  <div class="regi_center"><!-- button전까지 -->
+	<div class="regi_title">
+	레시피 등록
+	</div>
+       <div class="cont_box pad_l_60"><!-- recipe area -->
+       		<div id="divMainPhotoUpload" class="cont_pic2"><!-- 이미지 -->
+                <div style="position:absolute; left:-3000px">
+                </div>
+                	<div class="img_wrap">
+            			<img id="img" style="width: 250px; height: 250px;"/>
+            		</div>
+            	<div>
+          		  <input type="file" name="fileUpload" id="input_img" required="required" accept="jpeg,png,gif" 
+            	style="width:250px"/> 
+            	</div>           	
+            </div>   
+            
+            <div class="cont_line"><!-- 제목 -->
+                <p class="cont_tit4">레시피 제목</p>
+                <input type="text" name="recipeVO.rcpTitle" id="cok_title" class="form-control"
+                placeholder="예)소고기 미역국 끓이기" style="width:610px;">
+            </div>
+            <div class="cont_line pad_b_25"><!-- 요리소개 -->
+                <p class="cont_tit4">요리소개</p>
+                <textarea name="cok_intro" id="cok_intro" class="form-control step_cont" 
+                th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
+						style="height:100px; width:610px; resize:none;"></textarea>
+            </div>   
+            <div class="cont_line"><!-- category -->
+                <p class="cont_tit4">카테고리</p>
+                <select name="typeCatVO.cookType" id="cok_sq_category_4">
+                    <option value="">종류별</option>
+                    <option value="밑반찬">밑반찬</option>
+                    <option value="메인반찬">메인반찬</option>
+                    <option value="국/탕">국/탕</option>
+                    <option value="찌개">찌개</option>
+                    <option value="디저트">디저트</option>
+                    <option value="면/만두">면/만두</option>
+                    <option value="밥/죽/떡">밥/죽/떡</option>
+                    <option value="퓨전">퓨전</option>
+                    <option value="김치/젓갈/장류">김치/젓갈/장류</option>
+                    <option value="양념/소스/잼">양념/소스/잼</option>
+                    <option value="양식">양식</option>
+                    <option value="샐러드">샐러드</option>
+                    <option value="스프">스프</option>
+                    <option value="빵">빵</option>
+                    <option value="과자">과자</option>
+                    <option value="차/음료/술">차/음료/술</option>
+                    <option value="기타">기타</option>
+                  </select>
+                <select name="typeCatVO.cookSituation" id="cok_sq_category_2">
+                    <option value="">상황별</option>
+                    <option value="일상">일상</option>
+                    <option value="초스피드">초스피드</option>
+                    <option value="손님접대">손님접대</option>
+                    <option value="술안주">술안주</option>
+                    <option value="다이어트">다이어트</option>
+                    <option value="도시락">도시락</option>
+                    <option value="영양식">영양식</option>
+                    <option value="간식">간식</option>
+                    <option value="야식">야식</option>
+                    <option value="푸드스타일링">푸드스타일링</option>
+                    <option value="해장">해장</option>
+                    <option value="명절">명절</option>
+                    <option value="이유식">이유식</option>
+                    <option value="기타">기타</option>
+                </select>
+                <select name="typeCatVO.cookMethod" id="cok_sq_category_1">
+                    <option value="">방법별</option>
+                    <option value="볶음">볶음</option>
+                    <option value="끓이기">끓이기</option>
+                    <option value="부침">부침</option>
+                    <option value="조림">조림</option>
+                    <option value="무침">무침</option>
+                    <option value="비빔">비빔</option>
+                    <option value="찜">찜</option>
+                    <option value="절임">절임</option>
+                    <option value="튀김">튀김</option>
+                    <option value="삶기">삶기</option>
+                    <option value="굽기">굽기</option>
+                    <option value="데치기">데치기</option>
+                    <option value="회">회</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
+            <div class="cont_line"><!-- 요리정보 -->
+                <p class="cont_tit4">요리정보</p>
+                	인원  <select name="recipeVO.personnel" id="cok_portion">
+                    <option value="">인원</option>
+                    <option value="1인분">1인분</option>
+                    <option value="2인분">2인분</option>
+                    <option value="3인분">3인분</option>
+                    <option value="4인분">4인분</option>
+                    <option value="5인분">5인분</option>
+                    <option value="6인분">6인분이상</option>
+                </select>
+                <span class="pad_l_30">시간</span>
+                <select name="recipeVO.cookTime" id="cok_time">
+                    <option value="">시간</option>
+                    <option value="5분이내">5분이내</option>
+                    <option value="10분이내">10분이내</option>
+                    <option value="15분이내">15분이내</option>
+                    <option value="20분이내">20분이내</option>
+                    <option value="30분이내">30분이내</option>
+                    <option value="60분이내">60분이내</option>
+                    <option value="90분이내">90분이내</option>
+                    <option value="2시간이내">2시간이내</option>
+                    <option value="2시간이상">2시간이상</option>
+                </select>
+                <span class="pad_l_30">난이도</span>
+                <select name="recipeVO.level" id="cok_degree">
+                    <option value="">난이도</option>
+                    <option value="아무나">아무나</option>
+                    <option value="초급">초급</option>
+                    <option value="중급">중급</option>
+                    <option value="고급">고급</option>
+                </select>
+            </div>
+      </div>
+      <!-- recipe area end -->      
+        <!-- 재료 area -->
+        <div class="cont_box pad_l_60">
+        	<span class="guide mag_b_15" style="width:100%;">재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</span>
+        	<div class="mag_b_25 ui-sortable" id="divMaterialGroupArea">
+        	<ul>
+					<li id="liMaterialGroup_1">
+						<p class="cont_tit6 st2 mag_r_15">
+							<input type="text" name="material_group_title_1" id="material_group_title_1"
+								th:field="*{rcpIngrVO.ingrCat}" placeholder="재료" class="form-control"
+								style="font-weight: bold; font-size: 18px; width: 210px;">						
+	  	 	 	 	 	</p>
+						<ul id="divMaterialArea_1" class="ui-sortable">
+							<li id="liMaterial_1_1">
+							 <input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_1" class="form-control"
+								style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" placeholder="예) 돼지고기">
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_1" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 300g"> 
+							</li>
+							<li id="liMaterial_1_2">
+							<input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_2" 
+							class="form-control" style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" 
+								placeholder="예) 양배추"> 
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_2" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 1/2개"> 
+							</li>
+							<li id="liMaterial_1_3">
+							<input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_3" class="form-control"
+								style="width: 330px;" th:field="*{rcpIngrVO.userIngr}"  placeholder="예) 참기름"> 
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_3" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 1T"> 
+							</li>
+						</ul>
+					</li>
+					<li id="liMaterialGroup_2">
+						<p class="cont_tit6 st2 mag_r_15">
+							<input type="text" name="material_group_title_1" id="material_group_title_1"
+								th:field="*{rcpIngrVO.ingrCat}" placeholder="양념" class="form-control"
+								style="font-weight: bold; font-size: 18px; width: 210px;">
+						</p>
+						<ul id="divMaterialArea_1" class="ui-sortable">
+							<li id="liMaterial_1_1">
+							 <input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_1" class="form-control"
+								style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" placeholder="예) 돼지고기">
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_1" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 300g"> 
+							</li>
+							<li id="liMaterial_1_2">
+							<input type="text" name="cok_material_nm_1[]"
+								id="cok_material_nm_1_2" class="form-control" style="width: 330px;" 
+								th:field="*{rcpIngrVO.userIngr}" placeholder="예) 양배추"> 
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_2" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 1/2개"> 
+							</li>
+							<li id="liMaterial_1_3">
+							<input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_3" class="form-control"
+								style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" placeholder="예) 참기름"> 
+								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_3" class="form-control"
+								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}"  placeholder="예) 1T"> 
+							</li>
+						</ul>
+					</li>
+			</ul>		
+			</div>
+				<div class="noti">※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.
+        </div>  
+        </div><!-- 재료 area end -->    
+        <div class="cont_box pad_l_60"><!-- 요리정보 area -->
+            <p class="cont_tit3">요리순서</p>
+            <span class="guide mag_b_15"><b>요리의 맛이 좌우될 수 있는 중요한 부분은 빠짐없이 적어주세요.</b><br>
+				예) 10분간 익혀주세요 ▷ 10분간 약한불로 익혀주세요.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마늘편은 익혀주세요 ▷ 마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;꿀을 조금 넣어주세요 ▷ 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.
+	  		</span>
+           <div id="divStepArea" class="ui-sortable">
+            <div id="divStepItem_1" class="step">
+                <p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle" data-original-title title>
+                <input type="number" min="1" max="99" name="rcpOrderVO.cookOrder"></p>
+            	<div id="divStepText_1" style="display:inline-block">
+            		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
+            		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." 
+            		style="height:160px; width:430px; resize:none;"></textarea>
+            	</div>
+            	<div id="divStepUpload_1" style="display:inline-block">
+            	  <input type="file" id="fileUpload2" name="fileUpload2" accept="jpeg,png,gif" 
+            	  style="width:160px; height:160px; padding-top: 138px;" /> 
+            		<div style="position:absolute; left:-1000px">
+            		</div>           
+            	</div>       
+            	</div> 
+           	</div>
+           	  <div id="divStepItem_2" class="step">
+                <p id="divStepNum_2" class="cont_tit2_1 ui-sortable-handle" data-original-title title>
+                <input type="number" min="1" max="99" name="rcpOrderVO.cookOrder"></p>
+            	<div id="divStepText_2" style="display:inline-block">
+            		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
+            		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다." 
+            		style="height:160px; width:430px; resize:none;"></textarea>
+            	</div>
+            	<div id="divStepUpload_2" style="display:inline-block">
+            	  <input type="file" id="fileUpload3" name="fileUpload3" accept="jpeg,png,gif" 
+            	  style="width:160px; height:160px; padding-top: 138px;" /> 
+            		<div style="position:absolute; left:-1000px">
+            		</div>           
+            	</div> 
+           	</div>
+           	  <div id="divStepItem_3" class="step">
+                <p id="divStepNum_3" class="cont_tit2_1 ui-sortable-handle" data-original-title title>
+                <input type="number" min="1" max="99" name="rcpOrderVO.cookOrder"></p>
+            	<div id="divStepText_3" style="display:inline-block">
+            		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
+            		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다." 
+            		style="height:160px; width:430px; resize:none;"></textarea>
+            	</div>
+            	<div id="divStepUpload_3" style="display:inline-block">
+            	  <input type="file" id="fileUpload4" name="fileUpload4" accept="jpeg,png,gif" 
+            	  style="width:160px; height:160px; padding-top: 138px;" /> 
+            		<div style="position:absolute; left:-1000px">
+            		</div>           
+            	</div> 
+           	</div>
+           	<div id="divStepItem_4" class="step">
+                <p id="divStepNum_4" class="cont_tit2_1 ui-sortable-handle" data-original-title title>
+                <input type="number" min="1" max="99" name="rcpOrderVO.cookOrder"></p>
+            	<div id="divStepText_4" style="display:inline-block">
+            		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
+            		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 마늘편은 익혀주세요." 
+            		style="height:160px; width:430px; resize:none;"></textarea>
+            	</div>
+            	<div id="divStepUpload_4" style="display:inline-block">
+            	  <input type="file" id="fileUpload5" name="fileUpload5" accept="jpeg,png,gif" 
+            	  style="width:160px; height:160px; padding-top: 138px;" /> 
+            		<div style="position:absolute; left:-1000px">
+            		</div>           
+            	</div> 
+           	</div>
+           	<div id="divStepItem_5" class="step">
+                <p id="divStepNum_5" class="cont_tit2_1 ui-sortable-handle" data-original-title title>
+                <input type="number" min="1" max="99" name="rcpOrderVO.cookOrder"></p>
+            	<div id="divStepText_5" style="display:inline-block">
+            		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
+            		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 꿀을 조금 넣어주세요." 
+            		style="height:160px; width:430px; resize:none;"></textarea>
+            	</div>
+            	<div id="divStepUpload_5" style="display:inline-block">
+            	  <input type="file" id="fileUpload6" name="fileUpload6" accept="jpeg,png,gif" 
+            	  style="width:160px; height:160px; padding-top: 138px;" /> 
+            		<div style="position:absolute; left:-1000px">
+            		</div>           
+            	</div> 
+           	</div>
+ 
+         </div> 
+ 		<!-- 요리정보 area end-->
+ 		
+        <!-- tag area -->
+        <div class="cont_box pad_l_60">
+                <p class="cont_tit4">태그</p>
+                <input type="text" th:field="*{tagVO.tag}" class="ui-widget-content ui-autocomplete-input"
+                style="width:620px;">
+        </div>
+       <!-- tag area end -->
+	</div><!-- button 전까지 end -->
+	<!-- regi_center -->
+        <div class="regi_btm">
+       		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
+			<input type="button" class="submit" value="저장">
+			<input type="button" class="submit" value="등록">
+			<input type="button" class="cancel" value="취소">
+		</div>
+</form>
+</div> <!-- 레시피 div end -->
+</div><!-- fragment end -->
+</html>

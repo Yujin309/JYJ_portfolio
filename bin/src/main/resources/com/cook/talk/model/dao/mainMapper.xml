@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cook.talk.model.dao.MainDAO">
+
+	<select id="recipeList" parameterType="String" resultType="recipeVO">
+		select rcpTitle,rcpPic from rcp where
+		<foreach collection="list" item="rcpCode"  index="index"  separator="or" >
+			rcpCode= #{rcpCode}
+		</foreach>
+	</select>
+</mapper>

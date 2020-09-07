@@ -1,0 +1,1012 @@
+@charset "utf-8";
+
+body {min-width: 1240px;}
+.container {width: 1240px; max-width: none !important;}
+.container_full {width:100%; max-width: none !important;}
+.navbar-collapse {display: block !important; visibility: visible !important;}
+.navbar-header, .navbar-form, .navbar-nav, .navbar-nav > li { float: left ;}
+
+/*main*/
+.rcp_m_cate {position:relative;}
+.rcp_cate {margin-top:2px; border:1px solid #e6e7e8; border-bottom:none; background:url(//recipe1.ezmember.co.kr/img/cate_btm.gif?v.) bottom left repeat-x; background-color:#fff; padding:15px 30px 28px;}
+.rcp_cate.st2 {border:1px solid #e6e7e8; border-bottom:none; background:#fff; padding:16px 30px 17px; vertical-align:top; position:relative; margin-top:0;}
+.rcp_cate.st3 {background:#fff; padding:16px 25px 17px; vertical-align:top; margin-top:0; height:211px; border-bottom:1px solid #e6e7e8; border-right:none; border-left:none; border-top:none;}
+.rcp_cate .cate_list {font-size:15px; padding:8px 0; line-height:1}
+.rcp_cate .cate_list span {background:url(//recipe1.ezmember.co.kr/img/cate_bg.gif) left top no-repeat; background-size:61px; color:#74b243; display:inline-block; font-weight:bold; width:62px; height:28px; margin:0 5px 0 0; text-align:center; padding-top:6px; vertical-align:middle; font-size:13px;}
+.rcp_cate .cate_list a {padding:3px 9px 4px; color:#666; vertical-align:middle; font-size:15px; line-height:1;}
+.rcp_cate .cate_list a:hover {color:#57c006; text-decoration:none;}
+.rcp_cate .cate_list a.active {color:#fff; background:#74b243; margin:0 3px; border-radius:4px;}
+.rcp_cate .cate_list2 {font-size:15px; padding:8px 0; line-height:1;}
+.rcp_cate .cate_list_line {border-top:1px solid #ebebeb; height:15px; margin-top:14px;}
+.rcp_cate .cate_list2 span {background:url(//recipe1.ezmember.co.kr/img/cate_bg2.gif) left top no-repeat; background-size:120px 30px; color:#74b243; display:inline-block; font-weight:bold; width:120px; height:30px; margin:0 16px 0 0; text-align:center; padding-top:6px; vertical-align:middle;}
+.rcp_cate .cate_list2 ul {display:inline-block; margin:0; padding:0;}
+.rcp_cate .cate_list2 li {padding-top:5px; color:#666; background:#f7f7f7; border:1px solid #ebebeb; border-radius:14px; width:94px; height:30px; display:inline-block; text-align:center; vertical-align:middle; margin:0 3px; cursor:pointer;}
+.rcp_cate .cate_list2 li.active {background:#74b243; color:#fff;}
+.rcp_cate .cate_list2 .form-control {width:300px; display:inline-block; border-radius:0; margin-left:3px;}
+
+.rcp_cate_btn {border-bottom:1px solid #e6e7e8; text-align:center;}
+.rcp_cate_btn a {color:#5da619; font-size:14px; padding:12px 50px; display:inline-block;}
+.rcp_cate_btn a span {padding-left:5px;}
+.rcp_cate_btn a span img {margin-top:-1px;}
+
+.thumbs_hb {height:120px;}
+
+.rcp_m_banner {width:1240px; margin:7px 0 14px 0; float:left;}
+.rcp_m_banner a {margin-right:5px; float:left;}
+.rcp_m_banner a img {width:410px; -webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2); box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}
+.rcp_m_banner a:last-child {margin-right:0;}
+.rcp_m_list {margin-top:38px;}
+.rcp_m_list .row {margin:0 -7px 0 -6px;}
+.rcp_m_list .row .col-xs-3 {padding:0 7px;}
+.rcp_m_list .thumbnail {border-radius:0; padding:0; height:400px; width:299px;}
+.rcp_m_list .thumbnail img {border-bottom:1px solid #e6e7e8;}
+.rcp_m_list .thumbnail .caption {padding:10px 20px;}
+.rcp_m_list .thumbnail .caption h4 {font-size:18px; font-weight:bold;}
+.rcp_m_list .thumbnail .caption p.m_list_cate {color:#84accb; margin-bottom:4px;}
+.rcp_m_list .thumbnail .caption p {color:#999; margin:0;}
+.rcp_m_list .thumbnail .caption span {margin:0 6px; display:inline-block;}
+.rcp_m_list .thumbnail .caption span.down {background:url(//recipe1.ezmember.co.kr/img/ico_down.gif) left 2px no-repeat; padding-left:20px;}
+.rcp_m_list .thumbnail_over {
+	position: absolute;
+	left:7px; top:0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	filter:alpha(opacity=0);
+
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+
+-webkit-backface-visibility: hidden; /*for a smooth font */
+
+}
+.rcp_m_list .thumbnail:hover .thumbnail_over {opacity: 1; filter:alpha(opacity=70);}
+.rcp_m_list .m_list_tit {font-size:18px; color:#333; padding-bottom:18px;}
+.rcp_m_list .m_list_tit b {color:#74b243; font-size:30px;}
+.rcp_m_list .best_label {position:absolute; right:10px; top:-8px; z-index:10;}
+.rcp_m_list .best_label img {border-bottom:none !important;}
+.rcp_m_list .vod_label {position:absolute; right:14px; top:210px; z-index:10;}
+.rcp_m_list .vod_label img {border-bottom:none !important;}
+.rcp_m_list .thumbnail_original {position:absolute; right:16px; top:8px; border:3px solid #fff; -webkit-transition:border .2s ease-in-out; -o-transition:border .2s ease-in-out; transition:border .2s ease-in-out}
+.rcp_m_list .thumbnail_original img {width:80px; height:80px; }
+.rcp_m_list .thumbnail_original:focus, .rcp_m_list .thumbnail_original:hover {border:3px solid #5ca920;}
+
+.rcp_m_list2 {margin-top:30px; padding:0 22px;}
+.rcp_m_list2.st2 {margin-top:30px; padding:0 0;}
+.rcp_m_list2 .row {margin:0 -4px 0 -4px;}
+.rcp_m_list2 .row .col-xs-4 {padding:0 5px;}
+.rcp_m_list2 .thumbnail {border-radius:0; padding:0; height:400px; width:277px;}
+.rcp_m_list2 .thumbnail img {border-bottom:1px solid #e6e7e8;}
+.rcp_m_list2 .thumbnail .caption {padding:10px 20px; min-height:114px;}
+.rcp_m_list2 .thumbnail .caption h4 {font-size:16px;}
+.rcp_m_list2 .thumbnail .caption p.m_list_cate {color:#84accb; margin-bottom:4px;}
+.rcp_m_list2 .thumbnail .caption p {color:#999; margin:0; font-weight: 300;}
+.rcp_m_list2 .thumbnail .caption span {margin:0 6px; display:inline-block;}
+.rcp_m_list2 .thumbnail .caption span.down {background:url(//recipe1.ezmember.co.kr/img/ico_down.gif) left 2px no-repeat; padding-left:20px;}
+.rcp_m_list2 .thumbnail_over {position: absolute; left:6px; top:1px; width:275px; height:275px; opacity: 0; filter:alpha(opacity=0); z-index:10;
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	-webkit-backface-visibility: hidden; /*for a smooth font */}
+#contents_area_full .rcp_m_list2 .thumbnail_over {left:auto;}
+.rcp_m_list2 .thumbnail_over img {width:275px; height:275px;}
+.rcp_m_list2 .thumbnail:hover .thumbnail_over {opacity: 1; filter:alpha(opacity=70);}
+.rcp_m_list2 .m_list_tit {font-size:16px; color:#333; padding:5px 0 20px 8px;}
+.rcp_m_list2 .m_list_tit b {color:#74b243; font-size:26px;}
+.rcp_m_list2 .best_label {position:absolute; right:12px; top:8px; z-index:10;}
+.rcp_m_list2 .best_label img {border-bottom:none !important; width:50px;}
+.rcp_m_list2 .vod_label {position:absolute; right:15px; top:195px; z-index:10;}
+.rcp_m_list2 .vod_label img {border-bottom:none;}
+.search_btn {position:absolute; right:22px; padding:0; margin:0;}
+.search_btn.st1 {top:120px;}
+.search_btn.st2 {top:417px;}
+.search_btn .btn {background:#479ffc; font-size:18px; color:#fff; padding:10px 0; width:150px; border:0; border-radius:0;}
+.search_btn .btn img {width:25px; margin-right:4px; vertical-align:text-top;}
+.search_re {float:right; display:inline-block; padding-top:1px;}
+.search_re .form-control {width:250px; border:1px solid #ccc; border-radius:0; height:38px;}
+.search_re .input-group-btn {display:inline-block;}
+.search_re .input-group-btn .btn {background:#74b243; color:#fff; border:0; height:38px; border-radius:0; }
+.search_sort {float:right; margin-left:6px; padding-top:1px;}
+.search_sort .btn {height:38px; border:1px solid #ccc; border-radius:0; padding:5px 10px; color:#666;}
+.search_sort img {width:21px; vertical-align:top; margin-left:4px;}
+.search_sort .btn .caret {margin-left:16px; color:#999;}
+.search_sort li a {padding:8px 20px;}
+
+.rcp_lately_list {margin-top:44px;}
+.rcp_lately_list h3 {margin-left:20px;}
+.rcp_lately_list .row {margin:22px 40px 0 40px; position:relative;}
+.rcp_lately_list .list_btn_pre {position:absolute; left:16px; top:70px; z-index:100;}
+.rcp_lately_list .list_btn_next {position:absolute; right:0; top:70px; z-index:100;}
+.rcp_lately_list .thumbnail {width:180px; border-radius:0; padding:0; height:255px; border:1px solid #ddd;}
+.rcp_lately_list .thumbnail img {}
+.rcp_lately_list .thumbnail .caption b {font-size:16px; display:inline-block; padding:4px 0 2px 0;}
+.rcp_lately_list .thumbnail .caption p {color:#999; margin:0;}
+
+.event_cont {width:100%; border:none; padding:20px 27px 15px;}
+.event_cont h3 {font-size:30px; background:url(//recipe1.ezmember.co.kr/img/icon_dot2.gif) 5px top no-repeat; background-size:23px 4px; padding:10px 0 0 5px; font-weight:bold; display:inline-block; margin:0 0 15px 0; position:relative; width:100%;}
+.event_cont h3 b {font-size:24px; padding-left:6px;}
+.event_cont h3 b span {color:#6da812;}
+.event_cont h3 u {text-decoration:none; font-size:16px; color:#999; font-weight:normal; padding-left:6px;}
+.event_cont h3 .list_sort a.active {background:url(//recipe1.ezmember.co.kr/img/icon_check.gif) left 20px no-repeat;}
+.event_cont ul.theme_list {list-style:none; padding:0; margin:0;}
+.event_cont ul.theme_list li:not(.dropdown-li)  {width:200px; display:inline-block; padding:0; margin:0 11px 30px 0; position:relative;}
+.event_cont ul.theme_list li:nth-child(4n+4) {margin:0 -4px 30px -1px;}
+.event_cont ul.theme_list .thumbnail {margin:0;}
+.event_cont ul.theme_list .btn-default {display:block; color:#999; background-color:#fbfbfb; border:1px solid #ebebeb; font-size:16px; font-weight:normal; width:200px; margin:10px 0 0 0;}
+.event_cont ul.theme_list .btn-default:hover {border:1px solid #ccc;}
+.event_cont div.theme_list .thumbnail {margin:0 11px 20px 0}
+.event_cont .thumbnail_original {position:absolute; right:8px; top:8px; border:3px solid #fff; -webkit-transition:border .2s ease-in-out; -o-transition:border .2s ease-in-out; transition:border .2s ease-in-out; z-index:100;}
+.event_cont .thumbnail_original img {width:54px; height:54px; }
+.event_cont .thumbnail_original:focus, .event_cont .thumbnail_original:hover {border:3px solid #5ca920;}
+.event_btn_area {border:1px solid #ddd; margin-top:10px;}
+.event_btn_area img {vertical-align:text-top; margin-left:3px}
+.event_btn_area a {width:50%; display:inline-block; text-align:center; padding:7px 0 8px 5px ;}
+.event_btn_area a:first-child {border-right:1px solid #ddd}
+.event_btn_area a:hover {background:#fafafa;}
+.event_btn_area.st2 a {width:100%; border:none;}
+
+.home_cont {width:1240px; background:#fff; border:1px solid #e9e9e9; padding:28px 141px 24px 141px; margin-bottom:8px; float:left; position:relative;}
+.home_cont.st2 {width:100%; margin-bottom:8px; float:left;}
+.home_cont.st3 {width:100%; float:left; border:none; padding:35px 0 0;}
+.home_cont.st6 {width:893px; border:none; padding:28px 50px 24px 94px; margin:0 1px;}
+.home_cont.st7 {width:893px; border:none; padding:28px 50px 0 94px; margin:0 1px;}
+.home_cont:after {clear:both;}
+.home_cont dt { font-weight:normal; margin-bottom:20px; padding-left:5px;}
+.home_cont .brand_banner {position:absolute; left:-40px; top:-24px; z-index:1000;}
+.home_cont dt h3 {color:#000; display:inline-block; margin:0;}
+.home_cont dt h3 a {color:#000;}
+.home_cont.st3 dt h3 {font-size:30px; background:url(//recipe1.ezmember.co.kr/img/icon_dot2.gif) left top no-repeat; background-size:23px 4px; padding-top:10px;}
+.home_cont.st3 dt h3 b {font-size:24px; padding-left:6px;}
+.home_cont.st3 dt h3 b span {color:#6da812;}
+.home_cont.st3 dd {padding:0 23px;}
+.home_cont_r {float:right; letter-spacing:4px; padding-right:3px;}
+.home_cont.st6 .home_cont_r {padding-bottom:14px;}
+.home_cont_r span {color:#999; margin-right:10px; font-size:16px;}
+.home_cont_r span b {color:#333;}
+.home_cont_r a {padding:2px 0 2px 4px; border:1px solid #ccc; margin-left:-1px; text-align:center; width:30px!important; height:30px; font-size:15px; color:#000; display:inline-block; font-weight:bold;}
+.home_cont_r a:hover {color:#74b243;}
+.home_cont_r2 {float:right; padding:8px 16px 0 0;}
+.home_cont_r2 .btn_more {border:1px solid #d6c1aa; color:#b99773; font-size:13px; padding:5px 8px;}
+.home_cont dd ul, .home_cont dd li {list-style:none; padding:0;}
+.home_cont dd ul.home_recipe li {display:inline-block; height:270px; width:232px; position:relative; margin:0 2px 10px 2px; vertical-align:top;}
+.home_cont.st3 dd ul.home_recipe li {height:247px;margin:0 12px 20px 12px;}
+.home_cont dd ul.home_recipe2 li {display:inline-block; width:232px; height:262px; position:relative; margin:0 2px 10px 2px; vertical-align:top;}
+.home_cont dd ul.home_recipe2.st2 li {height:230px;}
+.home_cont dd ul.home_recipe2.st2 li p {font-size:13px; margin-top:2px}
+.home_cont dd ul.home_recipe2.st2 li h4 {margin-top:3px;}
+.home_recipe2 .list_num {background:#000; filter:alpha(opacity=50); opacity:0.5; margin:0; padding:2px 6px; position:absolute; right:10px; top:120px; color:#fff; font-size:12px;}
+.home_cont dd ul.home_recipe2.st3 li {height:345px;}
+.home_cont dd ul.home_recipe2.st3 li p {font-size:13px;}
+.home_cont dd ul.home_recipe2.st3 li h4 {margin-top:3px;}
+
+.home_cont .thumbnail {border-radius:0; padding:0; height:100%;}
+.home_cont.st3 .thumbnail {border-radius:0; padding:0; height:100%;}
+.home_cont.st4 .thumbnail {height:280px; margin:0 11px 20px 1px; display:inline-block; padding:0;}
+.home_cont.st4 .thumbnail .caption {text-align:center;}
+.home_cont.st4 .thumbnail img {border-bottom:none; width:220px; height:220px;}
+.home_cont.st5 .thumbnail {height:300px;}
+.home_cont.st5 .thumbnail img {border-bottom:none; width:230px; height:230px;}
+.home_cont.st6 .thumbnail {height:300px;}
+.home_cont.st6 .thumbnail img {border-bottom:none; width:230px; height:230px;}
+.home_cont.st7 .thumbnail {height:324px; position:relative;}
+.home_cont.st7 .thumbnail img {border-bottom:none; width:230px; height:230px;}
+.home_cont.st7 dt {font-size:24px; padding:0 0 15px 0; font-weight:bold; margin:0 0 0 -44px;}
+.home_cont.st7 dd ul.home_recipe li {height:auto; margin:0 14px 0 0;}
+.home_cont.st7 .thumbnail .caption {padding:11px 0 0 0; line-height:1.4; border-top:1px solid #ebebeb;}
+.home_cont.st7 .thumbnail .caption p {color:#333;}
+.home_cont.st7 .thumbnail .caption_tit {font-size:14px; padding:0 15px; height:40px;}
+.home_cont.st7 .thumbnail p.caption_price  {color:#ff321b; font-size:16px; padding:0 15px 8px;}
+.home_cont.st7 .thumbnail .caption_price b {color:#000; font-family:'Poppins', 'Nanum Gothic'; margin-left:6px;}
+.home_cont.st7 .thumbnail .caption_price span {color:#666; font-size:12px; width:auto;}
+.home_cont.st7 .thumbnail .caption_name {margin:0; text-align:right; position:absolute; left:1px; top:209px; width:229px;}
+.home_cont.st7 .thumbnail .caption_name_a {color:#fff; font-size:11px; display:inline-block; padding:3px 7px; width:auto; margin:0; background:#ff6600;}
+.home_cont.st7 .thumbnail .caption_name_b {color:#fff; font-size:11px; display:inline-block; padding:3px 7px; width:auto; margin:0; background:#6794b6;}
+.home_cont.st8 {}
+.home_cont .home_cont_tab {padding-left:0; width:944px;}
+.home_cont_tab {border-bottom:1px solid #ddd; padding-left:0;}
+.home_cont_tab.st2 {margin:30px 30px -15px;}
+.home_cont_tab .tab_mn {display:inline-block; padding:10px 35px; font-size:16px; color:#888; margin-bottom:-1px; background:#fff;}
+.home_cont_tab .tab_mn.active {border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd; border-bottom:1px solid #fff; font-weight:bold; color:#000;}
+.home_cont_tab .home_cont_r2 {padding-right:0;}
+.home_cont_tab .home_cont_r2 span {color:#999; padding:0 18px 0 6px;}
+.home_cont_tab .home_cont_r2 img {margin-top:-4px;}
+.brand_cont .cont_list.st3 .home_review {margin-top:14px;}
+.home_review {border-top:1px solid #ddd; margin-top:18px; padding:12px 15px 0 15px;}
+.brand_cont .cont_list.st3 .home_review p {font-size:12px;}
+.home_review p {padding:0; margin-bottom:0; font-size:13px;}
+.home_review .name {color:#999;}
+.home_review .star { margin-top:2px;}
+.home_cont .thumbnail .home_review .star img, .home_review .star img {width:16px; border:0; margin:0;}
+.home_review .comment {color:#1a77ac; margin-top:6px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; /* 라인수 */ -webkit-box-orient: vertical; word-wrap:break-word; line-height: 1.4; height:inherit;}
+.brand_cont .cont_list.st3 p.comment {font-size:13px;}
+.home_review .date {color:#999; margin-top:4px;}
+
+.home_cont .eg-flick-panel span {padding-top:8px; height: 26px!important;}
+
+.home_cont dd ul.recipe_home .thumbnail {background:#fbfbfb;}
+.home_cont .thumbnail img {border-bottom:1px solid #e6e7e8;}
+.home_cont .thumbnail .caption {padding:7px 15px 0 15px;}
+.home_cont .thumbnail .caption h4 {font-size:15px; margin:2px 0 4px;}
+.home_cont .thumbnail .caption2 h4 {font-size:15px; font-weight:bold; margin-bottom:0;}
+.home_cont.st5 .thumbnail .caption h4, .home_cont.st6 .thumbnail .caption h4 {text-align:center;}
+.home_cont .thumbnail .caption p.m_list_cate {color:#84accb; margin-bottom:1px;}
+.home_cont .thumbnail .caption p {color:#999; margin:0 0 0 -2px; font-size:14px;}
+.home_cont .thumbnail .caption p b {color:#000;}
+.home_cont .thumbnail .caption p span {display:inline-block; width:170px; vertical-align:middle;}
+.home_cont .thumbnail .caption span {margin:0; display:inline-block;}
+.home_cont .thumbnail .caption span.down {background:url(//recipe1.ezmember.co.kr/img/ico_down.gif) left 2px no-repeat; padding-left:20px;}
+.home_cont .thumbnail .caption_name img {width:28px; height:28px; border-radius:50%; margin-right:4px; border:1px solid #ddd;}
+.home_cont .thumbnail_over {
+	position: absolute;
+	left:1px; top:1px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	filter:alpha(opacity=0);
+
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+
+-webkit-backface-visibility: hidden; /*for a smooth font */
+
+}
+.home_cont .thumbnail:hover .thumbnail_over {opacity: 1; filter:alpha(opacity=70);}
+.home_cont .best_label {position:absolute; right:6px; top:6px; z-index:10;}
+.home_cont .best_label img {border-bottom:none !important; width:40px;}
+.home_cont .best_label2 {position:absolute; right:6px; top:6px; z-index:10; background:#83c832; width:38px; height:38px; border-radius:50%; filter:alpha(opacity=70); opacity:0.7; color:#fff; font-size:11px; font-weight:bold;}
+.home_cont .vod_label {position:absolute; right:6px; top:105px; z-index:10;}
+.home_cont .vod_label img {border-bottom:none !important; width:40px;}
+.home_cont .thumbnail_original {position:absolute; right:11px; top:11px; border:3px solid #fff; -webkit-transition:border .2s ease-in-out; -o-transition:border .2s ease-in-out; transition:border .2s ease-in-out}
+.home_cont .thumbnail_original img {width:54px; height:54px; }
+.home_cont .thumbnail_original:focus, .home_cont .thumbnail_original:hover {border:3px solid #5ca920;}
+.theme_cate {margin-bottom:22px;}
+.home_cont .member_list {margin:28px 0 30px 0;}
+.home_cont .member_list .info_pic2 {display:inline-block; margin:0  1px 10PX 2px; width:16%; vertical-align:top;}
+.home_cont .member_list .info_name {font-size:14px;}
+.hotchef_best.home_best {background:url(//recipe1.ezmember.co.kr/img/hot_bg.jpg) left top no-repeat; width:893px; height:319px; margin:-30px -20px -10px; text-align:right; padding:20px 22px 0 0;}
+.hotchef_best.home_best .ranking_today_in {width:334px; display:inline-block;}
+.hotchef_best.home_best .ranking_today_in .today_num {left:0; top:0;}
+.hotchef_best.home_best .home_cont_r {width:100%; padding-bottom:12px;}
+.hotchef_best.home_best .ranking_today_in .today_caption span.today_pic img {border-radius:50%; width:65px; height:65px; border:2px solid #fff; margin:5px 6px 0 -3px;}
+.home_cont2 {padding-top:14px; margin:30px 0 10px 0; background:#fff; width:100%; float:left;}
+.home_cont2 dt {font-size:18px; color:#000; line-height:22px; padding:0 8px 14px 8px; margin-bottom:8px; }
+.home_cont2 dt img {width:25px; margin:0 3px 0 0; vertical-align:text-bottom;}
+.home_cont2 .chef_list.st2 {float:left; margin-top:0; padding-top:0; padding-bottom:8px; width:100%;}
+.home_cont2 .home_cont_list {float:left; margin-top:4px; padding-bottom:20px; width:100%;}
+.home_cont2 .chef_list.st2 .list_cont2 b a {font-size:16px; color:#74b243;}
+.home_cont2 dd ul, .home_cont2 dd li {list-style:none; padding:0;}
+.home_cont2 .member_list {margin:16px 0 0 0; float:left;}
+.home_cont2 .member_list .info_pic2 {width:134px; margin:0 4px 15px;}
+.list_mem2 .mem_pic {position:relative; display:inline-block; vertical-align:top;}
+.list_mem2 .mem_pic img {width:60px; height:60px; border-radius:50%;}
+.chef_list .list_cont2 {width:760px;  display:inline-block; font-size:14px; line-height:20px; padding:8px 0 18px 5px; margin-left:10px; border-bottom:1px solid #e6e7e8;}
+.chef_list .list_cont3 {width:710px; float:left; font-size:14px; line-height:20px; padding:8px 0 20px 5px; border-bottom:1px solid #e6e7e8; position:relative;}
+.chef_list .list_cont2 span {font-size:12px; color:#888;}
+.chef_list .list_cont2 b img {width:18px; height:18px; vertical-align:text-top;}
+.chef_list .list_lump {padding:10px 0 0 10px; margin:0 auto;}
+
+.home_cont .thumbnail .caption .line2 {overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; /* 라인수 */ -webkit-box-orient: vertical; word-wrap:break-word; line-height: 1.4;}
+
+.gnb_top_wrap {background:#fff; width:100%; height:112px;}
+.gnb_top {width:1240px; margin:0 auto; padding:16px 0 0 176px;}
+.gnb_top h1 {margin:0 30px 0 0; display:inline-block; vertical-align:top;}
+.gnb_search {width:450px; display:inline-block; padding-top:12px;}
+.gnb_search .btn {background:#74b243; border:1px solid #68a13a; height:38px;}
+.gnb_search .btn span {color:#fff; font-size:22px;}
+.gnb_search .form-control {border:1px solid #ccc; background:#fbfbfb; height:38px;}
+.gnb_search_word {padding-top:8px;}
+.gnb_search_word ul {display:inline-block; padding:1px 0 0 6px; width:381px;}
+.gnb_search_word li {display:inline-block; list-style:none; padding:0; border-right:1px solid #ddd; padding:0 9px; font-size:14px; line-height:1;}
+.gnb_search_word li:last-child {border-right:0;}
+.gnb_search_word li a {color:#000;}
+.gnb_search_btn {display:inline-block; vertical-align:top;}
+.gnb_search_btn a {float:left;}
+.gnb_right {display:inline-block; padding:16px 0 0 50px; vertical-align:top; position:relative;}
+.gnb_right li {list-style:none; padding:0 3px; display:inline-block;}
+.gnb_right li a {height:30px;}
+/* .gnb_right li a img {width:35px} */
+.gnb_right .mem_layer {position:absolute; left:22px; top:51px; width:182px; z-index:1000000;}
+.gnb_right .mem_layer_m a {height:auto;}
+.gnb_right .write_layer { position:absolute; right:-4px; top:50px; width:372px;}
+.gnb_right .write_layer a {height:auto;}
+
+.gnb_nav { background:url(//recipe1.ezmember.co.kr/img/gnb_bg.gif) left top repeat-x; height:46px; width:100%; -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2); box-shadow:0 2px 5px rgba(0, 0, 0, 0.2); margin-bottom:16px;}
+.gnb_nav ul {width:1240px; margin:0 auto; padding:9px 30px 0; text-align:center}
+/*.gnb_nav ul.gnb_nav_ea10 li {width:9%;}
+.gnb_nav ul.gnb_nav_ea9 li {width:10.8%;}
+.gnb_nav ul.gnb_nav_ea8 li {width:12.2%;}
+.gnb_nav ul.gnb_nav_ea7 li {width:14%;}
+.gnb_nav ul.gnb_nav_ea6 li {width:16.3%;}
+.gnb_nav ul.gnb_nav_ea5 li {width:19.7%;}
+.gnb_nav ul.gnb_nav_ea4 li {width:24%;}
+*/
+.gnb_nav ul li {list-style:none; padding:0; width:1%; display:table-cell;}
+.gnb_nav ul li a {display:block; font-size:18px; margin:0 8px; color:#fff;}
+.gnb_nav ul li a.active {color:#ffff00;}
+.gnb_nav ul li a:hover {color:#ffff00;}
+
+
+/*sub*/
+#contents_area {border-top:1px solid #e6e7e8; width:895px; padding:0 0 20px 0;}
+#contents_area_full {border:1px solid #e6e7e8; padding:0 0 20px 0; background:#fff;}
+#right_area {border-top:1px solid #e6e7e8; width:335px; margin-left:10px; padding:0 0 30px 0; height:auto;}
+#right_area a img {-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3); box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);}
+#right_area dt a img {-webkit-box-shadow:none; box-shadow:none;}
+.sub_bg {background:url(//recipe1.ezmember.co.kr/img/container_bg.gif) left top repeat-y; position:relative;}
+.sub_bg_btm {background:url(//recipe1.ezmember.co.kr/img/container_bg_btm.gif) left bottom no-repeat;}
+.chef_cont {padding:30px 21px 30px;}
+.chef_cont.st2 {padding:0 1px 0 1px;}
+.chef_cont.st2 p {margin-bottom:0;}
+.chef_cont.st3 { text-align:center;}
+.chef_cont.st3 p {margin-bottom:0; padding-bottom:80px;}
+.chef_cont .chef_top {margin:-30px -20px 0 -20px; padding-bottom:40px;}
+.chef_cont .chef_top2 {margin:0; padding:0;}
+.chef_cont_list { padding-bottom:20px;}
+.chef_cont_list .member_list {margin:35px 0 50px -4px;}
+.chef_cont_list .member_list .info_pic2 {display:inline-block; margin:0  1px 10PX 2px; width:16%; vertical-align:top;}
+.chef_cont_list .member_list .info_name {font-size:14px;}
+.cont_list {margin:22px 10px; clear:both;}
+.cont_list.st2 {margin:30px 10px 0; clear:both;}
+.cont_list .thumbnail {width:182px; border-radius:0; padding:0; height:250px; border:1px solid #ddd; background:#fff;}
+.cont_list.st2 .thumbnail {height:292px; position:relative;}
+.cont_list.st3 {margin:0; padding:0; clear:both;}
+.cont_list.st3 .thumbnail {width:200px; margin:0 14px 20px 0; height:240px; display:inline-block; vertical-align:top; position:relative;}
+.cont_list.st3.st3_1 .thumbnail {height:376px;}
+.cont_list.st3 .thumbnail:nth-child(4n+4) {margin:0 -4px 20px 0;}
+.cont_list.st3 .thumbnail .caption {padding:6px 15px;}
+.cont_list.st4 {margin:28px 0 0 0; padding:0; clear:both;}
+.cont_list.st4 .thumbnail {width:200px; margin:0 14px 20px 0; height:186px; display:inline-block; vertical-align:top; position:relative;}
+.cont_list.st4 .thumbnail:nth-child(4n+4) {margin:0 -4px 20px 0;}
+.cont_list .thumbnail img {}
+.cont_list .best_label {position:absolute; right:4px; top:6px; z-index:10;}
+.cont_list .best_label img {border-bottom:none !important; width:40px;}
+.cont_list .copyshot_thumb {width:180px; height:260px; position:relative; padding:0; display:inline-block; margin:0 30px 0 0;}
+.cont_list .thumbnail_original {position:absolute; right:28px; top:9px; border:2px solid #fff; -webkit-transition:border .2s ease-in-out; -o-transition:border .2s ease-in-out; transition:border .2s ease-in-out}
+.cont_list .thumbnail_original img {width:54px; height:54px; }
+.cont_list .thumbnail_original:focus, .cont_list .thumbnail_original:hover {border:2px solid #5ca920;}
+.caption_blind {background:url(//recipe1.ezmember.co.kr/img/bg_blind.png) center 34px no-repeat; font-size:12px !important; color:#999 !important; text-align:center; padding:118px 10px !important;}
+.caption_blind p {padding-top:10px;}
+.cont_list .thumbnail .caption h4 {font-size:15px; font-weight:bold;}
+.cont_list .thumbnail .caption p.m_list_cate {color:#84accb; margin-bottom:1px; width:162px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;}
+.cont_list .thumbnail .caption p {color:#999; margin:0; font-size:12px;}
+
+.chef_info {background:url(//recipe1.ezmember.co.kr/img/chef_bg2.jpg) left top no-repeat; width:895px; height:250px; position:relative; margin:-1px -1px 0 0; text-align:center;}
+.chef_info .info_pic {padding:52px 0 0 0; width:116px; display:inline-block; vertical-align:top; position:relative;}
+.chef_info .info_pic img {width:116px; height:116px; border-radius:50%;}
+.chef_info .info_add {position:absolute; right:-7px; top:45px;}
+.chef_info .info_add img {width:42px; height:42px;}
+.chef_info .info_follow {font-size:24px; color:#444; text-align:center; font-family:Helvetica; line-height:26px; padding-top:90px; width:140px; display:inline-block;}
+.chef_info .info_follow p {color:#444; font-size:14px; font-family:'Nanum Gothic'}
+.chef_info .info_name {color:#444; font-size:22px; text-align:center; padding-top:10px; width:100%; line-height:1.1;}
+.chef_info .info_name span {font-size:14px; color:#777; display:block;}
+.chef_info .info_level {position:absolute; left:26px; top:18px;}
+.chef_cont .scrap_list {margin:20px 10px 22px 10px;}
+.chef_cont .scrap_list .media {border-bottom:1px solid #d5d6d7; padding:50px 30px; margin:0 17px;}
+.chef_cont .scrap_list .media h3 {padding-top:5px; font-weight:bold;}
+.chef_cont .scrap_list .media p {font-size:18px; color:#999; line-height:18px;}
+.chef_cont .scrap_list .media p span {color:#74b243; font-weight:bold;}
+.chef_cont .scrap_list .media .media-left {padding-right:24px;}
+.chef_cont .scrap_list .media .like_hit p {width:80px; background:url(//recipe1.ezmember.co.kr/img/icon_heart.gif) center top no-repeat; padding-top:46px; color:#de4830; text-align:center; font-weight:bold; font-size:18px; font-family:Helvetica;}
+.chef_cont .admin_btn p {width:40px; padding-left:8px;}
+.chef_cont .admin_btn .dropdown-toggle {width:40px; border:none;}
+.chef_cont .admin_btn .btn-group.open .dropdown-toggle, .admin_btn .btn-group .dropdown-toggle:active {box-shadow:none;}
+
+.list_sort {position:absolute; right:0; top:4px; padding-right:10px; font-weight:normal;}
+.list_sort a {display:inline-block; color:#333; padding:10px; font-size:14px;}
+.list_sort a.active {background:url(//recipe1.ezmember.co.kr/img/icon_check.gif) left 9px no-repeat; padding-left:18px; margin-left:4px; font-weight:400;}
+.list_sort a.sort_btn {padding:2px 0 0 0; vertical-align:top; margin-right:8px;}
+.member_list {margin:40px 10px;}
+.member_list .row {margin-bottom:50px;}
+.member_list .info_pic {text-align:center; padding:20px 0 0 20px; width:175px;}
+.member_list .info_pic img {width:100px; height:100px; border-radius:50%;}
+.member_list .info_pic2 {text-align:center; padding:0; margin:0 14px 56px;}
+.member_list .info_pic2 img {width:100px; height:100px; border-radius:50%;}
+.member_list.st2 .info_pic2 img {width:100px; height:100px; border-radius:50%; -webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.2); box-shadow:0 0 4px rgba(0, 0, 0, 0.2);}
+.member_list .info_name {font-size:16px; font-weight:400; padding-top:12px;}
+.info_name_m {color:#44b6b5;}
+.info_name_f {color:#de4830;}
+.member_list .thumbnail {width:144px; border-radius:0; padding:0; margin:0 3px; height:220px; border:1px solid #ddd; background:#fff !important; display:inline-block; vertical-align:top;}
+.member_list .thumbnail img {width:144px; height:144px;}
+.member_list .btn_more {background:#f1f1f2; width:30px; height:220px; padding:0;}
+.member_list .btn_more a {width:30px; height:220px; padding:87px 0 0 0; text-align:center; display:inline-block;}
+
+.blank_bottom {background:#f1f1f2; height:10px; border-top:1px solid #e6e7e8; border-bottom:1px solid #e6e7e8; clear:both;}
+.blank_bottom2 {background:#f1f1f2; height:10px; border-top:1px solid #e6e7e8;}
+.blank_bottom_wave {background:url(//recipe1.ezmember.co.kr/img/bg_btm_wave.gif) left top; width:895px; height:23px;}
+
+.talk_title {padding:15px 25px 8px; font-size:16px; font-weight:bold; position:relative;}
+.talk_title .col-xs-2 {position:absolute; right:20px; top:10px; width:auto;}
+.talk_title.st2 .col-xs-3 { text-align:right;}
+.talk_title .btn {font-size:24px; padding:6px 35px;}
+.talk_title .btn.st2 {font-size:18px; font-weight:bold; padding:6px 30px; margin-top:3px;}
+.talk_title .btn.btn-info3 {padding:6px 25px; margin-right:4px;}
+.talk_title .btn.btn-info3 span {vertical-align:text-top; margin-right:5px;}
+.talk_title p {padding:12px 0;}
+.talk_title.st2 {font-size:30px; line-height:1;}
+.talk_title.st2 p {padding:8px 0 15px 6px; margin:0;}
+.talk_title.st3 {padding:15px 0 15px 25px}
+.talk_list {padding:0 0 20px 0;}
+.talk_list .list_lump {padding:18px 0 10px 0;}
+.chef_cont .talk_list .list_lump {padding:22px 0 60px 0; margin:10px 12px; border:1px solid #e6e7e8;}
+.talk_list .info_pic {padding-left:45px;}
+.chef_cont .talk_list .info_pic {padding-left:30px;}
+.talk_list .info_pic img {width:100px; height:100px; border-radius:50%;}
+.talk_list .info_name {font-size:22px; padding-top:12px; line-height:26px;}
+.talk_list .info_name p {font-size:16px; font-weight:normal; color:#999;}
+.talk_list .icon_like {background:url(//recipe1.ezmember.co.kr/img/icon_heart2.gif) left 3px no-repeat; margin-top:7px; padding-left:30px; font-size:22px; color:#999; font-family:Helvetica; display:inline-block;}
+.talk_list .icon_reply {background:url(//recipe1.ezmember.co.kr/img/icon_reply.gif) left 2px no-repeat; margin-top:7px; padding-left:30px; font-size:22px; color:#74b243; font-weight:bold; font-family:Helvetica; display:inline-block;}
+.talk_list .summary {font-size:18px; width:700px;  word-break:break-all;  padding-bottom:20px; line-height:160%;}
+.talk_list .picture {width:680px; margin:0 0 30px 0; position:relative;}
+.talk_list .picture img {border-radius:10px; border:none; }
+.talk_list .picture_r {position:absolute; right:0px; top:10px; border-radius:0; border:5px solid  #fff; -webkit-transition:border .2s ease-in-out; -o-transition:border .2s ease-in-out; transition:border .2s ease-in-out;}
+.talk_list .picture_r img {width:130px; height:130px; border-radius:0;}
+.talk_list .picture_r:focus, .talk_list .picture_r:hover {border:5px solid #5ca920;}
+
+.copyshot_original {border-bottom:1px solid #e6e7e8; margin:0 50px; padding:40px 0 30px 0;}
+.copyshot_original .original_tit {padding:0 0 26px 20px;}
+.copyshot_original .original_pic {width:750px; position:relative; margin:0 auto; border:1px solid #bbb; border-bottom:none;}
+.copyshot_original .original_pic .pic_shadow {background:url(//recipe1.ezmember.co.kr/img/bg_pic.png) left bottom no-repeat; width:750px; height:18px; margin-left:-1px;}
+.copyshot_original .original_pic_in {width:710px; position:relative; margin:20px auto; background:#ddd; display:block; text-align:center;}
+.copyshot_original .original_pic_in img {max-width:710px; max-height:480px;}
+.copyshot_original .original_pic_in .tit {width:710px; background:#000;	filter:alpha(opacity=70); opacity:.7; padding:8px 0 0 0; text-align:center; height:45px; position:absolute; left:0; bottom:0;}
+.copyshot_original .original_pic_in .tit span {font-size:18px; color:#fff;}
+.copyshot_original h3 {margin:0 0 18px 0;}
+.copyshot_original .r_btn {float:right;}
+.copyshot_original .r_btn .btn {font-size:14px; padding:5px 16px 6px; font-weight:normal; border-radius:0;}
+.copyshot_original .r_btn span {font-size:18px; color:#444; margin:0 4px 0 0; display:inline-block; vertical-align:top}
+.copyshot_original .r_btn b {color:#74b243; margin-left:2px;}
+.copyshot_original .name { font-size:16px; color:#444; padding:0 40px 20px;}
+.copyshot_original .name span {float:right;}
+.copyshot_original .list_btn_pre {position:absolute; left:19px; top:100px; z-index:100;}
+.copyshot_original .list_btn_next {position:absolute; right:19px; top:100px; z-index:100;}
+
+.view_movie {margin:0 50px; padding:20px 0 40px 0;}
+.view_movie .movie_tit {padding:0 0 26px 20px;}
+.view_movie .movie_area {width:750px; position:relative; margin:0 auto;}
+
+.talk_list .reply_feel .btn {border:none; margin:0; padding:0; background:none;}
+.talk_list .reply_feel .dropdown-menu { width:400px; height:94px; margin:0 0 4px -10px; padding:0; background:none; border:none; box-shadow:none; border-radius:0;}
+.talk_list .reply_feel .dropdown-menu li {width:82px; display:inline-block;}
+.talk_list .reply_feel .dropdown-menu a, .reply_feel .dropdown-menu a:hover {background:none; width:82px; display:inline-block; padding:0; margin:0;}
+.talk_list .view_btn {margin-bottom:35px;}
+.talk_list .reply_feel .dropdown-menu a, .reply_feel ul img {width: 80px;}
+
+.scrap_list {margin:30px 10px;}
+.scrap_list .info_pic {padding-left:40px; padding-top:15px;}
+.scrap_list .info_pic img {width:100px; height:100px; border-radius:50%;}
+.scrap_list .info_cont {padding-left:50px; padding-top:18px;}
+.scrap_list .info_cont .title {font-size:24px; font-weight:bold; line-height:30px; padding-top:5px;}
+.scrap_list .info_cont .title p span {padding-left:24px; font-size:16px; margin-right:20px; color:#999;}
+.scrap_list .info_cont .title p .info_name {background:url(//recipe1.ezmember.co.kr/img/icon_chef.gif) left top no-repeat; font-weight:normal;}
+.scrap_list .info_cont .title p .info_recipe {background:url(//recipe1.ezmember.co.kr/img/icon_recipe.gif) left top no-repeat; font-family:Helvetica;}
+.scrap_list .info_cont .title p .info_like {color:#de4830; background:url(//recipe1.ezmember.co.kr/img/icon_heart3.gif) left top no-repeat; font-family:Helvetica;}
+.scrap_list .info_cont .btn_more {margin-top:12px;}
+.scrap_list .list_thumb {padding-top:5px; border-bottom:1px solid #e6e7e8; }
+.scrap_list .thumbnail {width:146px; height:146px; margin-right:12px; font-size:0; line-height:0; padding:0; border:1px solid #fff; display:inline-block; border-radius:0; vertical-align:top;}
+.scrap_list .thumbnail img { }
+
+.friend_list {margin-top:15px;}
+.friend_list.st2 {margin-top:0;}
+.friend_list.st2 .list-group-item:last-child {border-bottom:none;}
+.friend_list .list-group-item {border-bottom:1px solid #d5d6d7; border-top:1px solid #d5d6d7; border-right:none; border-left:none; padding:18px 15px;}
+.friend_list .list-group-item:first-child {border-top:none;}
+.friend_list .info_pic {padding-right:16px; display:inline-block; vertical-align:top;}
+.friend_list .info_pic img {width:70px; height:70px; border-radius:50%;}
+.friend_list .info_name {}
+.friend_list .list_r {float:right; padding-top:5px;}
+.friend_list .info_cont {display:inline-block; vertical-align:middle; width:640px; padding-top:6px;}
+.friend_list .info_cont .info_tit {color:#999; font-size:18px; margin:0 0 6px 0; line-height:1.5; padding-right:10px;}
+.friend_list .info_cont_tit {color:#333; font-size:20px;}
+.friend_list .info_cont_tit span {}
+.friend_list .info_cont_tit .info_name {padding-right:4px;}
+.friend_list .info_cont_reply {font-size:17px;}
+.friend_list .info_cont_reply .info_name {padding-right:5px;}
+.friend_list .info_date {color:#999; font-size:14px;}
+.friend_list .list_r .btn-default {font-size:15px; width:68px; background:#ededed; border-radius:0; border:1px solid #d4d4d4; color:#555; font-weight:bold; padding:12px; line-height:1; letter-spacing:-0.06em;}
+.friend_list .list_r .btn-default span {font-size:14px; padding-right:2px;}
+
+.recipe_view {border:1px solid #e6e7e8; border-bottom:none; background:#fff; padding:20px; vertical-align:top; position:relative;}
+.recipe_view .view_pic {padding:10px 53px 0 15px; display:inline-block; vertical-align:top;}
+.recipe_view .view_pic img {width:300px; height:300px;}
+.recipe_view .view_pic_menu {padding:10px 53px 10px 15px; display:inline-block; vertical-align:top;}
+.recipe_view .view_pic_menu img {width:480px; height:310px;}
+.recipe_view .view_info {display:inline-block; padding-top:3px;}
+.recipe_view .view_pic_pdt {margin:10px 53px 0 15px; display:inline-block; vertical-align:top; text-align:center;}
+.recipe_view .view_pic_pdt .large {margin:0; padding:0;}
+.recipe_view .view_pic_pdt .large img {width:300px; height:300px; border:1px solid #ccc;}
+.recipe_view .view_pic_pdt .small {padding-top:16px; margin:0;}
+.recipe_view .view_pic_pdt .small a { display:inline-block; width:44px; height:44px; border:2px solid #ddd; margin:0 2px; vertical-align:top;}
+.recipe_view .view_pic_pdt .small a.active, .recipe_view .view_pic_pdt .small a:hover {border:2px solid #74b243;}
+.recipe_view .view_pic_pdt .small a img {width:40px; height:40px;}
+.recipe_view .view_mv_pdt {margin:10px 53px 0 15px; display:inline-block; vertical-align:top; text-align:center;}
+.info_pdt_btn {margin-top:40px;}
+.info_pdt_btn .btn {color:#fff; background:#479ffc; line-height:1.2; padding:14px 100px; font-size:20px; font-weight:normal; border-radius:0; border:none;}
+
+.view_info .info_title {font-size:18px; color:#999; line-height:36px; width:650px; padding-bottom:10px;}
+.view_info.st2 .info_title {width:470px;}
+.view_info .info_title p {font-size:40px; color:#333; font-weight:bold; margin-left:-6px; line-height:120%;}
+.view_info .info_title span {color:#dedede;}
+.view_info .info_cont {padding-top:1px;}
+.view_info .info_cont span {padding-left:32px; margin-top:10px; color:#999; display:block;}
+.view_info .info_cont_1 {background:url(//recipe1.ezmember.co.kr/img/icon_info1.gif) left top no-repeat;}
+.view_info .info_cont_2 {background:url(//recipe1.ezmember.co.kr/img/icon_info2.gif) left 1px no-repeat;}
+.view_info .info_cont_3 {background:url(//recipe1.ezmember.co.kr/img/icon_info3.gif) left 2px no-repeat;}
+.view_info .info_share {width:780px; padding:0 6px 12px 0; border-bottom:1px solid #e6e7e8;}
+.view_info.st2 .info_share {width:600px; margin-top:56px;}
+.view_info .info_share a {margin:0 2px;}
+.view_info .info_share_in {width:500px; display:inline-block; margin:0;}
+.view_info.st2 .info_share_in { width:100%;}
+.view_info .info_share_in span {color:#ccc; padding:0 14px; font-size:16px;}
+.view_info .info_share_btn {width:270px; display:inline-block; text-align:right; margin:0; vertical-align:text-bottom;}
+.view_info .info_chef {width:780px; padding-top:14px; }
+.view_info.st2 .info_chef {width:600px;}
+.view_info .info_chef_pic {display:inline-block; padding-right:12px; vertical-align:top;}
+.view_info .info_chef_pic img {width:70px; height:70px; border-radius:50%; border:1px solid #ddd;}
+.view_info .info_chef_name {display:inline-block; font-size:20px; font-weight:bold; color:#de4830; line-height:20px; padding-top:14px;}
+.view_info .info_chef_name p {font-size:14px; color:#333; font-weight:normal; padding-top:6px;}
+.view_info .info_chef_name p span {color:#ccc; padding:0 14px; font-size:16px;}
+.view_cont {padding:35px 54px;}
+.view_cont.st2 {padding:28px 0 35px;}
+.view_cont.st2 .theme_list {margin:30px 0 20px 0; padding:0 21px;}
+.view_cont.st2 .theme_list .best_label {position:absolute; top:4px; right:4px; z-index:10;}
+.view_cont.st2 .theme_list .best_label img {width:40px; height:40px;}
+.view_cont.st2 .theme_list .menu_label {position:absolute; top:4px; left:4px; z-index:10; opacity: 0.9; filter: alpha(opacity=90);}
+.view_cont.st2 .theme_list .menu_label img {width:50px; height:50px;}
+.view_cont.st2 .theme_list .vod_label {position:absolute; right:4px; top:86px; z-index:10;}
+.view_cont.st2 .theme_list .vod_label img {border-bottom:none !important;}
+.view_cont.st3 {font-size:16px; line-height:190%; padding:30px 45px;}
+.ready_ingre3 {padding:0 20px 18px 24px; vertical-align:top;}
+.ready_ingre3_tt {padding-bottom:8px; color:#333; font-size:16px; padding-left:20px; display:block;}
+.ready_ingre3 ul {padding:0 0 25px 0; width:49%; display:inline-block; vertical-align:top;}
+.ready_ingre3 ul.case1 {width:100%;}
+.ready_ingre3 ul.case1 li {width:41%; display:inline-block; vertical-align:top;}
+.ready_ingre3 li {border-bottom:1px solid #ececec; padding:10px 6px; list-style:none; margin:0 35px; font-size:16px;}
+.ready_ingre3 li a {margin:-1px 0 0 5px; vertical-align:top; display:inline-block;}
+.ready_ingre3 li a img {width:20px; height:20px;}
+.ready_ingre3 li .ingre_unit {float:right; color:#999;}
+
+.view_cont_old {padding:45px 54px 40px; line-height:160%; font-family:se-nanumsquare, 'Nanum Gothic', sans-serif; font-size: 15px;}
+.view_cont_old b {font-weight: bold;}
+.view_cont_old p {line-height:180%; margin-bottom: 0;}
+.view_cont_old img {max-width:100%;}
+.view_cont .cont_intro {font-size:16px; line-height:190%; padding:16px;}
+.view_cont.st2 .cont_intro {padding:0 30px;}
+.view_cont .cont_intro2 {background:#f4f4f4; border-radius:10px; padding:20px 35px; margin:0 30px 35px; font-size:16px; line-height:190%; color:#000;}
+.view_cont .cont_ingre {background:#f1f1f2; border-radius:10px; padding:24px 45px 2px; margin-top:24px; font-size:18px; color:#000;}
+.view_cont .cont_ingre dd {padding-bottom:10px;}
+.view_cont .cont_ingre dt {font-weight:bold; padding-bottom:2px;}
+.view_cont .cont_ingre dd {line-height:170%;}
+.cont_ingre2 {padding:35px 20px 0 25px;}
+.cont_ingre2 .best_tit {margin:0 -25px;}
+
+
+/**
+* @se/product-blog/v1.4.1 - 2020-02-13 15:33:29
+* Copyright(c) 2020, NAVER corp, SmartEditor
+*/
+@font-face {
+    font-family: se-nanumgothic;
+    font-weight: 400;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-regular.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-regular.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-regular.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-regular.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanumgothic;
+    font-weight: 700;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-bold.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-bold.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-bold.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumgothic-bold.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanummyeongjo;
+    font-weight: 400;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-regular.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-regular.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-regular.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-regular.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanummyeongjo;
+    font-weight: 700;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-bold.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-bold.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-bold.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanummyeongjo-bold.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanumbarungothic;
+    font-weight: 400;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-regular.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-regular.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-regular.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-regular.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanumbarungothic;
+    font-weight: 700;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-bold.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-bold.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-bold.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumbarungothic-bold.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanumsquare;
+    font-weight: 400;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-regular.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-regular.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-regular.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-regular.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-nanumsquare;
+    font-weight: 700;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-bold.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-bold.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-bold.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-nanumsquare-bold.ttf") format("truetype")
+}
+@font-face {
+    font-family: se-sourcecodepro;
+    font-weight: 400;
+    src: url("https://editor-static.pstatic.net/c/resources/common/fonts/se-sourcecodepro-regular.eot?iefix") format("embedded-opentype"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-sourcecodepro-regular.woff2") format("woff2"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-sourcecodepro-regular.woff") format("woff"), url("https://editor-static.pstatic.net/c/resources/common/fonts/se-sourcecodepro-regular.ttf") format("truetype")
+}
+@font-face {
+    font-family: Symbola;
+    src: url(https://ssl.pstatic.net/static/matheditor/1.0.14/Symbola.eot);
+    src: local("Symbola Regular"), local("Symbola"), url(https://ssl.pstatic.net/static/matheditor/1.0.14/Symbola.woff2) format("woff2"), url(https://ssl.pstatic.net/static/matheditor/1.0.14/Symbola.woff) format("woff"), url(https://ssl.pstatic.net/static/matheditor/1.0.14/Symbola.ttf) format("truetype"), url(https://ssl.pstatic.net/static/matheditor/1.0.14/Symbola.svg#Symbola) format("svg")
+}
+.reply_tit {font-size:24px; font-weight:bold; padding-bottom:15px; border-bottom:1px solid #e6e7e8; margin-bottom:10px;}
+.reply_tit span {color:#74b243;}
+.reply_list {/* border-bottom:1px solid #e6e7e8; */ padding-bottom:20px; padding-top:5px;}
+.reply_list .media-left img {width:50px; height:50px;  border-radius:50%;}
+.reply_list .media-heading {color:#999; font-size:14px; position:relative;}
+.reply_list .media-heading b {font-size:17px; margin-right:10px; font-weight: normal;}
+.reply_list .media-heading span {color:#ddd; margin:0 5px;}
+.reply_list .media-heading a {color:#999;}
+.reply_list .media-body {line-height:22px;}
+
+.reply_list .info_more { float:right; position:relative;}
+.reply_list .info_more .dropdown-menu {width:70px; min-width:70px; margin:-4px -5px 0 0; }
+.reply_list .info_more .dropdown-menu li {font-size:13px; border-bottom:1px solid #ebebeb;}
+.reply_list .info_more .dropdown-menu li:last-child {border-bottom:none;}
+.reply_list .info_more .tmn_more {display:inline-block; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_more3.png) center top no-repeat; background-size:17px; margin:0; width:20px; height:20px;}
+
+
+.reply_write { display:block; height:116px; margin-top:14px;}
+.reply_write2 { display:block; margin-top:14px;}
+.reply_write2_tt {font-size:14px; color:#000; padding:10px 0 12px 3px;}
+.reply_write2_file {display:inline-block; color:#999; margin-left:24px;}
+.reply_write2_file .btn {display:inline-block; border:1px solid #999; background:#ebebeb; font-size:13px; padding:3px 10px; border-radius:1px; margin-right:6px;}
+.reply_write2_tt b {margin-right:8px;}
+.reply_write2_star img {width:28px; margin:-4px 0 0 0;}
+.reply_write .info_pic {width:50px; display:inline-block; padding:0;}
+.reply_write .info_pic img {width:50px; height:50px;  border-radius:50%;}
+.reply_write .input-group {width:730px; float:right;}
+.reply_more {border-bottom:1px solid #e6e7e8; text-align:center;}
+.reply_more a {background:url(//recipe1.ezmember.co.kr/img/icon_arrow4.gif) right 11px no-repeat; color:#555; padding:5px 25px 15px 15px; font-size:15px; display:inline-block;}
+.reply_list_star img {width:16px; margin:0 1px 0 0; vertical-align:text-top;}
+.reply_list_hit {float:right; color:#444 !important; font-size:14px;}
+.reply_list_hit img {width:20px; margin:-2px 3px 0 0; vertical-align:top;}
+.reply_list_cont {float:left; width:650px; padding:0; margin:0;}
+.reply_list_img {float:right; margin:5px 4px 0 0; padding:0;}
+.reply_list_img.st2 {float:right; margin:-30px 4px 0 0; padding:0;}
+.reply_list_img img {width:60px; height:60px;}
+.reply_list_btn img {vertical-align:text-top; margin:1px 0 0 0;}
+.reply_list_re {float:left; border-top:1px solid #e6e7e8; padding-top:18px; position:relative;}
+.reply_list_icon {position:absolute; left:-36px; top:-2px;}
+
+.menu_best.home {padding:70px 0 0 0; background:url(//recipe1.ezmember.co.kr/img/menu_best_bg.jpg?v.0721) left top no-repeat; width:893px; height:440px; margin:-30px -20px -10px; text-align:center; position:relative;}
+.menu_best.home .thumbnail {width:337px; height:324px; padding:0; margin:2px 8px 8px; border:none; display:inline-block; vertical-align:top; position:relative; border-radius:none; text-align:left; box-shadow:none; padding:37px 15px; background:url(//recipe1.ezmember.co.kr/img/menu_best_bg2.png?v.0721) left top no-repeat;}
+.menu_best_in {display:inline-block;}
+.menu_best .best_tit {position:absolute; left:50%; top:25px; margin-left:-185px; z-index:100;}
+.menu_best { clear:both;}
+.menu_best .thumbnail {width:200px; border-radius:0; padding:0; margin:0 14px 20px 0; height:278px; border:1px solid #ddd; display:inline-block; vertical-align:top; position:relative;}
+.menu_best a.thumbnail:nth-child(4n+4) {margin:0 -4px 20px 0;}
+.menu_best .thumbnail img {width:198px; height:128px;}
+.menu_best.home .caption {font-size:18px; padding:15px 9px 0; line-height:18px; color:#000; font-weight:bold;}
+.menu_best .caption {font-size:14px; padding:14px 12px 0; line-height:20px; color:#000;}
+.menu_best .caption .jq_elips2 {font-weight:bold}
+.menu_best .caption_name {font-size:11px; color:#999; display:block; padding:4px 0 0 3px;}
+.menu_best.home .caption_name {font-size:14px; color:#999; display:block; padding:10px 0 0 3px;}
+.menu_best .caption_menu1 {font-size:12px; color:#777; display:block; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_menu_a1.png) left 2px no-repeat; background-size:19px; padding:0 0 2px 23px; margin:7px 0 0 -1px; line-height:1.5;}
+.menu_best .caption_menu2 {font-size:12px; color:#777; display:block; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_menu_a2.png) left 2px no-repeat; background-size:19px; padding:0 0 2px 23px; margin:1px 0 0 -1px; line-height:1.5;}
+.menu_list_img {width:100%; position:relative;}
+a.label_like {position:absolute; right:8px; bottom:8px; background:#000; border-radius:15px; opacity: 0.8; filter: alpha(opacity=80); color:#fff; font-size:16px; font-weight:bold; margin:0; padding:5px 12px;}
+a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
+.menu_best .menu_list_img1 {width:65%; height:129px; border-right:1px solid #fff;}
+.menu_best .menu_list_img2 {width:35%; height:65px; border-bottom:1px solid #fff;}
+.menu_best .menu_list_img3 {width:35%; height:64px;}
+.menu_best.home .menu_list_img1 {width:65%; height:190px; border-right:1px solid #fff;}
+.menu_best.home .menu_list_img2 {width:35%; height:95px; border-bottom:1px solid #fff;}
+.menu_best.home .menu_list_img3 {width:35%; height:94px;}
+.menu_img_none {background:url(//recipe1.ezmember.co.kr/img/df/rp_328_328.png) center no-repeat; background-size:cover; width:auto; width:100%;}
+.menu_list_img.menu_img_none .menu_list_img1 {border-right:none;}
+.menu_list_img.menu_img_none .menu_list_img2 {border-bottom:none;}
+.menu_cate {float:left; padding-bottom:20px;}
+.menu_cate_ul {width:100%; border:1px solid #ebebeb; margin:0 auto; padding:0; list-style:none; background:#fff; float:left; }
+.menu_cate_ul li {width:25%; border-right:1px solid #ebebeb; border-bottom:1px solid #ebebeb; float:left; margin:0; padding:0;}
+.menu_cate_ul li:nth-child(4n+4) {border-right:none;}
+.menu_cate_ul li:nth-last-child(1), .menu_cate li:nth-last-child(2), .menu_cate li:nth-last-child(3), .menu_cate li:nth-last-child(4)  {border-bottom:none;}
+.menu_cate_ul li a {padding:12px 16px; font-size:16px; display:inline-block; width:100%; margin:0; line-height:1.3;}
+.menu_cate_ul li a span {font-size:11px; font-weight:bolder; padding-left:4px; font-family:Tahoma,Helvetica; }
+.menu_cate_ul li a img {width:38px; height:38px; margin-right:7px;}
+.menu_list_tit {font-size:18px; padding:34px 0 12px 2px; font-weight:bold; clear:both;}
+.menu_list_tit img {width:32px; padding-right:1px; vertical-align:text-top;}
+/*.best_arrow {display:inline-block; width:44px; height:120px; text-align:center; margin:110px 5px 0; padding-top:20px; vertical-align:top;}*/
+.menu_view {padding:0 8px; float:left; width:100%;}
+.menu_view.st2 {padding:0; margin:-30px 0 0 -21px; float:left; width:895px;}
+.menu_view dl {margin:-1px 0 0 0; padding:0;}
+.menu_view dt {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_history.png) left 2px no-repeat; background-size:30px; padding:4px 0 3px 38px; font-size:20px; font-weight:bold; color:#666; line-height:24px;}
+.menu_view dd {padding:10px 0 50px 35px; margin-right:8px; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_history_bg.png) 12px top repeat-y; background-size:6px auto;}
+.menu_view .thumbnail {border-radius:0; margin:0; padding:14px; clear:both; height:280px; position:relative;}
+.menu_view .thumbnail_top {border-radius:0; margin:0; padding:0; float:left; width:100%; border:1px solid #d4d4d4;}
+.menu_view .menu_list_img {width:390px; float:left;}
+.menu_view .menu_list_img1 {height:250px; width:65%; border-right:2px solid #fff;}
+.menu_view .menu_list_img2 {height:125px; width:35%; border-bottom:2px solid #fff;}
+.menu_view .menu_list_img3 {height:125px; width:35%;}
+.menu_view .menu_list_img img {width:390px;}
+.menu_view .thumbnail_top .menu_list_img {width:480px; float:left;}
+.menu_view .thumbnail_top .menu_list_img1 {height:310px; width:65%; border-right:2px solid #fff;}
+.menu_view .thumbnail_top .menu_list_img2 {height:155px; width:35%; border-bottom:2px solid #fff;}
+.menu_view .thumbnail_top .menu_list_img3 {height:155px; width:35%;}
+.menu_view .caption {font-size:25px; padding:18px 6px 0 28px; line-height:34px; color:#000; width:350px; vertical-align:top; float:left;}
+.menu_view .caption.st2 {font-size:30px; line-height:1.3; padding:35px 6px 0 28px; width:382px;}
+.menu_view .caption_name {font-size:11px; color:#999; display:block; padding:4px 0 0 3px;}
+.menu_view .caption_menu1 {font-size:14px; color:#777; display:block; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_menu_a1.png) left 2px no-repeat; background-size:24px; padding:2px 0 2px 30px; margin:16px 0 5px 0; line-height:1.5;}
+.menu_view .caption_menu2 {font-size:14px; color:#777; display:block; background:url(//recipe1.ezmember.co.kr/img/mobile/icon_menu_a2.png) left 2px no-repeat; background-size:24px; padding:2px 0 2px 30px; margin:1px 0 0 0; line-height:1.5;}
+.menu_view .caption_cont {font-size:16px; line-height:1.6; color:#777; word-break:break-all; height:160px; width:360px; padding-right:15px; overflow-y:auto; margin:18px 0 10px 0; position:relative;}
+.menu_view .caption_cont2 {font-size:16px; line-height:1.6; color:#777; margin:20px 0 0 2px;}
+.menu_view_cont {padding:18px 12px 25px; font-size:16px; line-height:1.6; color:#000;}
+.menu_view_tip {background:url(//recipe1.ezmember.co.kr/img/mobile/tit_tip.png) left top no-repeat; background-size:110px; padding:38px 18px 15px 20px; font-size:14px; line-height:1.6;}
+
+.menu_etc {position:absolute; right:14px; bottom:14px; width:356px; margin:0; padding:0; border:1px solid #e8e8e8; background:#f6f6f6;}
+.menu_etc li {text-align:center; border-right:1px solid #e8e8e8; width:33%; list-style:none; float:left; padding:9px 0 8px 0; font-size:11px; font-family:Tahoma,Helvetica; font-weight:bold;}
+.menu_etc li:last-child {border-right:0; width:34%;}
+.menu_etc li img {width:24px; padding-right:3px;}
+.menu_etc2 {width:100%; margin:0; padding:0; border:1px solid #d4d4d4; background:#f6f6f6; float:left; border-top:0; box-shadow:0 2px 3px #eee;}
+.menu_etc2 li {text-align:center; border-right:1px solid #e3e3e3; width:25%; list-style:none; float:left; padding:15px 0; font-size:12px; font-family:Tahoma,Helvetica; font-weight:bold;}
+.menu_etc2 li:last-child {border-right:0; width:25%;}
+.menu_etc2 li img {width:24px; padding-right:3px;}
+.cont_list.st3 .best_label2 {position:absolute; top:3px; right:2px; z-index:10;}
+.cont_list.st3 .best_label2 img {width:50px; height:50px;}
+.cont_list.st3 .menu_label {position:absolute; top:3px; left:3px; z-index:10; opacity: 0.8; filter: alpha(opacity=80);}
+.cont_list.st3 .menu_label img {width:50px; height:50px;}
+.chef_list4 {padding:30px 21px 30px;}
+.chef_list4 .nav-tabs3 {margin-bottom:15px;}
+.chef_list4 .my_nav2 {margin:0; border-top:1px solid #d2d2d2; background:#efefef; padding:0;}
+.chef_list4 .my_nav2 li {display:table-cell; width:1%; text-align:center; font-size:16px; border-right:1px solid #d2d2d2; border-bottom:1px solid #d2d2d2;}
+.chef_list4 .my_nav2 li:last-child {border-right:0;}
+.chef_list4 .my_nav2 li a {padding:12px 0; color:#999; display:inline-block; width:100%; }
+.chef_list4 .my_nav2 li.active {border-bottom:1px solid #fff;}
+.chef_list4 .my_nav2 li.active a {color:#4a9c08; font-weight:bold; background:#fff;}
+.chef_list_top img {max-width:100%;}
+.my_nav2_sub {background:#fff; border-bottom:1px solid #d4d4d4; height:45px; font-size:13px;}
+.my_nav2_sub p {font-weight:bold; padding:11px 0 0 20px; display:inline-block;}
+.my_nav2_sub .dropdown .btn {font-size:15px; color:#999; border:0; padding:11px 12px; background:#fff;}
+.my_nav2_sub .dropdown .btn span {margin-right:4px; font-size:16px; vertical-align:text-bottom;}
+.chef_list4_in {background:#fff; padding:2px;}
+.chef_list4_in .list_lump {padding:18px 5px; border-bottom:1px solid #e6e7e8;}
+.chef_list4_in .list_mem3 {display:inline-block; vertical-align:middle; padding-right:10px;}
+.chef_list4_in .list_mem3 .mem_pic {display:inline-block; vertical-align:top;}
+.chef_list4_in .list_mem3 .mem_pic img {width:70px; height:70px; border-radius:50%;}
+.chef_list4_in .list_cont4 {display:inline-block; vertical-align:middle;}
+.chef_list4_in .list_cont4 b {display:block; padding-bottom:6px;}
+.chef_list4_in .list_cont4 b a {color:#de4830; font-size:18px; font-weight: normal;}
+.chef_list4_in .list_cont4 .btn-sm {font-size:13px; padding:4px 8px; margin:-2px 0 2px 6px;}
+.chef_list4_in .mem_cont1 {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_fork.png) left 1px no-repeat; background-size:18px; padding:0 0 1px 21px; font-size:15px; color:#888; margin-right:20px; letter-spacing:-0.02em;}
+.chef_list4_in .mem_cont2 {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_mem.png) left 1px no-repeat; background-size:18px; padding:1px 0 1px 21px; font-size:15px; color:#888; margin-right:20px; letter-spacing:-0.02em}
+.chef_list4_in .mem_cont3 {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_scrap.png) left 1px no-repeat; background-size:18px; padding:1px 0 1px 21px; font-size:15px; color:#888; margin-right:20px; letter-spacing:-0.02em}
+.chef_list4_in .mem_cont7 {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_view3.png) left 1px no-repeat; background-size:18px; padding:1px 0 1px 22px; font-size:15px; color:#888; margin-right:20px; letter-spacing:-0.02em}
+.list_ranking2 {width:170px; line-height:1; display:inline-block; vertical-align:middle;}
+.list_ranking2_num { width:90px; text-align:right; font-size:32px; color:#000; font-weight:900; margin:0 0 4px 0; display:inline-block; letter-spacing:-0.05em;}
+.list_ranking2_num.txt4 {font-size:14px;}
+.list_ranking2_num2 {font-size:13px; margin:0 0 2px 10px; display:inline-block; vertical-align:super;}
+.list_ranking2_num2 span {padding-right:4px; vertical-align:text-top;}
+
+
+.list_cont b {display:block; font-size:13px; color:#000; padding:0;}
+.list_cont2 b {display:block; font-size:16px; color:#000; padding:0;}
+.list_cont3 b {display:block; font-size:16px; color:#000; padding:0;}
+.list_cont_in {width:100%; font-size:16px; color:#999; padding:12px 15px 4px 0; line-height:18px;}
+.list_cont_in .list_tit u {color:#000; text-decoration:none;}
+.list_cont_in .list_tit {color:#999;}
+.list_cont_in .list_time, .list_cont_in .list_time a {font-size:14px; color:#999; display:block; padding-top:4px;}
+.list_thumb {float:right; margin-left:15px;}
+.list_thumb img {width:70px; height:80px;}
+.friend_list .list_mem {padding:0 0 0 5px; display:inline-block; vertical-align:top;}
+
+/* etc */
+.nav_etc {background:url(//recipe1.ezmember.co.kr/img/bg_wave.png) left bottom repeat-x; width:100%; text-align:center; height:85px; padding-top:15px;}
+.container_etc {margin:0 auto 30px; padding-top:20px;}
+.container_etc h2 {text-align:center; font-weight:bold; margin-bottom:15px;}
+.container_etc input {height:60px;}
+.container_etc .checkbox input {height:auto;}
+.container_etc .btn {margin:0 4px 20px 0; position:relative;}
+.container_etc .btn_gender {position:absolute; left:250px; top:13px; z-index:100;}
+.container_etc .btn_gender span .btn {height:32px; }
+.container_etc .btn_gender span .btn-default:active, .container_etc .btn_gender span .btn-default.active {color: #fff; background-color: #44b6b5; border-color:#44b6b5;}
+.container_etc .etc_line {border-bottom:1px solid #dadcdd; margin-bottom:15px;}
+.container_etc .btn-lg {margin-top:25px; height:60px;}
+.container_etc .panel-body {padding:0;}
+.container_etc .help-block {color:#999; margin-bottom:25px; font-size:14px;}
+.container_etc .guide_txt {font-size:16px; color:#555;}
+.container_etc .join_btn {margin:15px 0; text-align:center; border:1px solid #ddd;}
+.container_etc .join_btn a {color:#555; display:table-cell; width:1%; background:#fff; font-size:13px; line-height:1; vertical-align:middle; padding:16px 2px; border-right:1px solid #ddd; }
+.container_etc .join_btn a:last-child {border:none;}
+.container_etc .join_btn a.active {font-weight:bold; border:2px solid #dddddd; border-bottom:none;}
+.container_etc .join_b_order {border:3px solid #ddd; margin:-15px 0 20px; padding:12px;}
+.container_etc .join_b_order .info {color:#666; text-align:center; line-height:1.5; padding-bottom:8px; margin-top:-4px; font-size:14px;}
+.container_etc .space_line {color:#ccc; margin:0 30px;}
+.container_etc .join_f {background:#527bd4; border-color:#3f68c2; margin-bottom:10px; font-size:16px; font-weight:normal;}
+.container_etc .join_f:focus, .container_etc .join_f:active, .container_etc .join_f:hover {background:#3a63bc;}
+.container_etc .join_f span {background:url(//recipe1.ezmember.co.kr/img/icon_sns2_f.png) 7px top no-repeat; width:270px; padding:8px 0 0 20px; display:inline-block; height:40px;}
+.container_etc .join_k {background:#fff000; border-color:#ddd110; color:#363139; margin:0 0 10px 0; font-size:16px; font-weight:normal;}
+.container_etc .join_k:focus, .container_etc .join_k:active, .container_etc .join_k:hover {background:#ffe400;}
+.container_etc .join_k span {background:url(//recipe1.ezmember.co.kr/img/icon_sns2_k.png) left 2px no-repeat; width:270px; padding:8px 0 0 20px; display:inline-block; height:40px;}
+.container_etc .join_n {background:#26cc09; border-color:#28b80f; margin:0 0 10px 0; font-size:16px; font-weight:normal;}
+.container_etc .join_n:focus, .container_etc .join_n:active, .container_etc .join_n:hover {background:#24b70b;}
+.container_etc .join_n span {background:url(//recipe1.ezmember.co.kr/img/icon_sns2_n.png) left 4px no-repeat; width:270px; padding:8px 0 0 20px; display:inline-block; height:40px;}
+.container_etc .join_g {background:#de3d2b; border-color:#c52816; margin:0 0 10px 0; font-size:16px; font-weight:normal;}
+.container_etc .join_g:focus, .container_etc .join_g:active, .container_etc .join_g:hover {background:#cf2f1d;}
+.container_etc .join_g span {background:url(//recipe1.ezmember.co.kr/img/icon_sns2_g.png?v2) left 2px no-repeat; width:270px; padding:8px 0 0 20px; display:inline-block; height:40px;}
+.container_etc .panel-default {margin-top:20px; padding-bottom:20px;}
+.container_etc .guide_txt2 {padding:0 20px 5px; font-size:16px; color:#333; font-weight:500;}
+.container_etc .guide_txt2 input {height:auto; float:right;}
+.container_etc .panel-body textarea {width:-webkit-fill-available;height:200px; margin:0 20px; background:#f7f7f7; border:1px solid #f0f0f0; padding:10px; font-weight: 300;}
+.container_etc .j_title {font-size:36px; color:#444; padding:60px 0 26px 0;}
+.container_etc .j_title p {margin-bottom:20px;}
+.container_etc .j_cont {font-size:24px; color:#444; line-height:40px;}
+.container_etc .j_cont span {color:#74b243; font-weight:bold;}
+.container_etc .j_cont2 {color:#999; padding-top:25px;}
+
+.container_etc .form-group {margin-bottom:-1px;}
+.container_etc .form-control {
+	display:block;
+	width:100%;
+	padding:6px 12px;
+	font-size:14px;
+	line-height:1.42857143;
+	color:#555;
+	background-color:#fff ;
+	background-image:none;
+	border:1px solid #ccc;
+	border-radius:0;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+-webkit-transition:border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+-o-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+margin-bottom:-1px !important;
+}
+.container_etc .form-control:focus {
+	border-color:#66afe9;
+	outline:0;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+.container_etc .form-control::-moz-placeholder {color:#666;opacity:1}
+.container_etc .form-control:-ms-input-placeholder {color:#666}
+.container_etc .form-control::-webkit-input-placeholder {color:#666}
+.container_etc .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	cursor:not-allowed;
+	background-color:#eee;
+	opacity:1
+}
+.container_etc  textarea.form-control {	height:auto}
+.footer {background:#fff; color:#999; padding:2px 0 5px 0; margin-top:30px; border-top:1px solid #dcdcdc;}
+.footer .intro {width:428px; padding:26px 0 0 24px;}
+.footer .intro h3 {font-weight:bold;}
+.footer .intro p.f_link {margin:0; padding-bottom:16px;}
+.footer .intro p.f_info {font-size:13px; line-height:1.6; margin-bottom:16px; font-weight: 300;}
+.footer .intro p.f_link a { font-size:13px; color:#999;}
+.footer .intro p.f_link span {color:#ddd; padding:0 4px;}
+.footer .intro .copyright {font-size:12px; padding:20px 0; color:#999; font-family:Helvetica;}
+.footer .banner {width:200px; padding:25px 0 0 0; position:relative;}
+.footer .banner a {margin-bottom:9px; display:block;}
+.footer .facebook {width:320px; padding:25px 0 0 22px;}
+.footer .comment {width:300px; padding:28px 0 0 0;}
+.footer .comment b {padding-bottom:14px; display:block;}
+.footer .comment textarea {width:300px; height:150px; font-size:13px; background:#f5f5f5; border:1px solid #e6e7e8;}
+.footer .comment button {border:1px solid #dcdcdc; background:#fff; border-radius:0; color:#444; width:300px; margin:8px 0 0 -1px;}
+.footer .comment p.noti {margin:0; padding:10px 0 0 0; text-align:center; width:300px; font-size:13px; color:#999; display:block;}
+.footer .app_layer {background:url(//recipe1.ezmember.co.kr/img/bg_layer4.png) left top; width:372px; height:321px; position:absolute; left:-10px; top:-300px; padding:12px 12px; z-index:1000;}
+.app_layer  p.tit {font-size:14px; color:#444; border-bottom:1px solid #ebebeb; padding:10px 0; background:#f8f8f8; text-align:center; font-weight:bold; line-height:18px; margin:0;}
+.footer .app_layer .layer_l {width:172px; border-right:1px solid #ebebeb; display:inline-block; text-align:center; padding:12px 0 8px;}
+.footer .app_layer .layer_r {width:172px; display:inline-block; text-align:center; padding:12px 0 8px;}
+.footer .app_layer .layer_l a, .footer .app_layer .layer_r a {margin-top:14px;}
+.footer .banner_sns {padding-top:20px;}
+.footer .banner_sns a {display:table-cell;}
+
+.footer.st2 {background:#289f5d; margin-top:0; border-top:none;}
+.footer.st2 .container {padding:18px 0 18px 40px;}
+.footer.st2 .btm_stats {background:url(//recipe1.ezmember.co.kr/img/btm_line.png) 32px 24px no-repeat; display:inline-block; vertical-align:middle; padding:0; margin-left:22px;}
+.footer.st2 .btm_stats li {text-align:center; display:inline-block; color:#fff; font-size:12px; width:160px;}
+.footer.st2 .btm_stats li span {width:100%; height:66px; display:block; margin-bottom:6px;}
+.footer.st2 .btm_stats li b {color:#fdff51; display:block; font-size:18px; font-weight:normal; margin-top:4px;}
+
+.footer.st2 .btm_stats_1 {background:url(//recipe1.ezmember.co.kr/img/btm_icon1.png) center no-repeat;}
+.footer.st2 .btm_stats_2 {background:url(//recipe1.ezmember.co.kr/img/btm_icon2.png) center no-repeat;}
+.footer.st2 .btm_stats_3 {background:url(//recipe1.ezmember.co.kr/img/btm_icon3.png) center no-repeat;}
+.footer.st2 .btm_stats_4 {background:url(//recipe1.ezmember.co.kr/img/btm_icon4.png) center no-repeat;}
+.footer.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
+.footer.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
+
+
+
+
+
+
+
+
+
+
+.chef_search { padding-top:4px; margin:0 -10px 0 0;}
+.chef_search .form-control {border-radius:0 !important; width:240px; height:34px; background:#fff; padding:0 0 0 32px; display:inline-block; vertical-align:middle;}
+.chef_search .glyphicon {position:absolute; left:8px; top:10px; z-index:100; font-size:20px; color:#ccc;}
+.chef_search .btn.search {background:#f7f7f7; border:1px solid #ccc;; width:60px; height:34px; padding:0 0 1px 0 ; margin:1px 5px 0 -6px; color:#333; font-size:14px; font-weight:bold; text-align:center; border-radius:0 3px 03px 0;}
+.chef_search .btn.apply {font-size:14px; color:#000; padding:0 20px; border:1px solid #d3d3d3; background:#fff; height:34px;}
+.chef_search .btn.apply b {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_confirm2.png) left top no-repeat; background-size:16px; padding-left:20px;}
+
+
+
+
+.chef_list3 { padding-top:15px;}
+.chef_list3 .media {padding:25px 50px 20px; margin:0 0 8px 0; border-bottom:1px solid #d5d6d7;}
+.chef_list3 .media-left {padding-right:18px;}
+.chef_list3 .media-object {width:66px; height:66px; border-radius:50%; border:1px solid #e6e6e6;}
+.chef_list3 .media-heading {padding:10px 0 0 0; margin:0;}
+.chef_list3 .info_cont_name {font-size:18px; font-weight:bold; margin:0 0 6px 0; line-height:1;}
+.chef_list3 .info_cont_hit {color:#666; font-size:15px; font-weight:200; margin:0;}
+.chef_list3 .info_cont_hit b {margin:0 10px 0 2px;}
+.chef_list3 .info_recipe {padding:18px 0 0 0;}
+.chef_list3 .info_recipe a {margin-right:5px; display:inline-block;}
+.chef_list3 .info_recipe a img {width:140px; height:140px;}
+.info_reply {margin-top:18px;}
+.info_reply dt {line-height:1; margin-top:12px;}
+.info_reply dt b {color:#de4830; margin-right:4px;}
+.info_reply_star img {width:15px; margin:-1px 1px 0 0;}
+.info_reply dd {color:#555; margin:4px 0; line-height:1.4; font-size:15px;}
+
+.my_tabs {padding:21px 21px 0;}
+.my_tabs .nav-tabs li a {padding:15px 0;}
+.my_tabs .nav-tabs li span {margin:1px 6px 0 0; vertical-align:inherit;}
+
+
+/*공통부분*/
+.common_sp_list_ul {margin: 0;}
+.common_sp_list_ul.ea3 li {width: 381px;}
+.common_sp_list_ul.ea4 li {width: 282px;}
+.common_sp_list_ul.ea5 li {width: 222px;}
+.common_sp_list_li {list-style:none; padding: 0; margin: 0 12px 40px 0; display: inline-block; vertical-align: top; position: relative;}
+.common_sp_thumb { position: relative; border-radius: 4px; overflow: hidden;}
+.common_sp_thumb img {width: 100%; }
+.common_sp_icon_free {position: absolute; right: 0; bottom: 0; background:rgba(0, 0, 0, 0.4); color: #fff; line-height: 1; padding:6px 8px; border-radius: 4px;}
+.common_sp_caption {padding:10px 2px;}
+.common_sp_caption_tit {margin:0 0 6px 0; color: #000; text-align: left; font-size: 15px;}
+.common_sp_caption_tit.line1 {overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap:break-word; white-space:normal; line-height:1.5;}
+.common_sp_caption_tit.line2 {overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-wrap:break-word; white-space:normal; line-height:1.5;}
+.common_sp_caption_tit.line3 {overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap:break-word; white-space:normal; line-height:1.5;}
+.common_sp_caption_tit.rv {font-weight: normal; }
+.common_sp_caption_name {padding: 6px 2px 0 0; color: #666; vertical-align:middle; font-size: 13px;}
+.common_sp_caption_name_pic { margin: 0;}
+.common_sp_caption_name_pic img {width:28px; height: 28px; border-radius: 50%; margin-right: 4px;}
+.common_sp_caption_rv {vertical-align:super;  line-height:0; margin: 0 0 8px 0;}
+.common_sp_caption_rv_star {vertical-align: text-bottom;}
+.common_sp_caption_rv_star img {width: 14px; margin-right: 1px; margin: 0;}
+.common_sp_caption_rv2 {vertical-align:middle; line-height:0;}
+.common_sp_caption_rv2 img {width: 14px; margin-right: 2px;}
+.common_sp_caption_rv2 .common_sp_caption_rv_ea {margin-right: 1px; font-size: 12px;}
+.common_sp_caption_rv2 .common_sp_caption_rv_ea b {padding-right: 2px;}
+.common_sp_caption_price_box {padding:0; margin: 0 0 4px 0; line-height: 1;}
+.common_sp_caption_price {font-size:20px; color:#73b142; font-weight:normal; letter-spacing:-0.02em; font-family: roboto;}
+.common_sp_caption_price small {font-weight:normal; color:#73b142; font-size:13px; margin-left:1px; font-family: 'Noto Sans KR', sans-serif;}
+.common_sp_caption_buyer {color:#999; font-size:13px; margin-left:2px; font-weight:300;}
+.common_sp_caption_rv_ea {color:#999; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; font-size:12px; vertical-align:middle; padding-left: 1px; line-height:normal; font-weight:300;}
+.common_sp_caption_rv_name {color:#999; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; font-size:13px; vertical-align:0; padding:0  1px 7px 0;}
+.common_sp_caption_rv_name img {width: 22px; height: 22px; border-radius: 50%; margin:0 4px 0 0; vertical-align: text-bottom;}
+.common_sp_caption_pdt {vertical-align:middle; line-height: 1; margin-top: -2px;}
+.common_sp_caption_pdt img {width:21px; margin-right: 2px; -webkit-filter: grayscale(100%); filter: gray; vertical-align:-6px;}
+.common_sp_caption_rv_box {display: table-cell;width:100%;}
+.common_sp_caption_rv_img {display: table-cell; vertical-align: top; padding:0 0 0 6px;}
+.common_sp_caption_rv_img img {border-radius:3px;}@charset "UTF-8";
+.gnb_search .btn{
+background: #FF8000;
+border:1px solid #FF8000;
+}
+.gnb_right li a img{
+	width:35px;
+	border-radious:none !important;
+}
+ul{
+   list-style:none;
+   }
+#coco{
+   margin-bottom:10px;
+   }

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<<<<<<< HEAD
+<title>Insert title here</title>
+</head>
+<body>
+<div class="title">
+<h1>My</h1>
+</div>
+<div class ="content">
+<form th:action="@{/join}" th:object="${join_form}" method="post">
+<!-- form이 어떤 url로 연결되는지에 대한 것  -->
+<input type="email" th:field="*{id}"/><br>
+<input type="password" th:field="*{pw}"/><br>
+<input type="text" th:field="*{nickName}"/><br>
+
+<input type="date" th:field="*{birth}"/><br>
+<input type="radio" th:field="*{gender}"/><br>
+<input type="submit" value="회원가입"/><br>
+</form>
+</div>
+=======
+<title>회원가입</title>
+</head>
+<body>
+	<!-- <div class="title"> -->
+	<h1>회원가입</h1>
+	<hr>
+	<!-- </div> -->
+	<!-- <div class ="content"> -->
+	<form name=form th:action="@{/join_page}" method="post"
+		onsubmit="return checkAll()">
+		<div>
+			<td>아이디</td> <input type="email" name="userId"
+				placeholder="이메일 @까지 입력해주세요" /><br> <span
+				th:text="${valid_email}"></span>
+		</div>
+		<!-- form th:action="@{/join}" th:object="${join_form}" method="post" onsubmit="return checkAll()"> -->
+
+
+		<div>
+			<td>비밀번호</td> <input type="password" name="userPw"
+				placeholder="영문+숫자 조합 8~16자리" /><br> <span
+				th:text="${valid_password}"></span>
+		</div>
+		<div>
+			<td>비밀번호 확인</td> <input type="password" name="userPw2"
+				placeholder="비밀번호 확인" /><br> <span th:text="${void_password2}"></span>
+
+
+		</div>
+
+
+		<div>
+			<td>닉네임</td> <input type="text" name="nickName" placeholder="닉네임" /><br>
+			<span th:text="${valid_nickName}"></span>
+		</div>
+
+		<div>
+			<td>생년월일</td> <input type="date" name="birth" /><br>
+		</div>
+		<div>
+			<td>성별</td> <input type="radio" name="gender" id="sex-1" value="1"
+				checked> 여성
+		</div>
+
+
+		<input type="radio" name="gender" id="sex-2" value="2" checked>
+		남성
+		</div>
+
+		<div>
+			<button type="submit" calss="btn btn-dark btn-large form-control">회원가입</button>
+		</div>
+		<div>
+			<button type="button"
+				class="btn btn-secondary btn-large form-control">뒤로가기</button>
+		</div>
+	</form>
+
+
+
+
+	<hr class="separator" />
+	<div>
+		<h1>CookingTalking</h1>
+		<p>@2020 All Rights Reserved.</p>
+	</div>
+
+
+	<script>
+    if (!checkuserId(form.userId.value)) {
+        return false;
+    }
+    if (!checkPassword(form.userId.value, form.password1.value,    form.password2.value)) {
+        return false;
+    }
+  
+    if (!checkName(form.name.value)) {
+        return false;
+    }
+    
+   
+    return true;
+}
+//공백 확인 함수 
+function checkExistData(value,dataName){
+	if(value ==""){
+		alert(dataName +"입력해주세요")
+return false;
+		}
+return true;
+}
+function checkuserId(id){
+	if (!checkExistData(id, "아이디를"))
+        return false;
+
+    var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+    if (!idRegExp.test(id)) {
+        alert("아이디는 이메일 형식으로 입력해주세요  ");
+        form.userId.value = "";
+        form.userId.focus();
+        return false;
+
+
+}
+
+
+</script>
+
+
+
+
+
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+
+</body>
+</html>

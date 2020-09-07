@@ -1,0 +1,195 @@
+ERROR 20-06-17 15:20:57[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.Encryption' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.Encryption' in your configuration.
+
+ERROR 20-06-17 15:21:28[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.Encryption' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.Encryption' in your configuration.
+
+ERROR 20-06-17 15:21:45[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.Encryption' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.Encryption' in your configuration.
+
+ERROR 20-06-17 15:22:50[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:24:32[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:25:49[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:26:08[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:29:48[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:34:10[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:35:06[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:36:12[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:36:55[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+
+ERROR 20-06-17 15:37:11[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.cook.talk.controller.LoginController required a bean of type 'com.cook.talk.model.service.EncryptionService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cook.talk.model.service.EncryptionService' in your configuration.
+

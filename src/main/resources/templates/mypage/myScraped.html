@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<!-- <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128"> -->
+<link rel="stylesheet" href="/css/mypage/mypage.css">
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
+
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+<th:block layout:fragment='css'>
+<style type="text/css">
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+</style>
+</head>
+
+
+<div layout:fragment='content'>
+
+<div class="container sub_bg">
+    
+<div id="contents_area" class="col-xs-9">
+
+<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" style="width:370px">
+    <div class="modal-content" style="padding:0;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
+        <h4 class="modal-title" id="friendModalTitle"></h4>
+      </div>
+      <div class="modal-body" style="padding:0;">
+        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="newProfileUrl" name="new_profile_url">
+
+
+<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
+
+	<div class="my_tabs">
+
+	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
+	    
+	    
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class=""></span>레시피</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class=""></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class=""></span>활동</a></li>
+	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class=""></span>문의사항</a></li>
+	        
+	    </ul>
+	</div>
+
+    <div class="chef_cont">
+
+      
+      <ul class="nav nav-tabs3" style="position:relative;">
+      
+      
+        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn">팔로우</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myScraped" th:class="myScrapedBtn">스크랩한 레시피</a></li>
+      
+      		<div class="list_sort">
+				<div class="chef_search">
+				<form onsubmit="return false">
+					<input type="text" onsubmit="return false" id="scrapedSearchInMy" title="레시피 검색"
+					name="scrapedSearchInMy" class="form-control" placeholder="레시피를 검색하세요">
+						<span class="glyphicon glyphicon-search fas fa-search" style="padding-top: 10px;"></span>
+					<button type="button" id="btnScrapedSearchInMy" class="btn search" style=" margin-bottom: 2px;">검색</button>
+				</form>
+				</div>
+				</div>
+
+
+            </ul>
+      <div class="cont_list">
+     
+      
+      
+      <div th:id="myScrapedResult" class="brand_cont mag_t_10" style="padding-left: 63px;padding-right: 21px;">
+            <ul class="cont_list st3 st3_1">   
+                
+                <li th:each="myScraped : ${myScraped}" style="width: 250px;">
+                    <a class="thumbnail" th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}">
+                    <div class="thumbs_hb"><img th:class="myScrapedImg" th:src="'/img/'+${myScraped.rcpPic}"
+                    data-holder-rendered="true"
+                    style="width: 198px; height: 120px;"
+                    ></div>
+                    <div class="caption">
+                        <h4><span class="jq_elips2" th:text=${myScraped.rcpTitle}></span></h4>
+                        <p class="jq_elips"></p>
+                    </div>
+                    <div class="home_review">
+                        
+                        <p class="date" th:text=${myScraped.scrapDate}></p>
+                    </div>
+                    </a>
+                </li>
+
+      </ul>
+    
+    
+    </div>
+      
+      
+      
+      	<div th:id="myFrequentSub">
+	
+	
+      
+
+
+
+<!-- <div th:id="myScrapedResult">
+	<table>
+	<tbody>
+	<tr th:each="myScraped : ${myScraped}">
+		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpPic}" th:text=${myScraped.rcpPic}></a></td>
+		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
+		<td th:value="${myScraped.scrapDate}" th:text=${myScraped.scrapDate}></td>
+	</tr>
+	</tbody>
+	</table>
+	</div> -->
+</div>
+      </div><!--/cont_list -->
+    </div><!--/chef_cont -->
+  </div><!-- /contents_area -->
+
+
+   	<div id="right_area" class="col-xs-3">
+				<div class="myhome_main" style="margin-bottom: 20px;">
+					<div class="myhome_main_t"
+						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
+					<div class="myhome_main_info">
+						<div class="info_pic">
+							<a href="javascript:void(0);"
+								><img
+
+								th:src="'/img/'+${session['userPic']}"></a>
+
+								<!-- th:src="${session.userPic11}"></a> -->
+
+						
+						</div>
+											<div>
+					<h4 th:class="myNickName"><span th:text="${session['nickName']}"></span>님! 반갑습니다☺</h4>
+					</div>
+						<div class="w3-container" style="padding-top: 10px">
+							
+							<button 
+								onclick="document.getElementById('id01').style.display='block'"
+								class="modal-start-btn">정보 수정하기</button>
+
+							<div id="id01" class="w3-modal">
+								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+									style="max-width: 600px">
+
+									<div class="w3-center">
+										<br> <span
+											onclick="document.getElementById('id01').style.display='none'"
+											class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+											title="Close Modal">&times;</span> <img id="img"
+											style="width: 30%" />
+
+									</div>
+
+								<form class="w3-container" action="/mypage/modifyUserPic"
+									method="POST" enctype="multipart/form-data">
+									<div class="w3-section">
+										<h3 style="color: #F4863F;">회원정보 수정하기</h3><br>
+										<input id="input_img" class="w3-input w3-border" type="file"
+											placeholder="사진을 등록하세요" name="file" accept="image/*">
+
+											<br>
+											<label value="변경할 비밀번호" style="text-align: center;"></label>
+									<input type="password" name="userPw3" id="userPw3"
+					class="" required placeholder="변경할 비밀번호 " maxlength="16" style="  width: 542px;"/>
+				<br>
+<br>
+			<input type="password" name="userPw4" id="userPw4" maxlength="12" style="  width: 542px;"
+					class="" placeholder="비밀번호 확인" required />
+	<br>	
+
+				<div class="text-danger1" id="alert-danger1">비밀번호가 일치하지 않습니다.</div>
+				<div class="text-danger1" id="alert-success1">비밀번호가 일치합니다.</div>
+		<br>									 
+
+																<div>
+						<label value="변경할 닉네임" style="text-align: center;"></label>
+						<input type="text" name="userNickName" placeholder="변경할 닉네임" id="userNickName"
+							class="" style="width: 462px;"> <span th:text="${valid_nickName}"></span>
+						<input type="button" id="my_nick_btn" value="중복확인" style="border-radius: 3px; padding: 12px" /></br>
+					</div>
+										<br><button class="modal-submit-btn" type="submit">변경하기</button>
+									</div>
+
+
+
+								</form>
+
+
+								</div>
+							</div>
+						</div>
+						<!-- w3-container -->
+
+					</div>
+				</div>
+
+
+
+
+			</div><!-- /right_area -->
+    <div class="col-xs-12 sub_bg_btm"></div>
+</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+
+	
+	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
+</div>
+</html>

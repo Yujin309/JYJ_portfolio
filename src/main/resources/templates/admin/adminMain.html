@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+<title id='pageTitle'>Cooking Talking</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+	.w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+	background-color:#f8f9fa;
+	}
+	.input-group-btn{
+	width:66.25px;
+	}
+	</style>
+</head>
+<div layout:fragment='content'>
+	<div class="container-lg">
+		<div class="row mb-5">
+			<div class="col-md-3" id="adSelectPage">
+				<!-- 재료 리스트 가져오기 -->
+				<button class="btn btn-block btn-light" onclick="adQnaList()">고객요청함</button>
+			</div>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adUserList()">회원정보</button>
+			</div>
+
+			<!-- 레시피 화명 이동 버튼 -->
+			<div class="col-md-3" id="adSelectPage">
+				<div class="btn btn-block btn-light w3-dropdown-hover">
+					<a>레시피</a>
+					<div class="w3-dropdown-content w3-bar-block w3-border" >
+						<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
+							리스트</button>
+						<a th:href="@{/searchBichart}" class="w3-bar-item w3-button">레시피
+							통계</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adIngrList()">재료페이지</button>
+			</div>
+
+		</div>
+
+		<div id="basic">
+			<div>
+				<h1>고객센터 문의함</h1>
+			</div>
+			<br>
+
+
+
+			<table class="table table-bordered">
+				<thead style="text-align: center;">
+					<tr>
+						<th scope="col">문의사항제목</th>
+						<th scope="col">문의 내용</th>
+						<th scope="col" width="10%">문의 날짜</th>
+						<th scope="col">유저</th>
+					</tr>
+				</thead>
+				<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
+					<tr>
+						<td scope="row" style="text-align: center;">
+							<button type="button" class="btn" th:text="${qna.qnaTitle}"
+								th:id="|btn_open${qnaStat.index}|" name="btn_qna" th:value="${qna.qnaTitle}"></button>
+						</td>
+						<td scope="row" style="text-align: center;">
+							<div th:text="${qna.qnaCont}"></div>
+						</td>
+						<td scope="row" style="text-align: center;">
+							<div th:text="${qna.qnaDate}"></div>
+						</td>
+						<td scope="row" style="text-align: center;">
+							<div th:text="${qna.UserId}"></div>
+						</td>
+
+					</tr>
+					<tr th:id="|open${qnaStat.index}|" class="collapse out bg-light"
+						width="100%">
+						<td colspan="4"><div class="m-3">
+								<p>
+									<b>작성자 :</b> <input
+										style="background-color: transparent; border: 0 solid black;"
+										th:id="|UserId_answer${qnaStat.index}|" name="userId"
+										th:value="${qna.userId}" readonly>
+								</p>
+								<hr>
+								<div><textarea th:text="${qna.qnaCont}"class="mb-3" rows="4" cols="100" style="width: 90%"></textarea></div>
+								<div th:text="${qna.answer}" class="mb-3"></div>
+								
+
+								<div class="input-group mb-3 mw-100">
+									<textarea type="text" th:id="|answer_answer${qnaStat.index}|"
+										th:name="answer" th:value="${qna.answer}"
+										placeholder="답글을 입력하세요" rows="4" cols="100" style="width: 90%"></textarea>
+									<div class="input-group-append" style="width: 10%">
+										<button class="insert_answer_btn btn btn-dark" type="button"
+											th:id="|button_answer${qnaStat.index}|"
+											th:name="button_button" style="width: 100%">답변하기</button>
+									</div>
+								</div>
+							</div></td>
+
+					</tr>
+				</tbody>
+			</table>
+			<ul>
+				<div th:class="Pagination_Li">
+					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
+						th:class="page">
+						<a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
+					</div>
+				</div>
+			</ul>
+
+
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+
+			var cc = 700;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+	</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 20; i++) {
+				$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+				console.log(k + i);
+			}
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(".insert_answer_btn").click(function() {
+			var reply = $(this).attr('id').substring(7);
+			var rep= $(this).attr('id').substring(13);
+			var qnaTitle = document.getElementById('btn_open' + rep);
+			/* var UserID = document.getElementsByName('userId'); */
+			var UserID = document.getElementById('UserId_' + reply);
+			var answer_reply = document.getElementById('answer_' + reply);
+			console.log(rep.value);
+			console.log(UserID.value);
+
+			$.ajax({
+				url : '/admin/qnaAnswer',
+				method : "POST",
+				data : {
+					answer : answer_reply.value,
+					userId : UserID.value,
+					qnaTitle: qnaTitle.value
+				},
+			}).done(function(response) {
+				alert("문의사항 답변을 작성하였습니다.")
+				location.reload();
+			});
+		});
+	</script>
+	<script>
+		$(".btn").click(function() {
+			var k = $(this).attr('id').substring(4);
+			//#은 아래 th:id 값을 나타내는것이므로, #하나+k(|btn_open${qnaStat.index}|에서 앞에 4글자를 뺀 글자.)로 결국에는  아이디. hasclass("out")가 가능해진다. 
+			if ($("#" + k).hasClass("out")) {
+				$("#" + k).addClass("in");
+				$("#" + k).removeClass("out");
+			} else {
+				$("#" + k).addClass("out");
+				$("#" + k).removeClass("in");
+			}
+		});
+	</script>
+
+
+	<script>
+		function adUserList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adUser");
+
+		};
+		//고객요청함 불러오기
+		function adQnaList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adQnaList");
+
+		};
+		//재료 추가함 불러오기 		
+		function adIngrList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adIngrList");
+
+		};
+
+		//레시피 모두 보여주기 가져오기 
+		function adRecipeList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/listRcp");
+		};
+		//레시피 모두 보여주기 가져오기 
+		function adSearchBiChart() {
+			$('#mainTable').remove();
+			$('#basic').load("searchBichart");
+		};
+	</script>
+</div>
+</html>

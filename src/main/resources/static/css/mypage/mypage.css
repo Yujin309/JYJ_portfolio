@@ -1,0 +1,199 @@
+.modal-submit-btn{
+width: 20%;
+background-color: #ff8000;
+color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.myNickName{
+	font-weight: bold;
+	 padding-top: 20px;
+	
+}
+
+.modal-start-btn{
+
+	width: 50%;
+background-color: #ff8000;
+color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.chosung {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.ingrButton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.ingrButton--selected {
+  background-color: #FF5733;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
+.selectedIngr{
+	width: 430px;
+    margin: auto;
+    margin-top: 210px;
+    border: 2px solid #efeef1;
+}
+
+
+
+
+
+.story-list{
+display: inline-block;
+
+text-overflow: ellipsis;
+
+white-space: nowrap;
+
+overflow: hidden;
+
+width: 250px;
+}
+
+
+
+#myFollowTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+#myFollowTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myFollowTable tr:hover {background-color: #ddd;}
+
+#myFollowTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #ffd650;
+  color: white;
+  font-size: 18px;
+  
+  }  
+  
+#myFollowTable td {
+
+  text-align: center;
+  font-size: 15px;
+
+
+}
+
+
+
+
+
+
+
+#myComTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#myComTable td, #myTalkTable th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+}
+
+#myComTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myComTable tr:hover {background-color: #ddd;}
+
+#myComTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #666;
+  color: white;
+  
+  }  
+  
+#myComTable td {
+
+  text-align: center;
+
+
+}
+
+
+
+
+
+
+#myTalkTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#myTalkTable td, #myTalkTable th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+}
+
+#myTalkTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myTalkTable tr:hover {background-color: #ddd;}
+
+#myTalkTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #666;
+  color: white;
+  
+  }  
+  
+#myTalkTable td {
+
+  text-align: center;
+
+
+}
+
+

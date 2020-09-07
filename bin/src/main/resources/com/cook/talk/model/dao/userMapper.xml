@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
+
+<mapper namespace="com.cook.talk.model.dao.UserDAO">
+
+	<select id="findUserById" parameterType="String"
+		resultType="com.cook.talk.model.VO.UserVO">
+		SELECT userId, userPw, nickName, birth, user.auth, gender, access, userPic,
+		rcpUploads FROM user where userId=#{id}
+	</select>
+
+	<insert id="save">
+		insert into user(userId, userPw, nickName, birth, gender, access, user.auth,
+		userPic, rcpUploads)
+		values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access},
+		#{auth}, #{userPic}, #{rcpUploads})
+	</insert>
+
+	<insert id="login">
+		SELECT userId, userPw FROM user
+	</insert>
+
+
+
+	<select id="fina_by_string_id" parameterType="String"
+		resultType="UserDTO">
+		SELECT * FROM USERINFO WHERE userId=#{userId}
+	</select>
+=======
+                
+<mapper namespace="com.cook.talk.model.dao.UserDAO">
+
+<select id="findUserById" parameterType="String" resultType="com.cook.talk.model.VO.UserVO">
+SELECT userId, userPw, nickName, birth, user.auth, gender, access, userPic, rcpUploads FROM user where userId=#{id}
+</select>
+
+<insert id="join" parameterType="UserDTO">
+insert into user(userId, userPw, nickName, birth, gender, access, user.auth, userPic, rcpUploads) 
+values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access}, #{auth}, #{userPic}, #{rcpUploads})
+</insert>
+
+<insert id="login">
+SELECT userId, userPw FROM user
+
+
+</insert>
+
+
+
+<select id="fina_by_string_id" parameterType="String" resultType="UserDTO">
+SELECT * FROM USERINFO WHERE userId=#{userId}
+</select>
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+</mapper>        
+

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.MypageDAO">
+	
+	<select id="modifyUserPic" parameterType="String">
+	UPDATE user SET userPic = #{userPic} WHERE userId=#{userId}
+	</select>
+	
+	<select id="getMyPic" parameterType="String" resultType="mypageDTO">
+	SELECT userPic FROM recipe.user WHERE userId=#{userId}
+	</select>
+
+	<!-- 작성중인 레시피 -->
+	<select id="getMyRecipeIng" parameterType="String" resultType="mypageDTO">
+	SELECT DISTINCT nickName, rcpCode, userPic, rcpTitle, rcpPic 
+	FROM recipe.rcp AS r INNER JOIN recipe.user AS u
+	ON r.userId=u.userId WHERE u.userId=#{userId} AND registerStatus=0
+	</select>
+	
+	<select id="getMyRecipeWritten" parameterType="String" resultType="MypageDTO">
+	SELECT DISTINCT userPic, rcpTitle, rcpPic, rcpCode FROM recipe.rcp AS r 
+	INNER JOIN recipe.user AS u ON r.userId=u.userId WHERE r.userId=#{userId} AND registerStatus=1
+	</select>
+	
+	<!-- 레시피 삭제하기 -->
+	<delete id="deleteRcp" parameterType="String">
+	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = #{userId}
+	</delete>
+	
+	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
+	SELECT userPic, nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
+	WHERE f.userId=#{userId} AND nickName LIKE CONCAT('%', #{followChef},'%') group by nickName
+	</select>
+	
+	<!-- 스크랩한 레시피 검색하기 -->
+	<select id="getSearchMyScraped" resultType="MypageDTO" parameterType="String">
+	SELECT DISTINCT r.rcpCode, r.rcpPic, rcpTitle, scrapDate 
+	FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	WHERE s.userId=#{userId} AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%') 
+	ORDER BY scrapDate DESC
+	</select>
+
+	<!-- 나의 팔로우한 쉐프 -->
+	<select id="getMyFollow" parameterType="String" resultType="MypageDTO">
+	SELECT userPic, nickName, count(r.rcpCode) AS followC FROM recipe.user AS u 
+	INNER JOIN recipe.follow AS f 
+	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r 
+	ON r.userId = f.followChef
+	WHERE f.userId=#{userId} GROUP BY nickName
+	
+	</select>
+	
+	<!-- 나의 스크랩한 레시피 -->
+	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
+	SELECT userPic, r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r 
+	INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	INNER JOIN recipe.user AS u ON s.userId=u.userId
+	WHERE s.userId=#{userId} ORDER BY scrapDate DESC
+	</select>
+	
+	<select id="getMyTalk" parameterType="String" resultType="TalkVO">
+	 SELECT DISTINCT userPic, talkCode, talkCont, talkDate FROM recipe.talk AS t INNER JOIN recipe.user AS u 
+	 ON t.userId=u.userId WHERE t.userId=#{userId} ORDER BY talkDate DESC
+	</select>
+	
+	<select id="getSearchMyTalk" resultType="MypageDTO" parameterType="String">
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId=#{userId} AND 
+	talkCont LIKE CONCAT('%', #{talkCont}, '%') ORDER BY talkDate DESC
+	</select>
+	
+	<!-- 내가 작성한 모든 댓글 가져오기 -->
+	<select id="getAllMyCom" parameterType="String" resultType="MypageDTO">
+	SELECT user.userPic, sub.*  FROM  user,
+     ( SELECT talkCode, talkCom, talkComDate , userId 
+			FROM recipe.talkcom tc 
+			WHERE userId=#{userId} 
+			UNION 
+				SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate , userId AS userId
+				FROM recipe.rcpcom rc 
+				WHERE userId=#{userId} 
+				ORDER BY talkComDate DESC
+                ) AS sub
+	WHERE user.userId = sub.userId;
+	</select>
+	
+	<select id="getSearchAllMyCom" parameterType="String" resultType="MypageDTO">
+	SELECT DISTINCT talkCode, talkCom, talkComDate 
+	FROM recipe.talkcom tc 
+	WHERE userId=#{userId} 
+	AND tc.talkCom LIKE CONCAT('%', #{talkCom}, '%') 
+	UNION 
+		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate  
+		FROM recipe.rcpcom rc WHERE userId=#{userId} 
+		AND rc.rcpCom LIKE CONCAT('%', #{talkCom}, '%') 
+	ORDER BY talkComDate DESC
+	</select>
+
+
+	<select id="getSearchTalkCom" parameterType="String" resultType="MypageDTO">
+	SELECT DISTINCT talkCode, talkCom, talkComDate FROM recipe.talkcom tc WHERE userId=#{userId} 
+	AND tc.talkCom LIKE CONCAT('%',#{talkCom},'%') ORDER BY talkComDate DESC
+	</select>
+	
+	<select id="getSearchRcpCom" parameterType="String" resultType="MypageDTO">
+	SELECT DISTINCT rcpComDate, rcpCom, rcpComDate FROM recipe.rcpcom rc WHERE userId=#{userId} 
+	AND rc.rcpCom LIKE CONCAT('%',#{rcpCom},'%') ORDER BY rcpComDate DESC
+	</select>
+	
+	<select id="getMyTalkCom" parameterType="String" resultType="TalkComVO">
+	 SELECT DISTINCT userPic, talkCom, talkComDate FROM recipe.talkCom AS tc 
+	 INNER JOIN recipe.user AS u ON tc.userId=u.userId WHERE tc.userId=#{userId}
+	</select>
+	
+	<select id="getMyRcpCom" parameterType="String" resultType="MypageDTO">
+	 SELECT DISTINCT userPic, rcpCom, rcpComDate FROM recipe.rcpcom rc 
+	 INNER JOIN recipe.user u ON rc.userId=u.userId WHERE rc.userId=#{userId}
+	</select>
+	
+	<insert id="rqMyInq" parameterType="QnAVO">
+	INSERT INTO recipe.qna(qnaCode, qnaTitle, qnaCont, qnaDate, userId) 
+	VALUES (#{qnaCode}, #{qnaTitle}, #{qnaCont}, curdate(),#{userId}) 
+	</insert>
+	
+	<select id="getmyInq" parameterType="String" resultType="QnAVO">
+		SELECT DISTINCT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId=#{userId} ORDER BY qnaDate DESC
+	</select>
+	
+	<select id="selectQnACode" resultType="int">
+	SELECT SUBSTRING(
+	(SELECT qnaCode FROM recipe.qna ORDER BY qnaCode DESC LIMIT 1), 
+	3)
+	</select>
+	
+</mapper>

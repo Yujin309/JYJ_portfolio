@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>건호 리스트 뿌리기</title>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<div>
+		<!-- 재료 리스트 가져오기 -->
+		<button onclick="adQnaList()">고객요청함</button>
+		<button onclick="adUserList()">회원정보</button>
+		<button onclick="adRecipeList()">레시피</button>
+		<button onclick="adIngrList()">재료페이지</button>
+	</div>
+	<div id="basic">
+
+		<table border="1" id="mainTable">
+			<thead>
+				<tr>
+					<th>문의사항제목</th>
+					<th>문의 내용</th>
+					<th>문의 날짜</th>
+					<th>답변 내용</th>
+					<th>유저</th>
+					<th>답변 유무</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="qnaList:${qnaList}">
+					<td th:text="${qnaList.qnaTitle}">문의 사항 제목</td>
+					<td th:text="${qnaList.qnaCont}">문의 내용</td>
+					<td th:text="${qnaList.qnaDate}">문의 날짜</td>
+					<td th:text="${qnaList.answer}">답변 내용</td>
+					<td th:text="${qnaList.userId}">유저</td>
+					<td>답변유무</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<script>
+		function adUserList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adUser");
+
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+					url : './admin/adUser', // url: 요청할 URL 주소
+					// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+					type : "GET",
+
+					success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+						alert("회원정보를 불러왔습니다.");
+
+					},
+					error : function() {
+						alert("실패");
+					}
+				}); */
+
+		};
+		//고객요청함 불러오기
+		function adQnaList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adQnaList");
+			/* 		$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+						url : './admin/adQnaList', // url: 요청할 URL 주소
+						// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+						type : "GET",
+
+						success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+							alert("고객요청함을 불러왔습니다.");
+
+						},
+						error : function() {
+							alert("실패");
+						}
+					}); */
+
+		};
+		//재료 추가함 불러오기 		
+		function adIngrList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adIngrList2");
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+				url : './admin/adIngrList2', // mapping 한 주소
+				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+				type : "GET",
+
+				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+					alert("재료추가함을 불러왔습니다.");
+					$('#qnaListTable').remove();
+					$('#basic').load("admin/adIngrList2"); //return 값, html의 파일명
+
+				},
+				error : function() {
+					alert("실패");
+				}
+			}); */
+
+		};
+	</script>
+</body>
+</html>

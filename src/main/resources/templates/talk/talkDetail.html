@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<th:block layout:fragment='CSS'></th:block>
+
+<link rel="stylesheet" href="/css/talk/talkDetail.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
+
+<title>쿠킹토킹:::토크 상세</title>
+<script>
+	$(function() {
+		$('.comment-update-btn')
+				.on(
+						'click',
+						function(e) {
+							var text = $(e.target).closest('.comment-div')
+									.find(".comment-form").text();
+							$target = $(this);
+							console.log($target);
+							console.log($(e.target));
+							$target.removeClass('active');
+							$target.siblings().removeClass('active');
+							$target.closest('.comment-div').find(
+									'.comment-btn button').addClass('active');
+
+							$(e.target)
+									.closest('.comment-div')
+									.find(".comment-form")
+									.html(
+											"<input type='text' name='ComCode' value='"+text+"' id='talkCom'>");
+							/*$(e.target)
+									.closest('.comment-div')
+									.find(".comment-btn")
+									.html( "<button type='button' class='btnDo'>수정하기</button>"); */
+							//updateResult();
+						});
+
+		//function updateResult() {
+		$('.btnDo').on(
+				'click',
+				function(e) {
+					var item = $(e.target).closest('.comment-div').find(
+							'#talkCom').val();
+					var text = $(e.target).closest('.comment-div').find(
+							'.comment-form').text(item);
+					var comCode = $(e.target).closest('.comment-div').find(
+							'.comment-code').val();
+
+					console.log(item)
+					console.log(text)
+					console.log(comCode)
+					/* $(e.target)
+							.closest('.comment-div')
+							.find('.comment-btn')
+							.html(
+									"<button type='button' class='com_update'>수정</button>");
+					 */
+					// text -> DB에서 talkCom
+					// comCode -> DB에서 talkComCode
+					// UPDATE talkcom SET talkCom = #{talkCom} WHERE talkComCode = #{talkComCode}
+					// var TalkcomC = $(e.target).attr('value')
+					$.ajax({
+						url : '/com/update/' + comCode,
+						type : 'put',
+						data : item
+					}).done(function(result) {
+						if (result == "success") {
+							alert("수정되었습니다");
+							location.reload();
+						}
+					}).fail(function() {
+						alert('comment update fail')
+					})
+				});
+		//	}
+	});
+	/* function newCom() {
+
+		$(".btnDo").click(function(e) {
+			var TalkcomC = $(e.target).attr('value')
+
+			console.log(TalkcomC)
+
+			$.ajax({
+				url : '/com/update/' + TalkcomC,
+				method : "PUT",
+				data : {
+					talkComCode : TalkcomC,
+					talkCom : Talkcom
+				},
+				success : function(result) {
+					if (result == "success") {
+						alert("수정되었습니다");
+						location.reload();
+					}
+				}
+			})
+		})
+	}; */
+</script>
+
+</head>
+<div layout:fragment='content' th:object="${talkCode}">
+	<!-- <body th:object="${talkCode}"> -->
+
+
+
+	<div class="container sub_bg">
+
+
+		<div id="contents_area" class="col-xs-9">
+			<div class="talk_list">
+				<div class="story_view_area">
+
+
+
+
+					<!-- 위에 닉네임 이름  -->
+					<div class="story_view_top">
+
+
+						<br> <br>
+						<div class="story_view_top_name">
+
+
+							<strong> <a href="#" th:text="${listCom.nickName}"
+								style="font-size: 25px"></strong> <img src=""></a> <br> <br>
+							<span class="story_view_top_date" th:text="${listCom.talkDate}"></span>
+						</div>
+						</h4>
+					</div>
+					<div class="story_view_cont">
+						<div
+							style="width: 650px; text-align: center; padding-right: 450px;">
+							<th:block sec:authorize="isAuthenticated()">
+								<input id="talk-code" type="hidden"
+									th:value="${listCom.talkCode}">
+
+								<div th:if="${#authentication.principal.username} == *{userId}">
+									<a th:href="@{/talk/updatePage(talkCode=${listCom.talkCode})}">수정</a>
+
+									<button type="button" id="btnDelete">삭제</button>
+								</div>
+							</th:block>
+							<!-- <span th:text="${#authentication.principal}"></span> -->
+							</th:block>
+						</div>
+						<div class="story_view_cont_img"
+							style="padding-top: 50px; padding-left: 80px;">
+
+
+
+							<img th:src="'/img/'+${listCom.talkVideo}"
+								style="width: 300px; height: 200px;">
+						</div>
+						<div class=""></div>
+						<br> <br>
+
+
+						<div class="story_view_cont_txt"
+							style="padding-left: 80px; font-size: 22px">
+							<span th:text="${listCom.talkCont}"></span>
+						</div>
+					</div>
+
+
+					<div class="story_view_tag_b"
+						style="padding-right: 20px; padding-left: 450px;">
+
+						<ul class="story_tag_list">
+						</ul>
+					</div>
+				</div>
+
+
+				<!--################### 댓글######################## -->
+
+				<div class="view_reply">
+
+					<div id="prev_comment"></div>
+					<div id="next_comment"></div>
+					<div class="reply_write">
+						<div class="view_reply">
+
+							<div class="reply_tit">
+								<b th:text="${comCount}"></b> 댓글 <span> </span>
+							</div>
+
+							<div id="prev_comment"></div>
+
+							<!-- 댓글 목록 -->
+							<div id="reply_list_2486198" class="media reply_list"
+								style="margin-top: 15px;" th:each="com : ${listCom.talkComs}">
+
+
+								<div class="media-left">
+									<!-- 닉네임 사진 th:each="com, w : ${listCom.talkComs}" -->
+									<div id="reply_nick">
+										<a href="/profile/index.html?uid=kionlau"> <img
+											class="media-object" th:src="'/img/'+${com.userPic}"
+											data-holder-rendered="true"></a>
+										<td th:text="${com.userId}"></td>
+									</div>
+								</div>
+
+
+								<!-- 댓글 -->
+								<div class="media-body" style="position: relative;">
+
+									<h4 class="media-heading"
+										style="padding: 735x21; width: 220px;">
+										<b class="info_name_f" th:text="${com.nickName}"
+											style="cursor: pointer;"> 아르르띠</b><span
+											style="color: #808080;" th:text="${com.talkComDate}"></span>
+										<span>|</span> <br>
+										<p th:text="${com.talkCom}" style="
+    padding-top: 5px;
+"></p>
+									</h4>
+								</div>
+
+
+
+
+
+								<!-- 수정 삭제 버튼 -->
+								<div id="docs_comment_list_area">
+
+									<div class="comment-div" style="padding-left: 60px;">
+
+
+										<input class="comment-code" type="hidden"
+											th:value="${com.talkComCode}"> <!-- <span
+											th:text="${com.talkCom}" class="comment-form"></span> -->
+										<!-- 
+										<div class="comment-form">-->
+										<div class="comment-btn">
+											<button type='button' class='btnDo'>수정하기</button>
+										</div>
+										<button class="comment-update-btn active" type="button"
+											id="com_update" th:value='${com.talkComCode}'>수정</button>
+
+										<button class="comment-delete-btn active" type="button"
+											id="com_Delete" th:value='${com.talkComCode}'>삭제</button>
+									</div>
+									<!-- <div
+									th:if="${#authentication.principal.username} == ${com.userId}"> -->
+								</div>
+							</div>
+							<!-- reply_list_2486198" -->
+
+
+
+						</div>
+						<!--/media reply_list -->
+
+					</div>
+				</div>
+
+
+
+				<!-- 댓글 등록 창 -->
+				<div class="view_reply">
+					<!--/media reply_list -->
+					<div id="prev_comment"></div>
+
+
+<!-- 					<div id="reply_list" class="media reply_list"
+						style="margin-top: 15px;" th:each="com : ${listCom.talkComs}"> -->
+
+						<!-- <div id="docs_comment_list_area"></div> -->
+
+
+					</div>
+
+
+					<!--/media reply_list -->
+					<br> <br> <br>
+
+
+					<div id="next_comment"></div>
+					<div class="reply_write" style="
+    margin-top: 80px;
+    margin-right: 80px;
+">
+
+						<div id="area_dv" class="input-group" style="position: relative;">
+							<textarea name="talk-comment" id="talk-comment"
+								class="form-control" placeholder=""
+								style="height: 100px; width: 100%; resize: none;"></textarea>
+							<span class="input-group-btn"> <strong><button
+										id="btn_comment" class="btn btn_comment" type="button"
+										style="height: 100px; width: 100px; background: #FF8000">
+										<p style="padding-top: 15px; color: #FFFFFF; font-size: 18px">
+
+											등 록</p>
+									</button> </strong>
+							</span>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- 	</div> -->
+<!-- 	<h2>게시글 보기</h2>
+	<form name="form1" method="post">
+		<table border="1" width="900px">
+			<thead>
+				<tr>
+					<th>내용</th>
+					<th>아이디</th>
+					<th>시간</th>
+					<th>사진</th>
+					<th>좋아요</th>
+					<th>댓글</th>
+				</tr>
+			</thead>
+			<tbody>
+				<a th:href="@{/talk/list}"
+					class="btn btn-default waves-effect waves-light">뒤로가기</a>
+
+				<tr>
+					<td th:text="${listCom.talkCont}"></td>
+					<td th:text="${listCom.nickName}"></td>
+					<td th:text="${listCom.talkDate}"></td>
+					<td th:text="${listCom.talkVideo}"></td>
+					<td th:text="${listCom.talkLike}"></td>
+					<td th:text="${listCom.talkCom}"></td>
+				</tr>
+				</div>
+			</tbody>
+		</table>
+		
+		
+		<div style="width: 650px; text-align: center;">
+			<th:block sec:authorize="isAuthenticated()">
+				<input id="talk-code" type="hidden" th:value="${listCom.talkCode}">
+
+				<div th:if="${#authentication.principal.username} == *{userId}">
+					<a th:href="@{/talk/updatePage(talkCode=${listCom.talkCode})}">수정</a>
+
+					<button type="button" id="btnDelete">삭제</button>
+				</div>
+			</th:block>
+			<span th:text="${#authentication.principal}"></span>
+			</th:block>
+		</div>
+
+	</form>
+	<br>
+
+	<table>
+		<div style="width: 650px; text-align: center;">
+			<div class="box bpx-warning">
+				<div class="box-header with-border">
+
+					<a class="link-black text-lg"><i class="fa fa-pencil"></i>댓글작성</a>
+				</div>
+				<br>
+				<tr th:if="${sessionScope.userId !=null}">
+				<textarea rows="5" cols="80" id="talk-comment"
+					placeholder="댓글을 작성해주세요 "></textarea>
+				<br>
+
+				<button type="button" id="btn_comment">댓글작성</button>
+				<br> <br>
+
+				<div id="docs_comment_list_area">
+					<div class="comment-div" th:each="com : ${listCom.talkComs}">
+						<input class="comment-code" type="hidden"
+							th:value="${com.talkComCode}"> <span
+							th:text="${com.nickName}"></span> <span th:text="${com.talkCom}"
+							class="comment-form"></span>
+
+						<div
+							th:if="${#authentication.principal.username} == ${com.userId}">
+
+							<div class="comment-btn">
+
+								<button class="comment-update-btn" type="button" id="com_update"
+									th:value='${com.talkComCode}'>수정</button>
+
+								<button class="comment-delete-btn" type="button" id="com_Delete"
+									th:value='${com.talkComCode}'>삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+	</table>
+
+		<th:block sec:authorize="isAuthenticated()">
+		<input id="talkcom_code" type="hidden" th:value="${talkCode.talkCom}">
+	
+		<div th:if="${#authentication.principal.username} == ${.userId}">
+		
+			<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
+			<button type="button" id="com_Delete">삭제</button>
+		</div>
+	</th:block>
+ -->
+</div>
+</html>

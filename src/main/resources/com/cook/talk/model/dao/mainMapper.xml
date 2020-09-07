@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cook.talk.model.dao.MainDAO">
+
+	<resultMap id="chefDTO" type="chefDTO">
+		<result column="rcpViews" property="rcpViews" />
+		<association property="userVO">
+			<result column="nickName" property="nickName" />
+			<result column="userPic" property="userPic" />
+			<result column="followers" property="followers" />
+			<result column="rcpUploads" property="rcpUploads" />
+		</association>
+	</resultMap>
+	<select id="recipeList" parameterType="String"
+		resultType="IndexDTO">
+		select rcp.rcpTitle,rcp.rcpPic,user.nickName from rcp,user where rcp.userId=user.userId and
+		<foreach collection="list" item="rcpCode" index="index" open="(" close=")"
+			separator="or">
+			rcp.rcpCode= #{rcpCode}
+		</foreach>
+	</select>
+	<select id="newRecipeList" resultType="IndexDTO">
+		select rcp.rcpTitle,rcp.rcpPic,user.nickName from rcp,user where rcp.userId=user.userId order by rcpCode desc limit 12
+	</select>
+
+	<select id="totalSelect" resultType="MainDTO">
+		select (select count(*) from
+		user) as totalChef ,(select count(*) from rcp)
+		as totalRecipe ,(select
+		count(*) from search) as totalSearch ,
+		(select count(*) from talk) as
+		totalTalk from dual
+	</select>
+	<select id="recipeSearch" resultType='rcpSDTO'>
+		select rcp.rcpCode,rcp.rcpTitle, rcp.rcpPic,user.nickName
+		from rcp,user
+		where (rcpTitle LIKE
+		CONCAT('%',#{searchWord},'%')
+		or rcpExpl LIKE
+		CONCAT('%',#{searchWord},'%')) and user.userId=rcp.userId 
+		<choose>
+			<when test='status.equals("recommend")'>order by rcpViews</when>
+		</choose>
+		limit #{page},20
+	</select>
+	<select id="countRecipe" resultType="int" parameterType="String">
+		select count(*) as count
+		from rcp,user
+		where (rcpTitle LIKE
+		CONCAT('%',#{searchWord},'%')
+		or rcpExpl LIKE
+		CONCAT('%',#{searchWord},'%')) and user.userId=rcp.userId
+	</select>
+
+	<select id="selectTitle" resultType="String">
+		select rcpTitle from rcp
+		where rcpTitle LIKE CONCAT('%',#{searchWord},'%') limit 10
+	</select>
+	<select id="selectChef" resultMap="chefDTO"
+		parameterType="String">
+		select
+		us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as
+		rcpViews
+		from user as us,rcp
+		where us.userId=rcp.userId and us.nickName LIKE CONCAT('%',#{chefNick},'%')
+		group by us.nickName
+		order by us.rcpUploads*1 desc,us.followers*1 desc,rcp.rcpviews*1 desc
+	</select>
+	<select id="selectGender" resultType="chartDTO">
+		select count(views.rcpviewCode) as count,user.gender as axis from views,user where
+		views.userId=user.userId and views.rcpCode=#{rcpCode} group by
+		user.gender ;
+	</select>
+	<select id="selectMonth" resultType="chartDTO">
+		select count(views.rcpviewCode)  as count ,Month(views.viewDate)as axis from views,user where
+		views.userId=user.userId and views.rcpCode=#{rcpCode} group by
+		Month(views.viewDate);
+	</select>
+	<select id="selectBirth" resultType="chartDTO">
+		select count(views.rcpviewCode) as count,round(((year(now())-year(birth))+1)/10)*10 as axis from views,user where
+		views.userId=user.userId and views.rcpCode=#{rcpCode} group by
+		round(((year(now())-year(birth))+1)/10) order by axis;
+	</select>
+<insert id="followChef" parameterType="String">
+	insert into follow value (#{userId},(select userid from user where nickName=#{chefNick}) )
+</insert>
+<delete id="unfollowChef" parameterType="String">
+	delete from follow where followChef=(select userid from user where nickName=#{chefNick}) and userId=#{userId}
+</delete>
+
+<select id="userRecommend" resultType="String">
+	select rcpCode from views 
+	<if test='userId !=null'>
+	where userId=#{userId} 
+	</if>
+	order by viewDate desc ,rcpViewCode desc limit 1 
+</select>
+
+<select id="selectUserPic" resultType="String">
+select userPic from user where userId=#{userId}
+</select>
+</mapper>

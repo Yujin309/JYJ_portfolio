@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.RecipeDAO">
+
+   
+      <select id="getIngrName" parameterType="String"
+      resultType="ingrVO">
+      SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+      <if test='!chosung1.equals("하")'>AND
+         ingrName<![CDATA[<]]>#{chosung2}
+      </if>
+   </select>
+
+   <select id="getSearchedIngrName" parameterType="String"
+      resultType="String">
+      SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE
+      CONCAT('%',#{ingrName},'%')
+   </select>
+
+   <select id="getIngrName1" parameterType="String" resultType="String">
+      SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+      <if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+   </select>   
+   
+<!--    <select id="getRcmmList" parameterType="String" resultType="String">
+      SELECT rcpTitle, rcpPic FROM recipe.rcp as r INNER JOIN recipe.rcpIngr AS ri 
+      ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
+      WHERE i.ingrName='감자';
+   </select> -->
+   
+   <select id="getRcmmList" parameterType="String" resultType="recipeVO">
+      SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
+      ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
+      WHERE i.ingrName=#{selectedIngr};
+
+   </select>
+   
+   
+   
+
+   <select id="countIngrInRcp" parameterType="int" resultType="int">
+      SELECT COUNT(rcpCode) FROM recipe.rcpIngr WHERE rcpCode = 'R-000083';
+   </select>
+
+   <select id="countIngrInMyRefri" parameterType="int" resultType="int">
+   </select>
+
+
+
+   <!-- 레시피 -->
+   <resultMap id="recipeDTO" type="RecipeDTO">
+      <id property="rcpCode" column="rcpCode" />
+      <result property="nickName" column="nickName" />
+
+      <association property="recipeVO" javaType="RecipeVO">
+         <result column="rcpCode" property="rcpCode" />
+         <result column="rcpTitle" property="rcpTitle" />
+         <result column="rcpPic" property="rcpPic" />
+         <result column="personnel" property="personnel" />
+         <result column="cookTime" property="cookTime" />
+         <result column="level" property="level" />
+         <result column="rcpDate" property="rcpDate" />
+         <result column="video" property="video" />
+         <result column="rcpViews" property="rcpViews" />
+         <result column="rcpExpl" property="rcpExpl" />
+         <result column="registerStatus" property="registerStatus" />
+      </association>
+
+      <association property="typeCatVO" javaType="TypeCatVO">
+         <result column="cookSituaton" property="cookSituation" />
+         <result column="cookMethod" property="cookMethod" />
+         <result column="cookType" property="cookType" />
+      </association>
+   </resultMap>
+   
+   <!-- 레시피 뷰테이블 -->
+   <select id="createViewRecipeList">
+      CREATE View RecipeDTO AS
+      SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews,
+      rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level, 
+      rcp.registerStatus, typecat.typeCode, typecat.cookType, typecat.cookSituation, typecat.cookMethod
+      FROM rcp, user, typecat
+      WHERE rcp.typeCode = typeCat.typeCode
+      AND rcp.userId = user.userId
+   </select>
+   
+   <!-- 레시피 최신목록 조회 -->
+   <select id="getRecipeList" resultMap="recipeDTO">
+      SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
+      FROM recipe.recipedto
+      ORDER BY rcpDate DESC
+   </select>
+   
+   <!-- 레시피 최신목록에서 총갯수 카운팅 -->
+   <select id="recipeCount" resultType="int">
+      SELECT count(*) FROM rcp
+   </select>
+   
+   <!-- 레시피 글 상세 조회 -->
+   <select id="selectRcptpView" resultMap="recipeDTO"> 
+   SELECT DISTINCT rcpPic, rcpViews, nickname, rcpTitle, rcpDate, rcpExpl, video
+   cookType, cookSituation, cookMethod,
+   personnel, cookTime, level
+   FROM recipe.recipedto 
+   WHERE rcpCode=#{rcpCode}
+   </select> 
+   
+<!--    <select id="selectRcpIngrView" resultType="rcpIngrVO"> 
+   SELECT connectCode, ingrCat, userIngr, ingrWeigh, rcpingrCode FROM rcpingr 
+   WHERE connectCode=#{connectCode}
+   </select> 
+   
+   <select id="selectRcpOrderView" resultType="rcpOrderVO"> 
+   SELECT rcpCode, cookOrder, cookCont, cookPic FROM rcporder 
+   WHERE rcpCode=#{rcpCode} 
+   </select>    
+   
+   <select id="SelectTagView" resultType="tagVO"> 
+   SELECT rcpTagCode, tag FROM tag 
+   WHERE rcpTagCode=#{rcpTagCode} 
+   </select>  -->
+   
+<!--    <select id="SelectRcpComView" resultType="rcpComVO"> 
+   SELECT rcpComCode, rcpCom, rcpComDate, rcpCode? FROM rcpCom
+   WHERE rcpComCode=#{rcpComCode}
+   </select> -->
+   <!-- userVO에서 nickName 조인, rcpComCode 자동생성 해야함  -->
+
+   
+   <!-- 코드 자동생성 -->
+   <select id="selectRcpCode" resultType="int">
+      SELECT substring((SELECT rcpCode FROM rcp ORDER BY rcpCode DESC LIMIT 1) ,3)
+   </select>
+   <select id="selectTypeCode" resultType="int">
+      SELECT substring((SELECT typeCode FROM typecat ORDER BY typeCode DESC LIMIT 1),   4)
+   </select>
+   <select id="selectConnectcode" resultType="int">
+      SELECT substring((SELECT connectCode FROM rcpingr ORDER BY connectCode DESC LIMIT 1), 4)
+   </select>
+   
+   <!-- 레시피 글등록 -->
+   <insert id="insertRcpProc" parameterType="recipeVO">
+      INSERT INTO rcp (rcpCode, rcpTitle, rcpDate, rcpPic, rcpExpl, video,
+      personnel, cookTime, level, registerStatus, userId, typeCode)
+      VALUES (#{rcpCode}, #{rcpTitle}, NOW(), "uiuiiu", #{rcpExpl}, #{video}, 
+      #{personnel}, #{cookTime}, #{level}, #{registerStatus}, #{userId}, #{typeCode})
+   </insert>
+
+   <insert id="insertTypecatProc" parameterType="typeCatVO"> 
+      INSERT INTO typecat (typeCode, cookType, cookSituation, cookMethod)
+      VALUES (#{typeCode}, #{cookType}, #{cookSituation}, #{cookMethod})
+   </insert>
+   
+   <insert id="insertRcpingrProc"  parameterType="rcpIngrVO"> 
+      INSERT INTO rcpingr (connectCode, ingrCat, userIngr, ingrWeigh, rcpingrCode, rcpCode) VALUES 
+      (#{connectCode}, #{ingrCat}, #{userIngr}, #{ingrWeigh}, #{rcpingrCode}, #{rcpCode})
+   </insert>
+   
+   <insert id="insertRcporderProc"  parameterType="rcpOrderVO"> 
+      INSERT INTO rcporder (rcpCode, cookOrder, cookCont, cookPic) VALUES
+      (#{rcpCode}, #{cookOrder}, #{cookCont}, #{cookPic})
+   </insert>
+   
+   <insert id="insertTagProc" parameterType="tagVO">
+      INSERT INTO rcpTagCode, tag (rcpTagCode, tag) VALUES (#{rcpTagCode}, #{tag})
+   </insert>
+
+</mapper>

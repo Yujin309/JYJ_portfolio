@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
+
+
+<footer th:fragment="footer">
+
+<script type="text/javascript">
+$('#srhRecipeText').keydown(function(){
+	var k=$('#srhRecipeText').val();
+	console.log(k);
+	$.ajax({
+		url:'/autoComplete',
+		data:{searchWord:k},
+		type:'POST',
+		dataType:'JSON',
+		success:function(data){
+			console.log(data);
+				
+			$('#srhRecipeText').autocomplete({
+				source:data,
+				delay:500,
+			}); 
+			
+			},
+		error:function(){
+			alert("error");
+		}
+	})
+});
+</script>
+	<div class="footer st2 mt-5" style='background: #ff5100'>
+		<div class="container text-center">
+			<img th:src="@{/img/footer_logo.png}">
+			<ul class="btm_stats">
+
+				<li><a href="/chef/apply.html" style="color: #fff;"><span><div>
+								<img th:src="@{/img/btn_icon1.png}">
+							</div></span>총 쉐프수</a><b th:text='${session.total.totalChef}'></b></li>
+				<li><a href="/recipe/list.html" style="color: #fff;"><span><img
+							th:src="@{/img/btn_icon2.png}"></span>총 레시피수</a><b
+					th:text='${session.total.totalRecipe}'></b></li>
+				<li><span><img th:src="@{/img/btn_icon3.png}"></span>월
+					방문자수<b th:text='${session.total.totalTalk}'></b></li>
+				<li><span><img th:src="@{/img/btn_icon4.png}"></span>총
+					레시피 조회수<b th:text='${session.total.totalSearch}'></b></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+</body>
+</html>

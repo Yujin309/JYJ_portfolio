@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>레시피 재료 추가하기</title>
+<link rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <style>
+   .w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+   background-color:#f8f9fa;
+   }
+   </style>
+</head>
+<body>
+
+   <div class=" ">
+      <div class=" ">
+         <form name="" method="POST" class="" action="/admin/insertIngr"
+            enctype="multipart/form-data">
+
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" id="ingr_name"
+                  name="ingrName" placeholder="재료이름">
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" id="ingr_date"
+                  name=ingrSeason placeholder="재료의 제철시기">
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" id="ingr_Temp"
+                  name="ingrTemper" placeholder="재료의 적정 보관온도">
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" id="ingr_Calorie"
+                  name="ingrCalorie" placeholder="100g당 열량">
+            </div>
+            <div class="row justify-content-center center-block mb-5">
+               <input type="file" name="file" required>
+            </div>
+            <br> <br>
+               <div class="row justify-content-center center-block mb-5" > 
+               <button type="submit" class="btn btn-outline-warning w-25  " id="add_btn" >재료추가</button>
+            </div>
+            <div class ="row justify-content-center center-block mb-5">
+               <input type="button" value="창닫기" onclick="window.close()" class="btn btn-outline-danger w-25 " 
+                  id="add_btn">
+            </div>
+            
+         </form>
+
+      </div>
+   </div>
+</body>
+
+</html>

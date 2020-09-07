@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator='~{layout/default}'>
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/talk/talkList.css">
+<style>
+div p{
+text-align:left;
+color: #999;
+width:100%;
+}
+</style>
+
+<title id='pageTitle'>게시글 목록</title>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btnWrite").click(function() {
+			location.href = "${path}/talk/wirte";
+		});
+	});
+/* 
+	//페이징
+	$(document).ready(function() {
+
+		var cc = 120;
+		for (var i = 20; i < cc; i++) {
+			$('#' + i).hide();
+		}
+	});
+
+	$('.page').click(function(event) {
+		var k = event.target.text;
+		console.log(k);
+		for (var i = 0; i < $('.page').last().text() * 20; i++) {
+			$('#' + i).hide();
+		}
+		for (var i = 0; i < 20; i++) {
+			$('#' + ((parseInt(k) - 1) * 50 + parseInt(i))).show();
+			console.log(k + i);
+		}
+	});
+	//스크롤
+	jQuery(document).ready(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 100) {
+				$('#backToTop').fadeIn(500);
+			} else {
+				$('#backToTop').fadeOut('slow');
+			}
+		});
+		$('#backToTop').click(function(e) {
+			e.preventDefault();
+			$('html, body').animate({
+				scrollTop : 0
+			}, 200);
+		});
+	}); */
+</script>
+</head>
+
+<div layout:fragment='content'>
+
+	<!-- scroll -->
+	<a id="backToTop" class="scrolltop" href="#"> <i
+		class="fas fa-chevron-circle-up"></i></a>
+
+
+
+	<div class="container sub_bg">
+		<div id="contents_area_full">
+
+			<div class="rcp_m_list2">
+				<ul class="nav nav-tabs3" style="position: relative;">
+				</ul>
+				<a th:href="@{/talk/insert}" class="btn btn-info"
+					style="font-size: 17px;">등록</a>
+
+				<div class="m_list_tit">
+					<!-- recipe counting -->
+					총 <b th:text="${talkCount}"></b>개의 이야기가 있습니다.
+				</div>
+
+				<!-- 		</div>
+	네모크기 조절 가능 
+			</div>
+		
+ -->
+				<div class="row" style="padding-top: 20px;">
+
+					<div class="col-xs-3" th:each="talk,index : ${list}"
+						th:id='${index.index}'>
+						<div class="thumbnail">
+							<a
+								th:href="@{/talk/detail/{talkCode}(talkCode=${talk.talkCode})}">
+
+
+								<div class="story_list_thumb">
+									<img th:src="${talk.talkVideo}" style='width:261px; height:194.24px;'>
+								</div>
+							</a>
+							<div class="story_list_caption">
+								<div class="story_list_caption_tit">
+								</div>
+								<div class="story_list_caption_name">
+
+									<div class="story_list_caption_name_l">
+										<a href="/profile/index.html?uid=28488984"> 
+										</a>
+										<h4 th:text="${talk.talkCont}"></h4>
+										<p th:text="'by '+${talk.nickName}"></p>
+										
+									</div>
+
+									<!-- 	<div class="story_list_caption_name_r">
+									<span><img
+										src="https://recipe1.ezmember.co.kr/img/mobile/icon_like.png">0</span>
+									<span><img
+										src="https://recipe1.ezmember.co.kr/img/mobile/icon_reply.png">0</span>
+								</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 목록 끝나는곳 -->
+
+				<ul>
+					
+					<!-- 	
+						pagination	
+		<div th:class="Pagination_Li">
+			<div th:each="num: ${#numbers.sequence(1, (#lists.size(list)/20)+1 )}" th:class="page">
+				<a class="page" th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
+				</div>
+		</div>
+		pagination end -->
+						
+				
+				</ul>
+
+
+
+			</div>
+		</div>
+
+<!-- 
+		<button type="button" id=btnWrite>글쓰기</button>
+
+
+
+
+		<table border="1" width="600px">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>내용</th>
+					<th>아이디</th>
+					<th>날짜</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="talk : ${list}">
+					<td th:text="${talk.talkCode}"></td>
+					<td><a
+						th:href="@{/talk/detail/{talkCode}(talkCode=${talk.talkCode})}"
+						th:text="${talk.talkCont}"></td>
+					<td th:text="${talk.userId}"></td>
+					<td th:text="${talk.talkDate}"></td>
+				</tr>
+			</tbody>
+
+		</table> -->
+
+
+
+
+	</div>
+</html>

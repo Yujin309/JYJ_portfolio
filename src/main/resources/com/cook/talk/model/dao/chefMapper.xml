@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.ChefDAO">
+
+	<resultMap id="chefDTO" type="chefDTO">
+		<result column="rcpViews" property="rcpViews" />
+		<association property="userVO">
+			<result column="nickName" property="nickName" />
+			<result column="userPic" property="userPic" />
+			<result column="followers" property="followers" />
+			<result column="rcpUploads" property="rcpUploads" />
+		</association>
+	</resultMap>
+	<select id="selectChefDetail" resultMap="chefDTO">
+		select
+		us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as
+		rcpViews
+		from user as us,rcp
+		where us.userId=rcp.userId and us.userId=(select userId from user where
+		nickName=#{chefId})
+	</select>
+	<select id="selectFollow" resultType="int">
+		select count(*) from follow
+		where userId=#{userId} and followChef=(select userId from user where
+		nickName=#{chefId})
+	</select>
+
+	<select id="selectRecipe" resultType="recipeVO">
+		select rcpCode,rcpTitle,rcpPic,rcpDate from
+		rcp where userId = (select userId from user where nickName=#{chefId})
+		limit #{page},12
+	</select>
+	<select id="recipeCount" resultType="int">
+		select count(*) from rcp
+		where userId= (select userId from user where nickName=#{chefId})
+	</select>
+	<select id="allSelectChef" resultMap="chefDTO">
+		select us.nickName as nickName,us.userPic as userPic,us.rcpUploads as
+		rcpUploads,us.followers as followers, sum(rcpViews) as rcpviews
+		from user as us, rcp
+		where us.userId=rcp.userId
+		group by us.nickName
+		<choose>
+			<when test='status.equals("rcpUploads")'>order by us.rcpUploads*1 desc,us.followers*1
+				desc,rcp.rcpviews*1 desc</when>
+			<when test='status.equals("followers")'>order by us.followers*1 desc,us.rcpUploads*1
+				desc,rcp.rcpviews*1 desc</when>
+			<when test='status.equals("rcpViews")'>order by rcp.rcpViews*1 desc,us.rcpUploads*1
+				desc,us.followers*1 desc</when>
+			<when test='status.equals("new")'>order by
+				us.rcpUploads*1,us.followers*1,rcp.rcpviews*1</when>
+		</choose>
+	</select>
+
+	<select id="selectStory" resultType="talkVO">
+		SELECT talkCode,talkCont,talkDate,talkVideo FROM recipe.talk where userId=(select userId from user where nickName=#{nickName})
+	</select>
+</mapper>

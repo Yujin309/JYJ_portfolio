@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.ChefDAO">
+
+<resultMap id="chefDTO" type="chefDTO">
+<<<<<<< HEAD
+<result column="rcpViews" property=""/>
+=======
+<result column="rcpViews" property="rcpViews"/>
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+<association property="userVO">
+<result column="nickName" property="nickName"/>
+<result column="userPic" property="userPic"/>
+<result column="followers" property="followers"/> 
+</association>
+</resultMap>
+<<<<<<< HEAD
+	<select id="selectChefDetail" resultType="chefDTO">
+		select us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as rcpviews
+=======
+	<select id="selectChefDetail" resultMap="chefDTO">
+		select us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as rcpViews
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+			   from user as us,rcp 
+			   where us.userId=rcp.userId and us.userId=#{userId}
+	</select>
+	<select id="selectFollow" resultType="int">
+		select count(*) from follow where userId=#{userId} and followChef=#{chefId}
+	</select>
+	
+	<select id="selectRecipe" resultType="recipeVO">
+		select rcpTitle,rcpPic from rcp where userId = #{userId}
+	</select>
+<<<<<<< HEAD
+	<select id="allSelectChef" resultType="chefDTO">
+=======
+	<select id="allSelectChef" resultMap="chefDTO">
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+		select us.nickName,us.userPic,us.rcpUploads,us.followers, sum(rcpViews) as rcpview
+			   from user as us, rcp 
+			   where us.userId=rcp.userId
+			   group by us.userId 
+			   <choose>
+			   <when test='status.equals("rcpUploads")'>order by us.rcpUploads,us.followers,rcp.rcpviews</when>
+			   <when test='status.equals("followers")'>order by us.followers,us.rcpUploads,rcp.rcpviews</when>
+			   <when test='status.eqauls("rcpveiws")'>order by rcp.rcpViews,us.rcpUploads,us.followers</when>
+			   </choose>
+	</select>
+</mapper>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<style type="text/css">
+#paging {
+	list-style: none;
+	padding-left: 0px;
+	text-align:center;
+	margin:0;
+	padding:0;
+}
+#pagingDiv{
+text-align:center;
+}
+.pagingClass{
+margin: 0 0 0 50px;
+padding:0 0 0 10px;
+boder: 0;
+float: left;
+}
+.pagingNum{
+display:inline-block;
+margin:10px;
+}
+.con{
+text-align:center;
+}
+.rcp_m_list2{
+width:1500px;
+margin:auto;
+}
+.rcp_m_list2 .thumbnail_over{
+left:16px;
+}
+.col-xs-3{
+margin-top:10px;
+}
+h5{text-align:right;
+}
+</style>
+<meta charset="UTF-8">
+<title id='pageTitle'>Cooking Talking</title>
+
+<div layout:fragment='content'>
+	<div class="rcp_m_list2">
+		<div class="m_list_tit">
+			총 <b th:text="${totalRecipe}"></b>개의 맛있는 레시피가 있습니다.
+			<ul class="nav nav-tabs2 pull-right" style="position: relative;">
+				<li role="presentation" th:class="${status}==s ?active : '' "><a
+					th:href="'/recipeSearch/s/1?searchWord='+${searchWord}">최신순</a></li>
+				<li role="presentation"
+					th:class="${status}==recommend ?active : '' "><a
+					th:href="'/recipeSearch/recommend/1?searchWord='+${searchWord}">추천순</a></li>
+			</ul>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-3" th:each='search:${searchRecipe}'>
+				<a class="thumbnail" th:href="'/recipe/view?rcpCode='+${search.rcpCode}"> <span
+					class="thumbnail_over"><img
+						src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span> <img
+					th:src="${search.rcpPic}"
+					style="width: 275px; height: 275px;">
+					<div th:class="caption">
+						<h4 class="ellipsis_title2" th:text='${search.rcpTitle}'></h4>
+						<p th:text="'by '+${search.nickName}"></p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div th:class='con'>
+				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum"><a
+					th:text="${num}" th:href="'/recipeSearch/'+${status}+'/'+${num}+'?searchWord='+${searchWord}" th:value="${num}" style="color:#FF8000;"></a>
+				</div>
+				</div> 
+</div>
+</html>

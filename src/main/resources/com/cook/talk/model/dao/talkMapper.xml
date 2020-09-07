@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.TalkDAO">
+ 
+<!-- 게시물별 댓글 가져오기 -->
+<resultMap type="com.cook.talk.model.VO.TalkVO" id="talkResult">
+		<result property="userId" column="USERID"/>
+		<result property="userPic" column="USERPIC"/>
+		<result property="talkCode" column="TALKCODE"/>
+		<result property="talkCont" column="TALKCONT"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="talkDate" column="TALKDATE"/>
+		<result property="talkLike" column="TALKLIKE"/>
+		<result property="talkVideo" column="TALKVIDEO"/>
+		<collection property="talkComs" column="TALKCODE"  javaType="List" ofType="com.cook.talk.model.VO.TalkComVO" select="getCommentListById"/>		
+	</resultMap>
+	
+		<select id="getBoardById" parameterType="String" resultMap="talkResult">
+		select u.userPic as userPic,
+		 t.userId as userId,
+		t.talkCode as talkCode,
+		t.talkCont as talkCont,
+		t.talkDate as talkDate,
+		t.talkLike as talkLike,
+		t.talkVideo as talkVideo,
+		(select u.nickName from user u where t.userId = u.userId) as nickName 
+		from talk t inner join user u on t.userId=u.userId where t.talkCode = #{talkCode}
+		</select>
+		<select id="getCommentListById" resultType="com.cook.talk.model.VO.TalkComVO" parameterType="String">
+		  select tc.talkComCode, userPic, nickName, talkCom, talkComDate from user as u inner join talkCom as tc on u.userId=tc.userId where 
+        tc.talkCode=#{talkCode};
+		</select>
+
+	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">
+SELECT talkDate,talkCont,talkCode,talkVideo ,nickName 
+FROM talk AS t 
+INNER JOIN 
+user AS u 
+ON t.userId = u.userId 
+ORDER BY talkDate DESC
+	</select>
+
+<!-- 
+	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">
+	   SELECT * FROM talk AS t INNER JOIN user AS u ON t.userId = u.userId WHERE u.nickName=#{nickName}
+	</select>
+ -->
+
+	<!-- 게시글 작성 -->
+	<insert id="insert"
+		parameterType="com.cook.talk.model.VO.TalkVO">
+		insert into talk (talkCode,talkCont, userId ,talkDate,talkVideo,talkLike)
+		values
+		(#{talkCode},#{talkCont},#{userId},(select curdate()),'http://localhost:8080/talkPic/KakaoTalk_20200707_114652157.jpg',#{talkLike})
+	</insert>
+
+	<!-- 게시글 상세보기 -->
+	<select id="detail" resultType="com.cook.talk.model.VO.TalkVO">
+		select * from talk 
+		where talkCode=#{talkCode}
+	</select>
+
+	<select id="update" resultType="com.cook.talk.model.VO.TalkVO">
+		select talkCont from talk where talkCont =#{talkCont},talkVideo=#{talkVideo} and userId=#{userId}
+
+	</select>
+
+	<!-- 게시글 수정 처리 -->
+	<update id="updateTalk" parameterType="com.cook.talk.model.VO.TalkVO">
+		update 
+			talk
+		set
+			talkCont=#{talkCont} ,talkVideo='http://localhost:8080/talkPic/KakaoTalk_20200707_114652157.jpg'
+		where
+			userId=#{userId} and talkCode=#{talkCode}
+	</update>
+
+	<delete id="delete"
+		parameterType="com.cook.talk.model.VO.TalkVO">
+		delete from talk where talkCode=#{talkCode}
+	</delete>
+
+	<select id="selectTalkCode" resultType="int">
+		select substring((select
+		talkCode from talk order by talkCode desc
+		limit 1), 3);
+	</select>
+	
+
+	<!-- 레시피 총갯수 카운팅 -->
+		<select id="talkCount" resultType="int">
+	select count(*)
+		from talk
+	</select>
+<!-- 	
+	<select id="getTalkListPaiging" resultType="talkVO">
+		select talkCode, talkCode, talkCont, talkDate, talkVideo, userId 
+		from talk 
+		limit #{pageNum},12
+	</select>
+	
+	 -->
+	
+
+</mapper>

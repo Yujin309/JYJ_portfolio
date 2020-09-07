@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<http>
+    <!-- 권한 설정 -->    
+    <form-login
+        username-parameter="userId"
+        password-parameter="userPw"
+        login-processing-url="/login"
+        login-page="login/login"
+        default-target-url="/main/index"
+    />
+</http>
+
+
+

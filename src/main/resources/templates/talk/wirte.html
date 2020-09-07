@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+
+<link rel="stylesheet" href="/css/talk/write.css">
+ 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>글 등록</title>
+<script type="text/javascript">
+$(document).ready(function){
+   $("btnSave").click(function){
+      var content=$("#talkCont").val();
+      if(content==""){
+         alret("내용을 입력하세요");
+         document.form.content.focus();
+         return;
+      }
+   document.}
+   
+}
+</script>
+</head>
+<div layout:fragment='content'>
+	<!-- <div th:insert="talk/header.html" id="header"></div> -->
+
+
+	<form class="form-horizontal" th:action="@{/talk/insert.do}"
+		th:object="${talkVO}" method="post" name="form"
+		onsubmit="return registerBoard(this)">
+
+		<div class="container sub_bg">
+
+			<div id="contents_area_full">
+
+				<!--     <form name="myform" id="myform" method="post" action="/talk/insert.html" onsubmit="return doSubmit()">
+    <input type="hidden" name="q_mode" value="insert">
+    <input type="hidden" name="recipe_sq" value="">
+    <input type="hidden" name="topic_sq" value="">
+    <input type="hidden" name="seq" value="">
+    <input type="hidden" name="bid" value="5">
+    <input type="hidden" name="return_flag" value="">
+    <input type="hidden" name="event_no" value=""> -->
+
+				<div class="cs_write">
+
+					<div class="story_write_area">
+					
+					<br>
+					<br>
+					
+						<div class="story_write_pic">
+							<div>
+								<input type="file" placeholder="사진을 선택하세요" id="talk-file"
+									th:field="*{talkVideo}"> <img id="talk-img"
+									th:data-img="${talkVO.talkVideo}" th:src="${talkVideo}"
+									style="width: 100px; height: 100px; margin-top: 10px;">
+							</div>
+
+						</div>
+						
+						
+						<br>
+						<br>
+						<br>
+						<br>
+						
+						
+						<div class="story_write_txt">
+
+							<textarea th:field="*{talkCont}" cols="10" name="content"
+								class="form-control" placeholder="어떤 사진인가요?
+사진에 대해서 설명해주세요~" style="height: 400px;resize: none;padding-left: 30px;padding-right: 30px;">
+								</textarea>
+						</div>
+						
+						<div class="story_write_tag">
+							<ul class="story_view_tag_a"></ul>
+
+						</div>
+					</div>
+					
+					
+					<div class="write_btn" >
+						<input type="submit" value="등록" id="submit_btn"
+							class="btn-lg btn-primary" style=" width: 95px;" onclick="btnSave">
+						
+						
+						<button type="button" class="btn-lg btn-default"
+							data-dismiss="modal"
+							onclick="location.href='/talk/list.html?bid=5'">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 
+		<td><textarea th:field="*{talkCont}" cols="10"
+				placeholder="내용을 입력하세요" name="content"></textarea>
+		<th>파일 첨부</th> -->
+
+
+		<!-- <input type="file" placeholder="사진을 선택하세요" id="talk-file"
+         th:field="*{talkVideo}">
+          <img id="talk-img" th:data-img="${talkVO.talkVideo}" 
+         
+         
+           th:src="${talkVideo}"
+          style="width: 100px; height: 100px; margin-top: 10px;"> -->
+
+		<br>
+		<p></p>
+		<!-- <td colspan="2"><input type="submit" value="등록" onclick="btnSave">
+			<input type="button" value="취소" onclick=""> -->
+	</form>
+</div>
+
+
+
+
+
+
+</div>
+</html>
+
+
+
+
+

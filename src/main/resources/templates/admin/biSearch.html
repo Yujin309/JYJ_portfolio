@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+
+<title id='pageTitle'>회원정보 로드하기</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</th:block>
+</head>
+<div layout:fragment='content'>
+	<div class="container-lg">
+		<div class="row justify-content-center center-block mb-5">
+			<h1>레시피별 데이터</h1>
+		</div>
+		<div class="row justify-content-center center-block">
+			<div class="searchBI w-100" id="searchBiInfo">
+				<div class="input-group mb-3 w-100">
+					<input type="text" class="form-control" th:id="searchBiInfo1"
+						name="searchBiInfo" th:value="*{searchBiInfo}"
+						placeholder="레시피 코드를 입력하시오">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button"
+							onclick="searchBiInfo()" id="btn_searchBiInfo">검색하기</button>
+					</div>
+				</div>
+				<div th:id="biInfo"></div>
+				
+					<div class="container">
+		<div class="row">
+			<div class="col-md-4" id="columnchart_values"
+				style="height: 400px; float: left; width: 33%"></div>
+			<div class="col-md-4" id="chart_div1"
+				style="width: 600px; height: 400px; float: left; width: 33%"></div>
+			<div class="col-md-4" id="piechart"
+				style="width: 600px; height: 400px; float: left; width: 33%"></div>
+		</div>
+	</div>
+				
+			</div>
+		</div>
+
+
+
+	</div>
+
+	<script>
+		function searchBiInfo() {
+			var searchBiInfo = document.getElementById("searchBiInfo1").value;
+
+			console.log(searchBiInfo);
+			$('#biInfo').load("/googleChart/" + searchBiInfo);
+
+		};
+	</script>
+
+	<script>
+		$(".delete_ingr").click(
+				function() {
+					var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+					if (confirm_val) {
+						var checkArr = new Array();
+
+						$("input[class='checkRow']:checked").each(
+								function(index, value) {
+									checkArr.push(value.value);
+								});
+
+						console.log(checkArr);
+						$.ajax({
+							url : "/admin/deleteIngr2",
+							type : "POST",
+							data : JSON.stringify(checkArr),
+							contentType : 'application/json',
+							success : function() {
+								alert(checkArr + "가 삭제 되었습니다.");
+								window.location.reload();
+							}
+						});
+					}
+				});
+	</script>
+</div>
+
+
+
+<!-- 재료 검색 페이지 -->
+</html>

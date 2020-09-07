@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id='pageTitle'>재료 상세페이지</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<div layout:fragment='content'>
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></button>
+        <h4 class="modal-title" id="materialNames">달걀</h4>
+      </div>
+      <div class="modal-body" id="materialBody">
+<div class="ingredient_wrap">
+    <div class="ingredient_top">
+                <div class="ingredient_pic" style=" 
+                background: url(https://recipe1.ezmember.co.kr/cache/bbs/2015/11/03/fe3f6869ffa51655cd4a61ee23c1684a.jpg) center no-repeat; 
+                background-size:cover;"></div>
+                <div class="ingredient_tit"><b>재료이름</b></div>
+    </div>
+    <div class="ingredient_info">
+        <table border="0" cellpadding="0" cellspacing="0" th:each="ingr : ${ingrDetail}">
+                                        <tbody><tr>
+                    <th width="200">제철</th>
+                    <td th:text="${ingr.ingrSeason}"></td>
+                </tr>
+                                        <tr>
+                    <th width="200">보관온도</th>
+                    <td th:text="${ingr.ingrTemper}">℃</td>
+                </tr>
+                                        <tr>
+                    <th width="200">100g당 열량</th>
+                    <td th:text="${ingr.ingrCalorie}">Kcal</td>
+                </tr>
+                                </tbody></table>
+    </div><!-- 재료정보 end -->
+    <div class="ingredient_btn_wrap">
+        <button type="button" id="" onclick="window.open('/recipe/list.html?q=')" class="ingredient_btn" rel="">
+        <img src="https://recipe1.ezmember.co.kr/img/icon_rcp.svg?v.2">레시피 검색</button>	
+	</div>
+
+	<td th:text="${ingr.ingrPic}">
+	
+	<!-- 모달창으로 띄우기. 제목에 재료이름. 구성은 css로 포지션하기 -->
+</div>
+</div>
+</div>
+</div><!-- layout end -->
+</html>

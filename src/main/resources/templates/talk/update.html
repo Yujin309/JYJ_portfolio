@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+
+<link rel="stylesheet" href="/css/talk/write.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>글 수정</title>
+
+</head>
+
+
+<div layout:fragment='content'>
+	<!-- <div th:insert="talk/header.html" id="header"></div> -->
+
+
+	<form class="form-horizontal" th:action="@{/talk/update}"
+		th:object="${talkVO}" method="post" name="form"
+		onsubmit="return registerBoard(this)">
+
+
+
+
+		<div class="container sub_bg">
+
+			<div id="contents_area_full">
+
+
+				<div class="cs_write">
+
+					<div class="story_write_area">
+
+						<br> <br>
+
+						<div class="story_write_txt">
+							
+
+							<!-- 	파일 넣는곳 -->
+
+							<div class="story_write_pic">
+
+								<div>
+
+
+									<!-- 사진  -->
+									<input type="file" placeholder="사진을 선택하세요" id="talk-file"
+										name="talkVideo" th:field="*{talkVideo}"
+										th:value="${talkupdate.talkVideo}"> <img id="talk-img"
+										th:data-img="${talkVO.talkVideo}"
+										th:src="${talkupdate.talkVideo}"
+										   style="width: 200px; height: 200px; margin-top: 10px;">
+
+                                   <!--  <img
+                                       class="rounded-circle thumb-lg" id="talk-file"
+                                     
+                                       th:data-img="${talkupdate.talkVideo}"
+                                       th:src="'/img/' + ${talkupdate.talkVideo}"
+                                       style="width: 200px; height: 200px; margin-top: 10px;"
+                                       text-align="center">
+                                       <p></p><input id="manager-file" type="file"> <br> 
+                                       
+                                        -->
+                                       
+									<!-- 글작성 -->
+									<div class="story_write_txt">
+
+										<textarea cols="10" th:text="${talkupdate.talkCont}" class="form-control" name="talkCont"
+											style="height: 400px; resize: none; padding-left: 30px; padding-right: 30px;"></textarea>
+
+
+										<!-- <input th:value="${talkupdate.talkCont}"> -->
+
+
+									</div>
+									<input type="hidden" th:value="${talkupdate.talkCode}"
+										name="talkCode">
+								</div>
+							</div>
+							<br> <br> <br> <br>
+
+							<!-- 	글쓰는 곳 -->
+
+							<div class="story_write_tag">
+								<ul class="story_view_tag_a">
+								</ul>
+
+							</div>
+						</div>
+						
+						<div class="write_btn" style="text-align: center;
+	padding: 30px 0 50px;">
+						<span>	<input type="submit" value="등록" id="submit_btn" 
+								class="btn-lg btn-primary" onclick="btnSave" style="width: 90px;">
+								
+								
+							<button type="button" class="btn-lg btn-default"
+								data-dismiss="modal"
+								onclick="location.href='/talk/list.html?bid=5'">취소</button>
+						</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+</html>
+
+
+
+
+

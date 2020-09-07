@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
+
+</head>
+<body>
+	<h3>Login with UserId and Password</h3>
+<<<<<<< HEAD
+	<form action="/loginSuccess" method="post">
+
+
+
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+=======
+	<form action="/login" method="post">
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+
+		<table>
+			<tbody>
+				<tr>
+					<td>ID:</td>
+<<<<<<< HEAD
+					<td><input type="text" name="userId" value=""></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="userPw"></td>
+=======
+					<td><input type="text" name="username" value=""></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password"></td>
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+				</tr>
+
+				<tr>
+					<td colspan="2"><button name="submit" type="submit"
+							value="login" class="btn btn-block btn-primary text-light">로그인</button></td>
+
+				</tr>
+
+<<<<<<< HEAD
+			</tbody>
+		</table>
+
+
+=======
+<tr>
+<td colspan="1"><button name="submit" type="submit"
+value="join_page" class="btn btn-block btn-primary text-light">회원가입</button>
+</tr>
+
+
+
+			</tbody>
+		</table>
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
+	</form>
+</body>
+</html>

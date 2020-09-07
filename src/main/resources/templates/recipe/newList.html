@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id='pageTitle'>레시피 최신목록</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<!-- font awesome  -->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<style>
+.scrolltop {
+	display: none;
+	position: fixed;
+	right: 30px;
+	bottom: 50px;
+	z-index: 1030;
+	font-size: 1.875rem;
+	color: #868e96;
+	transition: all 0.5s ease-in-out;
+	opacity: 0.8;
+}
+
+.scrolltop:hover, .scrolltop:focus {
+	color: #dc3545;
+	transition: all 0.5s ease-in-out;
+}
+
+.rcp_m_list2 .thumbnail_over {
+	left: 16px;
+}
+
+.snb_nav_rcp li a:active {
+	font-color: #6ba73c;
+	font-weight: bold;
+}
+.btn btn-default{
+	width:64.51px;
+}
+</style>
+</head>
+<div layout:fragment='content'>
+	<div class="snb_nav">
+		<ul class="snb_nav_rcp" style="padding-left: 200px;">
+			<li><a href="/recipe/newList"
+				th:class="${status}!='new' ?active :'' ">최신</a></li>
+			<li><a href="/recipe/rankD"
+				th:class="${status}==new ?active : '' ">랭킹</a></li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<div id="contents_area_full">
+			<div class="rcp_m_list2">
+				<div class="m_list_tit">
+					<!-- recipe counting -->
+					총 <b th:text="${recipeCount}"></b>개의 맛있는 레시피가 있습니다.
+				</div>
+
+				<div class="rcp_m_tit">
+					<!-- recipe area -->
+					<div class="row">
+						<div class="col-xs-3" th:each="recipe,index : ${recipeList}"
+							th:id='${index.index}'>
+							<a class="thumbnail"
+								th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}">
+								<span class="thumbnail_over"> <img
+									src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
+								<img th:src="${recipe.recipeVO.rcpPic}"
+								style="width: 275px; height: 275px;">
+								<div class="caption">
+									<h4 class="ellipsis_title2"
+										th:text="${recipe.recipeVO.rcpTitle}"></h4>
+									<p>
+										by<span th:text="${recipe.userVO.nickName}"></span>
+									</p>
+								</div>
+							</a>
+
+
+						</div>
+						<!-- row end -->
+					</div>
+					<!-- index end -->
+				</div>
+				<!-- recipe area end -->
+			</div>
+			<!-- recipe list end -->
+			<!-- pagination -->
+			<div th:class="Pagination_Li">
+				<div
+					th:each="num: ${#numbers.sequence(1, (#lists.size(recipeList)/50)+1 )}"
+					th:class="page">
+					<a class="page" th:text="${num}" th:value="${num}"
+						style="color: #FF8000;"></a>
+				</div>
+			</div>
+			<!-- pagination end -->
+		</div>
+		<!-- contents_area_full end -->
+	</div>
+	<!-- container end -->
+	<!-- scroll -->
+	<a id="backToTop" class="scrolltop" href="#"> <i
+		class="fas fa-chevron-circle-up"></i></a>
+	<!-- script -->
+	<script>
+		//페이징
+		$(document).ready(function() {
+
+			var cc = 120;
+			for (var i = 50; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < $('.page').last().text() * 50; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 50; i++) {
+				$('#' + ((parseInt(k) - 1) * 50 + parseInt(i))).show();
+				console.log(k + i);
+			}
+		});
+
+		//스크롤
+		jQuery(document).ready(function() {
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 100) {
+					$('#backToTop').fadeIn(500);
+				} else {
+					$('#backToTop').fadeOut('slow');
+				}
+			});
+			$('#backToTop').click(function(e) {
+				e.preventDefault();
+				$('html, body').animate({
+					scrollTop : 0
+				}, 200);
+			});
+		});
+	</script>
+</div>
+<!-- layout end -->
+</html>

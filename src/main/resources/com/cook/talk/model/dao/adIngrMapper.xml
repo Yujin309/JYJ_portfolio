@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.AdIngrDAO">
+
+	<select id="searchIngr" resultType="ingrVO">
+		select * from ingr
+		where
+		ingrName
+		LIKE CONCAT('%',#{ingrName},'%')
+	</select>
+
+	<select id="allSelectIngr" resultType="ingrVO">
+		select * from ingr order
+		by rcpingrCode DESC
+	</select>
+
+	<insert id="insertIngr">
+		insert into ingr(rcpingrCode, ingrPic, ingrName,
+		ingrSeason, ingrCalorie,
+		ingrTemper)
+		values
+		(#{rcpingrCode},#{ingrPic},#{ingrName},#{ingrSeason},#{ingrCalorie},#{ingrTemper})
+	</insert>
+
+	<select id="selectIngrRcpCode" resultType="int">
+		Select
+		substring((select rcpingrCode from ingr order by rcpingrCode desc
+		limit 1), 3);
+	</select>
+
+	<delete id="deleteIngr" parameterType="String">
+		delete from ingr
+		where
+		<foreach collection="list" item="rcpingrCode" index="index"
+			separator="or">
+			rcpingrCode = #{rcpingrCode}
+		</foreach>
+	</delete>
+	
+		<select id="countPaginationIngr" resultType="int">
+		select count(*)
+		from ingr
+	</select>
+	
+	<select id="countPaginationIngrLimit" resultType="ingrVO">
+		select rcpingrCode, ingrPic, ingrName, ingrSeason, ingrCalorie, ingrTemper from ingr limit #{pageNUM},10 
+	</select>
+ 
+</mapper>
+	

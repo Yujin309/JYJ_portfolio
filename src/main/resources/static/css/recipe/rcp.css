@@ -1,0 +1,203 @@
+.chosung {
+  background-color: #808080;
+  border: none;
+  border-radius: 4px;
+  color: #FEFAD4;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+  cursor: pointer;
+  
+}
+
+.chosung-selected{
+	
+	
+}
+
+/* .ingrSearchInRefri{
+	
+	
+} */
+
+.search-main { 
+	padding-top:4px; 
+	margin:0 -10px 0 0; 
+	margin-left: 350px; 
+	margin-top: 146px;
+	border-bottom: 1px solid #d1d1d1;
+	}
+	
+	
+.search-main .ingrSearchInRefri {
+	border-radius:0 !important; 
+	border-color: #f7f7f7;
+	width:240px; 
+	height:34px; 
+	background: #f7f7f7; 
+	padding:0 0 0 10px; 
+	/* display:inline-block; */ 
+	vertical-align:middle;
+	}
+.search-main .glyphicon {position:absolute; left:8px; top:10px; z-index:100; font-size:20px; color:#ccc;}
+.search-main .btn.search {background:#f7f7f7; border:1px solid #ccc;; width:60px; height:34px; padding:0 0 1px 0 ; margin:1px 5px 0 -6px; color:#333; font-size:14px; font-weight:bold; text-align:center; border-radius:0 3px 03px 0;}
+.search-main .btn.apply {font-size:14px; color:#000; padding:0 20px; border:1px solid #d3d3d3; background:#fff; height:34px;}
+.search-main .btn.apply b {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_confirm2.png) left top no-repeat; background-size:16px; padding-left:20px;}
+
+
+.result-area{
+   width: 550px;
+background-color: #ddd;
+border-radius: 0px 0px 10px 10px;
+overflow: scroll auto;
+
+	
+}
+
+.chosung1{
+	 padding-top: 10px; 
+	 padding-left: 70px;
+  padding-bottom: 20px;
+}
+
+.ingr-list{
+	padding-top: 5px;
+	 height: 405px;
+	
+}
+
+.search-main{
+ width: 550px;
+	margin-left: 350px; 
+	margin-top: 146px;
+    background-color: white;
+    border-radius: 10px 10px 0% 0%;
+}
+
+#chosungNum{
+	    margin-left: 350px;
+	    width: 450px;
+}
+
+.ingrButton {
+  background-color: #f7f7f7;
+  border-radius: 2px;
+  border: none;
+  color: gray;
+  padding: 5px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 5px;
+  align-content: center;
+  width: 95px;
+}
+
+.ingrButton--selected {
+  background-color: #FFd650;
+  border: none;
+  color: white;
+  padding: 5px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#ingrList{
+	padding-bottom: 100px;
+	    background-color: white;
+    border-radius: 0% 0% 10px 10px;
+     width: 550px;
+    	padding-top: 25px;
+	 padding-left: 25px;
+	 padding-right: 25px;
+  padding-bottom: 25px;
+  height: 500px;
+/*          margin-left: 500px;
+    margin-top: 150px; */
+}
+
+
+.selectedIngr{
+    /* border: 2px solid #efeef1; */
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    right: 350px;
+    top: 400px;
+    background-color: white;
+    border-radius: 0px 0px 10px 10px;
+    padding: 20px;
+    padding-left: 60px;
+    font-size: 18px;
+     padding-bottom: 100px;
+     border-top: 1px solid #d1d1d1;
+     
+}
+
+.my{
+	background-color: white;
+	/* border: 2px solid #efeef1; */
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 450px;
+    position: absolute;
+    right: 350px;
+    top: 305px;
+    border-radius: 10px 10px 0px 0px;
+    text-decoration: ;
+    font-weight: bold;
+    padding: 20px;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-left: 145px;
+
+  
+	
+}
+
+.goToRcmmRecipe{
+	border-color: #ff8800;
+	 margin-left: 1300px;
+    margin-bottom: 150px;
+	position: relative;
+	  background-color: #ff8800;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  border-left: 400px;
+ display: inline-block;
+  cursor: pointer;
+}
+
+#myIngr{
+	background-color: #F4AF3F;
+	color: white;
+	width: 100px;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 5px 1px;
+	margin: 5px;
+
+	
+}
+
+#selectedIngrForm{
+
+	 margin-left: 55px;
+}

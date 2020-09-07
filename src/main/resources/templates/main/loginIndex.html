@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="title" content="title">
+<meta name="keywords" content="">
+<meta name="google-site-verification"
+	content="3eLg1zfxeZ_oO6oOOsvIxbtcW-FtDsViPVm7-CYOl8w">
+<title id='pageTitle'>Cooking Talking</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/soobin/index.css}">
+<style type="text/css">
+iframe
+#_hjRemoteVarsFrame {
+	display: none !important;
+	width: 1px !important;
+	height: 1px !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+body{
+padding:0;
+}
+p{
+text-align:left;
+color: #999;
+}
+h4{
+text-align:left;
+
+}
+</style>
+</head>
+<div layout:fragment='content'>
+<br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="well">
+				<h4>추천 레시피</h4>
+				<div id="myCarousel" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
+<!--  									<div class="thumbnail">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide0" style="width:300;height:200px">
+										<div class="caption">
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
+										</div>
+									</div>  -->
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}'>
+<!-- 									<div class="thumbnail">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
+										<div class="caption">
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
+										</div>
+									</div>  -->
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(8,8)}'>
+<!--  									<div class="thumbnail">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
+										<div class="caption">
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
+										</div>
+									</div>  -->
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<a class="left carousel-control" href="#myCarousel"
+						data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a> <a
+						class="right carousel-control" href="#myCarousel"
+						data-slide="next"><i class="fa fa-chevron-right fa-2x"></i></a>
+
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="well">
+				<h4>최신 레시피</h4>
+				<div id="myCarousel_num1" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
+									<div class="thumbnail">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide0" style="width:300px; height:200px;">
+										<div class="caption">
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}'>
+									<div class="thumbnail">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide1" style="width:300px; height:200px;">
+										<div class="caption">
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(8,11)}'>
+									<div class="thumbnail">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide1" style="width:300px; height:200px;">
+										<div class="caption">
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${newRcpList[num].nickName}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<a class="left carousel-control" href="#myCarousel_num1"
+						data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a> <a
+						class="right carousel-control" href="#myCarousel_num1"
+						data-slide="next"><i class="fa fa-chevron-right fa-2x"></i></a>
+
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel_num1" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel_num1" data-slide-to="1"></li>
+						<li data-target="#myCarousel_num1" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{//code.jquery.com/jquery-1.11.1.min.js}"></script>
+
+	<script
+		src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+			<script th:src="@{/js/soobin/index.js}"></script>
+	</div>
+</html>

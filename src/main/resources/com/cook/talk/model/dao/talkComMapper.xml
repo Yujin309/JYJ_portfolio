@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.TalkComDAO">
+
+<!-- 해당 댓글  -->
+<select id="searchComment" resultType="com.cook.talk.model.VO.TalkComVO">
+select * from recipe.talkcom  where talkComCode=#{talkComCode} order by talkComDate desc
+LIMIT #{CriteriaVO.pageStart},#{CriteriaVO.perpageNum}
+</select>
+
+
+<!--   댓글 등록 -->
+<insert id="createCom" parameterType="com.cook.talk.model.VO.TalkComVO">
+insert into recipe.talkcom (talkComCode,talkCom,talkComDate,userId,talkCode)
+values(#{talkComCode},#{talkCom},curdate(),#{userId},#{talkCode})
+</insert>
+
+<!-- 자동 증가 -->
+<select id="selectTalkComCode" resultType="int">	
+select substring((select talkComCode from
+ recipe.talkcom order by talkComCode desc
+		limit 1), 4);
+	</select>
+
+
+<!-- 댓글 목록 -->
+	<select id="getCom" parameterType="com.cook.talk.model.VO.TalkComVO"> 
+	select count(*) from talkcom where talkComCode=#{talkComCode} 
+	</select>
+	
+<select id="comCount" resultType="int">
+	select count(*)
+		from talkcom
+	</select>
+
+<!-- 삭제  -->
+<delete id="deleteCom" parameterType="com.cook.talk.model.VO.TalkComVO">
+DELETE FROM talkcom where talkComCode =#{talkComCode} 
+</delete>
+
+<!-- 댓글 수정 -->
+<update id="updateCom">
+UPDATE recipe.talkcom SET talkCom=#{talkCom} WHERE talkComCode =#{talkComCode}
+
+</update>
+
+
+</mapper>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id='pageTitle'>레시피 랭킹목록</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.scrolltop {
+display: none;						
+position: fixed;
+right: 30px;
+bottom: 50px;
+z-index: 1030;
+font-size: 1.875rem;
+color: #868e96;
+transition: all 0.5s ease-in-out;
+opacity: 0.8;
+}
+.scrolltop:hover,
+.scrolltop:focus {
+color: #dc3545;
+transition: all 0.5s ease-in-out;
+}  
+.rcp_m_list2 .thumbnail_over{
+left:16px;
+}
+.snb_nav_rcp li a.active {
+	color: #6ba73c;
+	font-weight: bold;
+}
+.nav-tabs2>li.active>a, .nav-tabs2>li.active>a:focus, .nav-tabs2>li.active>a:hover {
+	cursor:default;
+	background-color:#44b6b5;
+	border-bottom-color:transparent;
+	color:#fff;
+}
+</style>
+</head>
+<div layout:fragment='content'>
+		<div class="snb_nav">
+            <ul class="snb_nav_rcp" style="padding-left:200px;">
+                <li><a href="/recipe/newList" th:class="${status}==new ?active :'' ">최신</a></li>
+                <li><a href="/recipe/rankD" th:class="${status}!='new' ?active :'' ">랭킹</a></li>
+            </ul>
+        </div><!-- nav end -->
+<div class="container">       
+<div id="contents_area_full">
+ <div class="rcp_m_list2"><!-- rank -->
+	<ul class="nav nav-tabs2 pull-right" style="position:relative;">
+      <li role="presentation"><a th:href="@{/recipe/rankD}" >일간</a></li>
+       <li role="presentation" class="active"><a th:href="@{/recipe/rankW}">주간</a></li>
+       <li role="presentation"><a th:href="@{/recipe/rankM}" >월간</a></li>
+                    </ul>
+     <div>&nbsp;
+     &nbsp;
+     </div>
+  <div class="row" style="padding-top:40px;">                 
+	<div class="col-xs-3" th:each="rank,index : ${getRankW}" th:id='${index.index}'>
+    <a class="thumbnail" th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}">
+       <p class="ranking_num st1"><b th:text="${index.index}+1"></b></p>
+         <span class="thumbnail_over">
+         <img src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
+              <img th:src="${rank.recipeVO.rcpPic}" style="width:275px; height:275px;">
+                <div class="caption">
+                  <h4 class="ellipsis_title2" th:text="${rank.recipeVO.rcpTitle}"></h4>
+                    <p>by<span th:text="${rank.userVO.nickName}" ></span>-<span th:text="${rank.recipeVO.rcpDate}"></span></p>
+                        </div>
+                    </a>
+	</div> 
+ </div><!-- row end -->
+</div><!-- rank end -->
+</div><!-- content area end -->
+</div><!-- container end --> 
+<!-- scroll -->	
+<a id="backToTop" class="scrolltop" href="#">
+<i class="fas fa-chevron-circle-up"></i></a>
+<script>
+//스크롤
+jQuery(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#backToTop').fadeIn(500);
+    } else {
+      $('#backToTop').fadeOut('slow');
+    }
+  });
+  $('#backToTop').click(function (e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 200);
+  });
+});
+</script>	
+</div><!-- layout end -->
+</html>

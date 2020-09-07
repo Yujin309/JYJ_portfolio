@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+<title id='pageTitle'>쿠킹토킹:::쉐프 페이지</title>
+<th:block layout:fragment='css'>
+	<style type="text/css">
+.container {
+	width: 1000px;
+}
+
+body {
+	background: white;
+}
+.pagingNum{
+display:inline-block;
+margin:10px;
+}
+.con{
+text-align:center;
+}
+.list_ranking2{
+width:70px;
+}
+.mag_t_10{
+text-align:center;}
+#coco {
+	border:1px solid #D8D8D8;
+}
+</style>
+</th:block>
+</head>
+<div layout:fragment='content'>
+
+	<div class='container coco' th:id='coco'>
+		<div class="chef_list4_in">
+			<div th:class="list_lump" th:each='chef,index:${chefDetail}'>
+				<div th:class="list_ranking2">
+					<p th:class="list_ranking2_num2">
+						<span style="color: #fff;" class="glyphicon"></span>
+					</p>
+				</div>
+				<div class="list_mem3">
+					<a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}" class="mem_pic"><img
+						th:src="'/img/'+${chefDetail.userVO.userPic}"> <!-- ${chef.userVO.userPic} --></a>
+				</div>
+				<div class="list_cont4">
+					<b> <a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"
+						th:class="info_name_f" th:text='${chef.userVO.nickName}'> </a>
+						<button type="button" class="btn btn-default btn-sm"
+							id="btnAddFriend" th:if="${follow == 0}">
+							<span class="glyphicon glyphicon-plus" th:text="Follow"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-sm"
+							id="btnRemoveFriend" th:if="${follow == 1}">
+							<span class="glyphicon glyphicon-plus" th:text="UnFollow"></span>
+						</button>
+
+					</b> <span th:class="mem_cont1" th:text='${chef.userVO.rcpUploads}'></span>
+					<span th:class="mem_cont7" th:text='${chef.rcpViews}'></span> <span
+						th:class="mem_cont2" th:text='${chef.userVO.followers}'></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="my_tabs">
+			<ul class="nav nav-tabs nav-justified" style="position: relative;">
+				<li role="presentation" class="active"><a
+					th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"><i
+						class="fas fa-utensils"></i> 레시피</a></li>
+				<li role="presentation"><a th:href="'/chefInfo/Story/'+${chefDetail.userVO.nickName}"
+					 th:id='story'><i
+						class="fas fa-user-friends"></i> 스토리</a></li>
+			</ul>
+		</div>
+
+		<div class="brand_cont mag_t_10">
+			<p style="text-align: center; font-size: 13px; padding: 8px 0 5px;"></p>
+			<div class="input-group info_srarch" style="margin-top: 10px;">
+			</div>
+
+			<ul class="cont_list st3">
+				<li><a th:href="'/recipe/view?rcpCode='+${recipe.rcpCode}" class="thumbnail"
+					th:each='recipe:${chefInfo}'> <img
+						th:src="'/img/'+${recipe.rcpPic}"
+						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
+						<div class="caption">
+							<h4 th:text='${recipe.rcpTitle}'></h4>
+							<h6 th:text="${recipe.rcpDate}"></h6>
+							<p class="jq_elips" th:text="'by '+ ${chefDetail.userVO.nickName}"></p>
+						</div>
+				</a></li>
+				<div th:class='con'>
+				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum">
+				<a th:text="${num}" th:href="'/chefInfo/'+${num}+'/'+${chefDetail.userVO.nickName}" 
+				th:value="${num}" style="color:#FF8000;"></a>
+				</div>
+				</div> 
+			</ul>
+		</div>
+	</div>
+	
+	
+	<script th:inline="javascript">
+		$('#btnAddFriend').click(function() {
+			
+			$.ajax({
+				url:'/chef/follow',
+				data:{
+					follow:$('.glyphicon').text(),
+					chefNick:$('.info_name_f').text()		
+				},
+				type:'GET'
+			}).done(function(data){
+				if ($('.glyphicon').text() == 'UnFollowUnFollow') {
+					$('.glyphicon').text('Follow');
+				} else {
+					$('.glyphicon').text('UnFollow');
+				}
+				alert(data); 
+			}).fail(function(){
+				alert('실패');
+			});
+		});
+		$('#btnRemoveFriend').click(function() {
+			
+			$.ajax({
+				url:'/chef/follow',
+				data:{
+					follow:$('.glyphicon').text(),
+					chefNick:$('.info_name_f').text()		
+				},
+				type:'GET'
+			}).done(function(data){
+				if ($('.glyphicon').text() == 'UnFollowUnFollow'||$('.glyphicon').text()=='UnFollow') {
+					$('.glyphicon').text('Follow');
+				} else {
+					$('.glyphicon').text('UnFollow');
+				}
+				alert(data); 
+			}).fail(function(){
+				alert('실패');
+			});
+		});
+	</script>
+</div>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보 로드하기</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+	<h2>회원정보 보이기, 수정하기, 삭제하기</h2>
+	<div id="basic">
+		<table border="1" id="AduserId">
+
+			<thead>
+				<tr>
+					<th>삭제</th>
+					<th>유저 아이디</th>
+					<th>유저 닉네임</th>
+					<!-- <th>유저 닉네임 수정하기</th> -->
+					<th>유저 생일</th>
+					<th>유저 성별</th>
+					<th>유저 or 관리자</th>
+					<th>인증 확인</th>
+					<th>유저 프로필 사진</th>
+					<th>레시피 업로드 개수</th>
+					<th>유저 팔로워 수</th>
+				</tr>
+			</thead>
+			<tbody>
+		
+				<tr th:each="user : ${UserList}">
+					<td><button th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
+
+
+					<td th:text="${user.userId}">유저 아이디</td>
+					<td><input type="text" id="enter_update_nickName"
+						name="nickName" th:value="${user.nickName}">
+						 <!-- 	 <input type="text"		name="nickName" th:value="${user.nickName}"> -->
+						<!-- <input type="submit" th:value="${user.nickName}">Submit --></td>
+					<td th:text="${user.birth}">유저 생일</td>
+					<td th:text="${user.gender}">유저 성별</td>
+					<td th:text="${user.access}">유저 or 관리자 확인</td>
+					<td th:text="${user.auth}">인증 확인</td>
+					<td th:text="${user.userPic}">유저 프로필 사진</td>
+					<td th:text="${user.rcpUploads}">레시피 업로드 개수</td>
+					<td th:text="${user.followers}">유저 팔로워 수</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		
+	</script>
+
+	<script type="text/javascript">
+		var nickName = document.getElementById("enter_update_nickName");
+		var ENTER_KEY = 13;
+		nickName.addEventListener("keyup", function(event) {
+			if (event.keyCode === ENTER_KEY) {
+				event.preventDefault();
+				alert(nickName.value + "로 변경되었습니다.");
+				
+				 $.ajax({
+					url : './admin/updateUserNickName',
+					data : {
+						nickName : nickName.value
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+				 
+				
+			} else {
+				return false;
+			}
+		});
+	</script>
+
+
+
+	<!-- <script type="text/javascript">
+		var enterInPut = document.getElementById("enter_update_nickName");
+		var ENTER_KEY = 13;
+		enterInPut.addEventListener("enter")
+	</script> -->
+	<script th:inline="javascript">
+		$(".delete_btn").click(function() {
+			/*          alert($(this).attr('value')); */
+			var id = $(this).attr('value');
+
+			if (confirm($(this).attr('value') + "를 삭제 하시겠습니까?")) {
+				$.ajax({
+					url : './admin/deleteUserID',
+					data : {
+						userId : id
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+	<script>
+		$(".update_btn").click(function() {
+			/*          alert($(this).attr('value')); */
+			var nick = $(this).attr('value');
+
+			if (confirm($(this).attr('value') + "수정하시겠습니까?")) {
+				$.ajax({
+					url : './admin/updateUserNickName',
+					data : {
+						nickName : nick
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+
+
+	<script>
+		/* 	function update_Id() {
+
+				var nick = ${'input selector'}.val();
+				/* 	var nick = $(this).attr('value'); 
+
+				console.log(nick); */
+		/* if (confirm("유저 아이디를 변경 하시겠습니까?")) {
+			$.ajax({
+				url : './admin/updateUserNickName',
+				data : {
+					nickName : nick
+				},
+				type : "post",
+				success : function(result) {
+					$('#basic').load("admin/adUser");
+
+				}
+			});
+
+		} else {
+
+			return false;
+		}
+		}; */
+	</script>
+
+	<!--<input onKeyPress="javascript:if(event.keyCode==13){update_Id()}"
+						type="text" th:class="cnt" th:value="${userList.nickName}">-->
+	<!-- 
+		/*  $.ajax(){
+		 	url:'/admin/deleteUserID',
+		 	data:id,
+		 	type:'post',
+		 	success: function(data){
+		 		alert : "삭제가 되었습니다."
+		 		
+		 	}
+		 }
+		}); */ -->
+	<!-- 폼태그 넣어서 쉉하려고햇음	<form action="searchIngr" methodd="POST">
+		<input type="text" name="searchIngrList" class=""
+			placeholder="재료명 입력" style="width: 25%">
+	</form>
+	
+			if(confirm($(this).attr('value') + "를 삭제하시겠습니까?"))
+	
+	<td th:text="${userList.userId}">
+	<input type="text" size="20"
+		style="width: 100%;">유저 아이디</td>
+		
+		<td><input type="text" name="update_id"
+			th:value="${userList.userId}" onKeypress="update_Id()"></td>
+		
+		"javascript:if(event.keyCode==13){update_Id()}"
+		-->
+</body>
+</html>

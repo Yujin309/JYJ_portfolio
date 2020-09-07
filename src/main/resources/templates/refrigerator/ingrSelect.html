@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+<title>쿠킹토킹:::냉장고파먹기</title>
+<style type="text/css">
+</style>
+
+
+<link th:href="@{css/recipe/rcp.css}" rel="stylesheet">
+</head>
+<div layout:fragment='content'>
+
+
+<div th:class="search-main">
+   <!-- 냉장고 파먹기 재료 검색창 -->
+ 
+
+ 
+   <form onsubmit="return false"  style="padding-top: 20px;">
+      <input type="text" onsubmit="return false" title="재료를 검색하세요"
+         id="ingrSearchInRefri" name="ingrSearchInRefri" class="ingrSearchInRefri" placeholder="재료를 검색하세요"
+         onkeypress="enterkey(event);"  style="margin-left: 120px;">
+      <button type="button" class="btn search" id="btnIngrSearch">검색</button>
+      <ul id="searchedIngr" th:class="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
+<div th:class="chosung1" style="padding-top: 10px;">
+      <!-- 냉장고파먹기 초성분류 -->   
+      <button class="chosung" style="background-color: #F4E13F;" th:value="0">ㄱ</button>
+      <button class="chosung" style="background-color: #F4D93F;" th:value="1">ㄴ</button>
+      <button class="chosung" style="background-color: #F4D33F;" th:value="2">ㄷ</button>
+      <button class="chosung" style="background-color: #F4CB3F;" th:value="3">ㄹ</button>
+      <button class="chosung" style="background-color: #F4C33F;" th:value="4">ㅁ</button>
+      <button class="chosung" style="background-color: #F4BD3F;" th:value="5">ㅂ</button>
+      <button class="chosung" style="background-color: #F4B53F;" th:value="6">ㅅ</button>
+      <button class="chosung" style="background-color: #F4AF3F;" th:value="7">ㅇ</button>
+      <button class="chosung" style="background-color: #F4A73F;" th:value="8">ㅈ</button>
+      <button class="chosung" style="background-color: #F49C3F;" th:value="9">ㅊ</button>
+      <button class="chosung" style="background-color: #F4943F;" th:value="10">ㅋ</button>
+      <button class="chosung" style="background-color: #F48C3F;" th:value="11">ㅌ</button>
+      <button class="chosung" style="background-color: #F4863F;" th:value="12">ㅍ</button>
+      <button class="chosung" style="background-color: #F47B3F;" th:value="13">ㅎ</button>
+</div>
+
+   </form>
+</div>
+
+   <!-- 재료 리스트 가져오기 -->
+   <form onsubmit="return false">
+
+		<div th:id="chosungNum">
+			<div th:class="result-area" th:id="ingrList">
+			<div th:class="ingr-list">
+				<table>
+					<tbody th:id="result">
+						<tr th:each="ingrs : ${ingrs}">
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- 선택한 재료 담는 곳 -->
+	<!-- <div th:class="selectedIngr" th:id="selectedIngr" value=""></div> -->
+	
+	<div>
+	<h2 th:class="my">나의 냉장고</h2>
+	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST">
+		<!-- <input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}"> -->
+		<div th:class="selectedIngr" th:id="selectedIngr" ></div>
+		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
+	</form>
+	</div>
+		<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+		<script src="/js/recipe.js"></script>
+
+</div>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>건호 리스트 뿌리기</title>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<div id="basic">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>문의사항제목</th>
+					<th>문의 내용</th>
+					<th>문의 날짜</th>
+					<th>답변 내용</th>
+					<th>유저</th>
+					<th>답변 유무</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="qnaList:${adQnaList}">
+					<td th:text="${qnaList.qnaTitle}">문의 사항 제목</td>
+					<td th:text="${qnaList.qnaCont}">문의 내용</td>
+					<td th:text="${qnaList.qnaDate}">문의 날짜</td>
+					<td th:text="${qnaList.answer}">답변 내용</td>
+					<td th:text="${qnaList.userId}">유저</td>
+					<td>답변유무</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보 로드하기</title>
+<style>
+	.w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+	background-color:#f8f9fa;
+	}
+	</style>
+</head>
+
+<body>
+
+	<h1>재료 페이지</h1>
+	<div class="searchIngr_for_table" id="allIngrPage">
+		<form>
+		
+			<input type="text" id="searchIngrList" name="searchIngrList"
+				th:value="*{searchIngrList}" placeholder="재료를 입력하시오">
+
+			<button class="btn btn-outline-warning" type="button"
+				id="btn_adIngrSearch">검색하기</button>
+			<button class="btn btn-outline-danger" onclick="openWindowPop()">재료
+				추가하기</button>
+			<br> <br>
+			<div th:id="ingr_Name_List">
+				<table class="table table-bordered" id="searchIngr" border="1" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>재료 이름</th>
+							<th>재료 제철</th>
+							<th>재료 칼로리</th>
+							<th>재료 보관온도</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</form>
+
+	</div>
+
+
+	<div id="basic">
+
+
+
+
+		<table class="table table-bordered" border="1" id="IngrTable" style="text-align:center;">
+
+			<thead>
+				<tr>
+					<th>재료 삭제</th>
+					<th>재료 이름</th>
+					<th>재료 제철</th>
+					<th>재료 칼로리</th>
+					<th>재료 보관온도</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Ingr,index:${IngrList}" th:id='${index.index}'>
+					<td><div class="checkBox">
+							<input type="checkbox" th:name="checkRow"
+								aria-label="Checkbox for following text input"
+								th:class="checkRow" th:value="${Ingr.rcpingrCode}">
+						</div></td>
+					<td th:text="${Ingr.ingrName}">재료 이름</td>
+					<td th:text="${Ingr.ingrSeason}">재료 제철</td>
+					<td th:text="${Ingr.ingrCalorie}+Kcal">재료 칼로리</td>
+					<td th:text="${Ingr.ingrTemper}">재료 보관온도</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" onclick="delete_ingr()" class="btn btn-danger">삭제하기</button>
+		<ul>
+			<div th:class="Pagination_Li">
+				<div th:each="num: ${#numbers.sequence(1,IngrList.size()/100)}"
+					th:class="page">
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
+				</div>
+			</div>
+		</ul>
+	</div>
+
+	<!-- 재료 검색 페이지 -->
+	<script>
+		$(document).ready(function() {
+
+			var cc = 670;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+		1
+	</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 20; i++) {
+				$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+				console.log(k + i);
+			}
+		});
+	</script>
+
+	<script>
+		$('#btn_adIngrSearch')
+				.on(
+						'click',
+						function() {
+							var searchINGR;
+							var input = document
+									.getElementById("searchIngrList").value;
+
+							var searchINGR = document
+									.getElementById("searchIngrList").value
+							$.ajax({
+								type : "POST",
+								url : "/admin/search",
+								data : {
+									ingrName : searchINGR
+
+								},
+								success : function(data) {
+									$(".table123").remove();
+									$.each(data, function(index, ingr) {
+										var str = '<tr class="table123"><td>'
+												+ ingr.ingrName + '</td><td>'
+												+ ingr.ingrSeason + '</td><td>'
+												+ ingr.ingrCalorie + "Kcal"
+												+ '</td><td>' + ingr.ingrTemper
+												+ '</td>';
+										$("#searchIngr").append(str);
+
+									});
+
+								},
+								error : function(data) {
+									alert("Error!");
+								}
+
+							});
+						});
+	</script>
+
+	<script>
+		function ingrSearch() {
+
+			var key = $('#searchIngrList').val();
+			console.log("key:" + key);
+			alert("가나다")
+			$.ajax({
+				type : "POST",
+				url : "/admin/search",
+				data : {
+					ingrName : key
+				},
+				success : function(data) {
+					//
+					var result = $('#ingr_Name_List');
+					$('#ingrList').remove();
+					var list = '<div id="ingrList">';
+					$.each(data, function(index, value) {
+						list = list + '<button>' + value + '</button>';
+					});
+
+					result.append(list + '<div>');
+				},
+				error : function() {
+					alert("Search Error");
+				}
+			});
+		}
+	</script>
+
+
+	<!-- 재료 추가 페이지  -->
+	<script>
+		function openWindowPop() {
+			var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open('/admin/insertIngr', 'addIngr', options);
+		}
+	</script>
+
+	<script>
+		function delete_ingr() {
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+			if (confirm_val) {
+				var checkArr = new Array();
+
+				$("input[class='checkRow']:checked").each(
+						function(index, value) {
+							checkArr.push(value.value);
+						});
+
+				console.log(checkArr);
+				$.ajax({
+					url : "/admin/deleteIngr2",
+					type : "POST",
+					data : JSON.stringify(checkArr),
+					contentType : 'application/json',
+					success : function() {
+						
+						$('#basic').load("admin/adIngrList");
+					}
+				});
+			}
+		};
+	</script>
+</body>
+</html>

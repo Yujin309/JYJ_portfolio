@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id='pageTitle'>레시피 상세보기</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+
+.media-body, .media-left, .media-right {
+	max-width: 1000px;
+	display:table-cell;
+	vertical-align:top
+
+.container {
+padding-left: 0px;
+}
+</style>
+</head>
+<div layout:fragment='content'>
+<div class="container sub_bg" style="width:1000px;">
+	<div id="contents_area" class="col-xs-9" style="border-top: 0px;">
+		<form th:method="post" action="#">
+			<div th:each="recipe : ${recipeDTO}">
+				<div class="view2_pic">
+					<div class="view_cate st2" style="z-index: 10;">
+						<div class="view_cate_num">
+							<span class="hit font_num" th:text="${recipe.recipeVO.rcpViews}"></span>
+						</div>
+					</div>
+					<div class="centeredcrop">
+						<img id="main_thumbs" th:src="${recipe.recipeVO.rcpPic}" alt="main thumb" style="width:225px; height:225px;">
+					</div>
+					<div class="user_info2">
+						<a class="app_block_link_remove user_info2_pic"
+							href="/profile/index.html?uid=msjin95212"> <img
+							th:src="'/img/'+${recipe.userVO.userPic}"></a>
+						<span class="user_info2_name" th:text="${recipe.userVO.nickName}"></span>
+					</div>
+				</div>
+				<div class="view2_summary"> <!--recipe summary-->
+					<h3 th:text="${recipe.recipeVO.rcpTitle}"></h3>
+					<div class="view2_summary_in" id="recipeIntro">
+						<span class="view2_summary_in_m1"><img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_marks1.png"></span>
+						<div th:text="${recipe.recipeVO.rcpExpl}"></div>
+						<span class="view2_summary_in_m2"><img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_marks2.png"></span>
+					</div>
+					<div class="view2_summary_info">
+						<span class="view2_summary_info1"
+							th:text="${recipe.recipeVO.personnel}"></span> <span
+							class="view2_summary_info2" th:text="${recipe.recipeVO.cookTime}"></span>
+						<span class="view2_summary_info3"
+							th:text="${recipe.recipeVO.level}"></span>
+					</div>
+				</div>
+			</div>	<!-- recipe area -->
+			<div class="blank_bottom"></div>
+			<div class="cont_ingre2">	<!--rcpingr area-->
+				<div class="best_tit">
+					<b>재료</b><span>Ingredients</span>
+					<div class="ready_ingre3" id="divConfirmedMaterialArea"
+						th:each="rcpIngr : ${rcpIngrView}">
+						<ul class="case1">
+							<div> <span th:text="${rcpIngr.ingrCat}"></span>
+							</div>
+							<li>
+								<!-- <div th:text="${rcpIngr.userIngr}"></div>  -->
+								<div th:if="${not #strings.isEmpty(rcpIngr.userIngr)}" th:text="${rcpIngr.userIngr}"
+								style="width: 200px; position: relative; top: 20px; color: gray;"></div>
+								<div th:unless="${not #strings.isEmpty(rcpIngr.userIngr)}" th:text="${rcpIngr.ingrName}"
+								style="width: 200px; position: relative; top: 20px; color: gray;"></div>
+								<span class="ingre_unit" th:text="${rcpIngr.ingrWeigh}"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="blank_bottom"></div>
+			<!--rcporder area-->
+			<div class="view_step">	
+				<div class="best_tit" >
+					<b>조리순서</b><span>Steps</span>
+				</div>
+				<div th:each="rcpOrder: ${rcpOrderView}">
+					<div th:text="${rcpOrder.cookOrder}">			
+					</div>
+						<div id="stepdescr1" class="media-body" th:text="${rcpOrder.cookCont}"></div>
+						<div id="stepimg1" class="media-right"></div>
+						<img th:src="@{/img/사과.jpg}">
+				</div>
+			</div>
+			<div class="blank_bottom"></div>
+			<!--tag area-->
+			<div class="view_step" >
+				<div class="view_tag">
+					<span th:each="tag : ${tagView}"><a href="#" th:text="${tag.tag}"></a>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div> <!--contents area end-->
+</div>
+
+
+
+</div><!-- fragment area -->
+</html>
